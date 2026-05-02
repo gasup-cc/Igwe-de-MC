@@ -1,0 +1,22 @@
+import { Link } from "react-router-dom";
+import { ArrowRight } from "lucide-react";
+import { SectionHeader } from "@/components/SectionHeader";
+import { VideoCard } from "@/components/VideoCard";
+
+export const VideosPreview = () => {
+  return (
+    <section className="py-24 md:py-28 bg-surface-2">
+      <div className="container-x">
+        <SectionHeader eyebrow="Showreel" title="Watch IGWE DE MC" goldTitle="Live" subtitle="A glimpse into the energy he brings to every stage." />
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+          {[0,1,2,3].map(i => <VideoCard key={i} placeholder />)}
+        </div>
+        <div className="text-center mt-10">
+          <Link to="/videos" className="inline-flex items-center gap-2 text-gold text-xs tracking-[0.25em] uppercase border-b border-gold/30 pb-1 hover:gap-3 transition-all">
+            View All Videos <ArrowRight className="w-4 h-4" />
+          </Link>
+        </div>
+      </div>
+    </section>
+  );
+};
