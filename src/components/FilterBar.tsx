@@ -3,7 +3,7 @@ import { cn } from "@/lib/utils";
 interface FilterBarProps<T extends string> {
   options: readonly T[];
   active: T;
-  onChange: (v: T) => void;
+  onChange: React.Dispatch<React.SetStateAction<T>>;
   className?: string;
 }
 
