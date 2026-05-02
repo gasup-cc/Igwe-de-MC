@@ -3,7 +3,15 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
+import { Layout } from "@/components/layout/Layout";
 import Index from "./pages/Index.tsx";
+import About from "./pages/About.tsx";
+import Events from "./pages/Events.tsx";
+import Videos from "./pages/Videos.tsx";
+import News from "./pages/News.tsx";
+import Shop from "./pages/Shop.tsx";
+import Booking from "./pages/Booking.tsx";
+import LegalPage from "./pages/LegalPage.tsx";
 import NotFound from "./pages/NotFound.tsx";
 
 const queryClient = new QueryClient();
@@ -12,13 +20,24 @@ const App = () => (
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>
       <Toaster />
-      <Sonner />
+      <Sonner theme="dark" position="top-right" toastOptions={{ classNames: { toast: "glass !bg-void/90 !text-foreground !border-gold/30", title: "text-foreground", description: "text-muted-foreground" } }} />
       <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Index />} />
-          {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-          <Route path="*" element={<NotFound />} />
-        </Routes>
+        <Layout>
+          <Routes>
+            <Route path="/" element={<Index />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/events" element={<Events />} />
+            <Route path="/videos" element={<Videos />} />
+            <Route path="/news" element={<News />} />
+            <Route path="/shop" element={<Shop />} />
+            <Route path="/booking" element={<Booking />} />
+            <Route path="/privacy-policy" element={<LegalPage title="Privacy" goldTitle="Policy" />} />
+            <Route path="/terms" element={<LegalPage title="Terms of" goldTitle="Service" />} />
+            <Route path="/cookie-policy" element={<LegalPage title="Cookie" goldTitle="Policy" />} />
+            <Route path="/booking-policy" element={<LegalPage title="Booking" goldTitle="Policy" />} />
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </Layout>
       </BrowserRouter>
     </TooltipProvider>
   </QueryClientProvider>
