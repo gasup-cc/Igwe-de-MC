@@ -5,6 +5,8 @@ import { Send, Phone, Mail, MessageCircle, Check } from "lucide-react";
 import { PageHero } from "@/components/PageHero";
 import { GlassCard } from "@/components/GlassCard";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import { ScrollReveal } from "@/components/ui/ScrollReveal";
+import { StaggerContainer, StaggerItem } from "@/components/ui/StaggerContainer";
 
 const schema = z.object({
   name: z.string().trim().min(1).max(100),
