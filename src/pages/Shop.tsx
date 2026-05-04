@@ -3,6 +3,7 @@ import { z } from "zod";
 import { toast } from "sonner";
 import { PageHero } from "@/components/PageHero";
 import { GlassCard } from "@/components/GlassCard";
+import { ScrollReveal } from "@/components/ui/ScrollReveal";
 
 const schema = z.object({ email: z.string().trim().email().max(255) });
 
