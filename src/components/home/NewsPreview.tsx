@@ -3,6 +3,8 @@ import { ArrowRight } from "lucide-react";
 import { SectionHeader } from "@/components/SectionHeader";
 import { PostCard } from "@/components/PostCard";
 import { posts } from "@/data/site";
+import { StaggerContainer, StaggerItem } from "@/components/ui/StaggerContainer";
+import { ScrollReveal } from "@/components/ui/ScrollReveal";
 
 export const NewsPreview = () => {
   const top = posts.slice(0, 3);
