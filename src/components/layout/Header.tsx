@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link, NavLink, useLocation } from "react-router-dom";
-import { Menu, X, Calendar } from "lucide-react";
+import { Calendar, Facebook, Instagram, Youtube, Phone } from "lucide-react";
+import { AnimatePresence, motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 
 const NAV = [
@@ -27,89 +28,252 @@ export const Header = () => {
 
   useEffect(() => { setOpen(false); }, [location.pathname]);
 
+  // Body scroll lock
+  useEffect(() => {
+    document.body.style.overflow = open ? "hidden" : "";
+    return () => { document.body.style.overflow = ""; };
+  }, [open]);
+
+  // Close on back button
+  useEffect(() => {
+    const onPop = () => setOpen(false);
+    window.addEventListener("popstate", onPop);
+    return () => window.removeEventListener("popstate", onPop);
+  }, []);
+
   return (
-    <header
-      className={cn(
-        "fixed top-0 inset-x-0 z-50 h-[72px] transition-all duration-300 border-b",
-        scrolled ? "bg-void/85 border-white/10" : "bg-void/60 border-white/[0.06]"
-      )}
-      style={{ backdropFilter: "blur(20px) saturate(180%)", WebkitBackdropFilter: "blur(20px) saturate(180%)" }}
-    >
-      <div className="container-x h-full flex items-center justify-between">
-        <Link to="/" className="flex items-center gap-3 group">
-          <span className="text-gold/60 group-hover:text-gold transition-colors">●</span>
-          <span className="font-display font-bold text-[1.1rem] uppercase tracking-[0.4em] gold-text">IGWE DE MC</span>
-        </Link>
-
-        <nav className="hidden lg:flex items-center gap-8">
-          {NAV.slice(0, 6).map((item) => (
-            <NavLink
-              key={item.to}
-              to={item.to}
-              end={item.to === "/"}
-              className={({ isActive }) =>
-                cn(
-                  "relative text-[11px] tracking-[0.25em] uppercase font-light transition-colors py-2",
-                  "after:content-[''] after:absolute after:left-0 after:bottom-0 after:h-px after:bg-gold after:transition-all after:duration-300",
-                  isActive
-                    ? "text-gold after:w-full"
-                    : "text-muted-foreground hover:text-gold after:w-0 hover:after:w-full"
-                )
-              }
-            >
-              {item.label}
-            </NavLink>
-          ))}
-        </nav>
-
-        <div className="flex items-center gap-3">
-          <Link
-            to="/booking"
-            className={cn(
-              "hidden sm:inline-flex items-center gap-2 rounded-md px-5 py-2.5",
-              "text-[11px] tracking-[0.2em] uppercase text-gold border border-gold/30 bg-gold/10",
-              "hover:bg-gold/20 hover:shadow-[0_0_24px_rgba(212,175,55,0.25)] transition-all duration-300 btn-shimmer"
-            )}
-          >
-            <Calendar className="w-3.5 h-3.5" />
-            Book an Event
-          </Link>
-          <button
-            className="lg:hidden p-2 text-foreground"
-            onClick={() => setOpen(!open)}
-            aria-label="Toggle menu"
-          >
-            {open ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-          </button>
-        </div>
-      </div>
-
-      {/* Mobile overlay */}
-      <div
+    <>
+      <header
         className={cn(
-          "lg:hidden fixed inset-0 top-[72px] bg-void/95 transition-opacity duration-300",
-          open ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
+          "fixed top-0 inset-x-0 z-50 h-[72px] transition-all duration-300 border-b",
+          scrolled ? "bg-void/85 border-white/10" : "bg-void/60 border-white/[0.06]"
         )}
-        style={{ backdropFilter: "blur(24px)", WebkitBackdropFilter: "blur(24px)" }}
+        style={{ backdropFilter: "blur(20px) saturate(180%)", WebkitBackdropFilter: "blur(20px) saturate(180%)" }}
       >
-        <nav className="container-x py-12 flex flex-col gap-6">
-          {NAV.map((item) => (
-            <NavLink
-              key={item.to}
-              to={item.to}
-              end={item.to === "/"}
-              className={({ isActive }) =>
-                cn(
-                  "text-2xl font-display tracking-wide transition-colors",
-                  isActive ? "gold-text" : "text-foreground hover:text-gold"
-                )
-              }
+        <div className="container-x h-full flex items-center justify-between">
+          <Link to="/" className="flex items-center gap-3 group">
+            <span className="text-gold/60 group-hover:text-gold transition-colors">●</span>
+            <span className="font-display font-bold text-[1.1rem] uppercase tracking-[0.4em] gold-text">IGWE DE MC</span>
+          </Link>
+
+          <nav className="hidden lg:flex items-center gap-8">
+            {NAV.slice(0, 6).map((item) => (
+              <NavLink
+                key={item.to}
+                to={item.to}
+                end={item.to === "/"}
+                className={({ isActive }) =>
+                  cn(
+                    "relative text-[11px] tracking-[0.25em] uppercase font-light transition-colors py-2",
+                    "after:content-[''] after:absolute after:left-0 after:bottom-0 after:h-px after:bg-gold after:transition-all after:duration-300",
+                    isActive
+                      ? "text-gold after:w-full"
+                      : "text-muted-foreground hover:text-gold after:w-0 hover:after:w-full"
+                  )
+                }
+              >
+                {item.label}
+              </NavLink>
+            ))}
+          </nav>
+
+          <div className="flex items-center gap-3">
+            <Link
+              to="/booking"
+              className={cn(
+                "hidden sm:inline-flex items-center gap-2 rounded-md px-5 py-2.5",
+                "text-[11px] tracking-[0.2em] uppercase text-gold border border-gold/30 bg-gold/10",
+                "hover:bg-gold/20 hover:shadow-[0_0_24px_rgba(212,175,55,0.25)] transition-all duration-300 btn-shimmer"
+              )}
             >
-              {item.label}
-            </NavLink>
-          ))}
-        </nav>
-      </div>
-    </header>
+              <Calendar className="w-3.5 h-3.5" />
+              Book an Event
+            </Link>
+
+            {/* Hamburger */}
+            <button
+              className="lg:hidden relative flex flex-col items-center justify-center"
+              style={{ width: 44, height: 44 }}
+              onClick={() => setOpen((v) => !v)}
+              aria-label={open ? "Close menu" : "Open menu"}
+              aria-expanded={open}
+            >
+              <motion.span
+                className="block bg-gold rounded-[1px] absolute"
+                style={{ width: 22, height: 2 }}
+                animate={open ? { rotate: 45, y: 0 } : { rotate: 0, y: -7 }}
+                transition={{ duration: 0.3, ease: "easeInOut" }}
+              />
+              <motion.span
+                className="block bg-gold rounded-[1px] absolute"
+                style={{ width: 22, height: 2 }}
+                animate={open ? { opacity: 0, scaleX: 0 } : { opacity: 1, scaleX: 1 }}
+                transition={{ duration: 0.3, ease: "easeInOut" }}
+              />
+              <motion.span
+                className="block bg-gold rounded-[1px] absolute"
+                style={{ width: 22, height: 2 }}
+                animate={open ? { rotate: -45, y: 0 } : { rotate: 0, y: 7 }}
+                transition={{ duration: 0.3, ease: "easeInOut" }}
+              />
+            </button>
+          </div>
+        </div>
+      </header>
+
+      {/* Mobile fullscreen overlay */}
+      <AnimatePresence>
+        {open && (
+          <motion.div
+            key="mobile-overlay"
+            className="lg:hidden fixed inset-0"
+            style={{
+              zIndex: 9999,
+              width: "100vw",
+              height: "100dvh",
+              background: "linear-gradient(135deg, #050507 0%, #0d0d14 50%, #0a0810 100%)",
+            }}
+            initial={{ clipPath: "inset(0 0 0 100%)" }}
+            animate={{ clipPath: "inset(0 0 0 0%)" }}
+            exit={{ clipPath: "inset(0 0 0 100%)" }}
+            transition={{ duration: 0.4, ease: [0.76, 0, 0.24, 1] }}
+          >
+            {/* Ambient orbs */}
+            <div aria-hidden className="absolute inset-0 pointer-events-none overflow-hidden">
+              <div
+                className="absolute top-0 right-0 w-[500px] h-[500px]"
+                style={{ background: "radial-gradient(circle, rgba(212,175,55,0.08) 0%, transparent 70%)" }}
+              />
+              <div
+                className="absolute bottom-0 left-0 w-[500px] h-[500px]"
+                style={{ background: "radial-gradient(circle, rgba(124,58,237,0.06) 0%, transparent 70%)" }}
+              />
+            </div>
+
+            {/* Vertical gold accent bar */}
+            <div
+              aria-hidden
+              className="absolute"
+              style={{
+                left: 40, top: "20%", width: 2, height: "60%",
+                background: "linear-gradient(to bottom, transparent, #D4AF37, transparent)",
+              }}
+            />
+
+            {/* Close button (×) — handled by hamburger transform; but ensure tap closes via header overlay sits below z-9999 */}
+            <button
+              onClick={() => setOpen(false)}
+              aria-label="Close menu"
+              className="absolute top-[14px] right-5 lg:hidden flex flex-col items-center justify-center"
+              style={{ width: 44, height: 44, zIndex: 10 }}
+            >
+              <span className="block bg-gold rounded-[1px] absolute" style={{ width: 22, height: 2, transform: "rotate(45deg)" }} />
+              <span className="block bg-gold rounded-[1px] absolute" style={{ width: 22, height: 2, transform: "rotate(-45deg)" }} />
+            </button>
+
+            {/* Nav links */}
+            <motion.nav
+              className="absolute"
+              style={{ top: "50%", left: "50%", transform: "translate(-50%, -50%)", width: "80%", textAlign: "left" }}
+              initial="hidden"
+              animate="visible"
+              exit="exit"
+              variants={{
+                hidden: {},
+                visible: { transition: { staggerChildren: 0.06, delayChildren: 0.2 } },
+                exit: { transition: { staggerChildren: 0.03, staggerDirection: -1 } },
+              }}
+            >
+              {NAV.map((item) => {
+                const isActive = location.pathname === item.to;
+                return (
+                  <motion.div
+                    key={item.to}
+                    variants={{
+                      hidden: { opacity: 0, x: 40 },
+                      visible: { opacity: 1, x: 0, transition: { duration: 0.35, ease: [0.25, 0.46, 0.45, 0.94] } },
+                      exit: { opacity: 0, x: 40, transition: { duration: 0.2 } },
+                    }}
+                  >
+                    <Link
+                      to={item.to}
+                      onClick={() => setTimeout(() => setOpen(false), 200)}
+                      className="group flex items-center font-display font-bold transition-all duration-200"
+                      style={{
+                        fontSize: "clamp(32px, 8vw, 52px)",
+                        lineHeight: 1.2,
+                        color: isActive ? "#D4AF37" : "rgba(240,237,230,0.85)",
+                        letterSpacing: "-0.01em",
+                        padding: "14px 0",
+                        borderBottom: "1px solid rgba(255,255,255,0.06)",
+                      }}
+                    >
+                      <span
+                        className="inline-block transition-all duration-200"
+                        style={{
+                          color: "#D4AF37",
+                          width: isActive ? 24 : 0,
+                          opacity: isActive ? 1 : 0,
+                          overflow: "hidden",
+                        }}
+                      >
+                        ●
+                      </span>
+                      <span className="group-hover:text-gold group-hover:translate-x-2 transition-all duration-200">
+                        {item.label}
+                      </span>
+                    </Link>
+                  </motion.div>
+                );
+              })}
+            </motion.nav>
+
+            {/* Bottom info strip */}
+            <div
+              className="absolute left-0 right-0 px-6 flex items-center justify-between"
+              style={{ bottom: 32 }}
+            >
+              <div className="flex items-center gap-4">
+                {[
+                  { Icon: Facebook, href: "https://www.facebook.com/share/1DKNiGSfty/", label: "Facebook" },
+                  { Icon: Instagram, href: "https://www.instagram.com/igwedemc", label: "Instagram" },
+                  { Icon: Youtube, href: "https://youtube.com/@igwedemc", label: "YouTube" },
+                ].map(({ Icon, href, label }) => (
+                  <a
+                    key={label}
+                    href={href}
+                    target="_blank"
+                    rel="noreferrer"
+                    aria-label={label}
+                    className="rounded-full glass flex items-center justify-center transition-all hover:text-gold"
+                    style={{ width: 36, height: 36, color: "rgba(212,175,55,0.7)" }}
+                  >
+                    <Icon className="w-4 h-4" />
+                  </a>
+                ))}
+                <a
+                  href="https://www.tiktok.com/@igwedemc"
+                  target="_blank"
+                  rel="noreferrer"
+                  aria-label="TikTok"
+                  className="rounded-full glass flex items-center justify-center text-[10px] font-bold hover:text-gold transition-all"
+                  style={{ width: 36, height: 36, color: "rgba(212,175,55,0.7)" }}
+                >
+                  TT
+                </a>
+              </div>
+              <a
+                href="tel:+447733751948"
+                className="text-muted-foreground hover:text-gold transition-colors flex items-center gap-2"
+                style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 12, letterSpacing: "1px" }}
+              >
+                <Phone className="w-3.5 h-3.5" />
+                +447733751948
+              </a>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </>
   );
 };
