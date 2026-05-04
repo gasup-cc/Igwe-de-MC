@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { toast } from "sonner";
 import { GlassCard } from "@/components/GlassCard";
+import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { z } from "zod";
 
 const schema = z.object({ email: z.string().trim().email().max(255) });
