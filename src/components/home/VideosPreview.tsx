@@ -2,6 +2,8 @@ import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
 import { SectionHeader } from "@/components/SectionHeader";
 import { VideoCard } from "@/components/VideoCard";
+import { StaggerContainer, StaggerItem } from "@/components/ui/StaggerContainer";
+import { ScrollReveal } from "@/components/ui/ScrollReveal";
 
 export const VideosPreview = () => {
   return (
