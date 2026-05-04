@@ -4,6 +4,8 @@ import { FilterBar } from "@/components/FilterBar";
 import { EventCard } from "@/components/EventCard";
 import { events, EventCategory } from "@/data/site";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import { StaggerContainer, StaggerItem } from "@/components/ui/StaggerContainer";
+import { ScrollReveal } from "@/components/ui/ScrollReveal";
 
 const FILTERS = ["All", "Concert", "DJ Night", "Private Party", "Corporate", "Wedding", "Birthday"] as const;
 type Filter = typeof FILTERS[number];
@@ -34,11 +36,11 @@ const Events = () => {
 
       <section className="pb-24">
         <div className="container-x space-y-8">
-          {featured && <EventCard event={featured} variant="featured" />}
+          {featured && <ScrollReveal>{<EventCard event={featured} variant="featured" />}</ScrollReveal>}
           {rest.length > 0 && (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {rest.map(e => <EventCard key={e.id} event={e} />)}
-            </div>
+            <StaggerContainer className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {rest.map(e => <StaggerItem key={e.id}><EventCard event={e} /></StaggerItem>)}
+            </StaggerContainer>
           )}
           {filtered.length === 0 && (
             <div className="glass rounded-2xl p-16 text-center">
