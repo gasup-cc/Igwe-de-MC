@@ -3,6 +3,8 @@ import { ArrowRight, Mic2, Sparkles, Briefcase, Laugh } from "lucide-react";
 import { AmbientOrbs } from "@/components/AmbientOrbs";
 import { GlassCard } from "@/components/GlassCard";
 import { ImagePlaceholder } from "@/components/ImagePlaceholder";
+import { ScrollReveal } from "@/components/ui/ScrollReveal";
+import { StaggerContainer, StaggerItem } from "@/components/ui/StaggerContainer";
 
 const features = [
   { icon: Mic2, name: "Live Events", desc: "Concerts & shows" },
