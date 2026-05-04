@@ -3,6 +3,7 @@ import { ChevronLeft, ChevronRight, Star } from "lucide-react";
 import { SectionHeader } from "@/components/SectionHeader";
 import { GlassCard } from "@/components/GlassCard";
 import { testimonials } from "@/data/site";
+import { StaggerContainer, StaggerItem } from "@/components/ui/StaggerContainer";
 
 export const TestimonialsSection = () => {
   const scrollRef = useRef<HTMLDivElement>(null);
