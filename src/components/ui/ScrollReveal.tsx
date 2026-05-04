@@ -6,6 +6,10 @@ interface ScrollRevealProps {
   delay?: number;
   className?: string;
   as?: "div" | "span" | "li" | "section";
+  /** @deprecated kept for backwards compatibility */
+  direction?: "up" | "down" | "left" | "right" | "none";
+  /** @deprecated kept for backwards compatibility */
+  duration?: number;
 }
 
 /**
