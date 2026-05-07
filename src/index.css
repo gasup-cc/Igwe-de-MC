@@ -182,3 +182,15 @@
   background-size: 800px 100%;
   animation: shimmerSkeleton 2.2s linear infinite;
 }
+
+
+/* ADDED CODE: Hides the Lovable badge permanently */
+#lovable-badge,
+aside[aria-label="Edit with Lovable"],
+#lovable-badge-cta,
+#lovable-badge-close {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
