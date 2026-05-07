@@ -4,6 +4,7 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { Layout } from "@/components/layout/Layout";
+import { ScrollToTop } from "@/components/ScrollToTop";
 import Index from "./pages/Index.tsx";
 import About from "./pages/About.tsx";
 import Events from "./pages/Events.tsx";
@@ -22,6 +23,7 @@ const App = () => (
       <Toaster />
       <Sonner theme="dark" position="top-right" toastOptions={{ classNames: { toast: "glass !bg-void/90 !text-foreground !border-gold/30", title: "text-foreground", description: "text-muted-foreground" } }} />
       <BrowserRouter>
+        <ScrollToTop />
         <Layout>
           <Routes>
             <Route path="/" element={<Index />} />

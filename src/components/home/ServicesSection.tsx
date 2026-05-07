@@ -1,10 +1,10 @@
 import { Link } from "react-router-dom";
-import { ArrowRight, Mic2, Disc3, PartyPopper, Briefcase, Heart, Cake, Sparkles } from "lucide-react";
+import { ArrowRight, Mic2, Disc3, PartyPopper, Briefcase, Heart, Cake, Sparkles, Globe2, Radio } from "lucide-react";
 import { GlassCard } from "@/components/GlassCard";
 import { SectionHeader } from "@/components/SectionHeader";
 import { StaggerContainer, StaggerItem } from "@/components/ui/StaggerContainer";
 
-const iconMap = { Mic2, Disc3, PartyPopper, Briefcase, Heart, Cake, Sparkles };
+const iconMap = { Mic2, Disc3, PartyPopper, Briefcase, Heart, Cake, Sparkles, Globe2, Radio };
 
 const services = [
   { name: "Concert", icon: "Mic2", desc: "High-energy hosting for live music & comedy nights." },
@@ -13,6 +13,8 @@ const services = [
   { name: "Corporate Event", icon: "Briefcase", desc: "Polished hosting for awards & dinners." },
   { name: "Wedding", icon: "Heart", desc: "MC for traditional & contemporary weddings." },
   { name: "Birthday Party", icon: "Cake", desc: "Milestone celebrations done right." },
+  { name: "Cultural Events", icon: "Globe2", desc: "Rooted in tradition, delivered with presence." },
+  { name: "Podcasts", icon: "Radio", desc: "Conversations that keep listeners hooked." },
   { name: "Other", icon: "Sparkles", desc: "Festivals, dedications, cultural events & more." },
 ];
 

@@ -39,7 +39,7 @@ export const HeroSection = () => {
               className="font-display font-bold tracking-tight"
               style={{ fontSize: "clamp(42px, 6vw, 80px)", lineHeight: 1.05 }}
             >
-              <span className="block whitespace-nowrap">Highstar</span>
+              <span className="block whitespace-nowrap">Ebubedike</span>
               <span className="block whitespace-nowrap gold-gradient-text">IGWE DE MC</span>
             </h1>
 
