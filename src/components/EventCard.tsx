@@ -3,16 +3,48 @@ import { ImagePlaceholder } from "./ImagePlaceholder";
 import { MapPin, Clock, Ticket, Share2 } from "lucide-react";
 import { EventItem } from "@/data/site";
 import { cn } from "@/lib/utils";
+import { Link } from "react-router-dom";
 
 interface EventCardProps {
   event: EventItem;
   variant?: "default" | "featured";
 }
 
+const TicketButton = ({ event, size = "lg" }: { event: EventItem; size?: "lg" | "sm" }) => {
+  const className =
+    size === "lg"
+      ? "btn-shimmer inline-flex items-center justify-center gap-2 bg-gold text-void px-7 py-3.5 rounded-md text-[11px] tracking-[0.2em] uppercase font-medium hover:bg-gold-bright transition-all"
+      : "btn-shimmer flex-1 inline-flex items-center justify-center gap-2 bg-gold text-void px-4 py-2.5 rounded-md text-[11px] tracking-[0.2em] uppercase font-medium hover:bg-gold-bright transition-all";
+  const icon = <Ticket className={size === "lg" ? "w-4 h-4" : "w-3.5 h-3.5"} />;
+  const label = size === "lg" ? "Get Tickets" : "Tickets";
+  if (event.detailUrl) {
+    return (
+      <Link to={event.detailUrl} className={className}>
+        {icon} {label}
+      </Link>
+    );
+  }
+  return (
+    <a href={event.ticketUrl} target="_blank" rel="noreferrer" className={className}>
+      {icon} {label}
+    </a>
+  );
+};
+
 export const EventCard = ({ event, variant = "default" }: EventCardProps) => {
   if (variant === "featured") {
     return (
       <GlassCard goldAccentTop borderGlow padding="p-0" className="overflow-hidden border-gold/30">
+        {event.image && (
+          <Link to={event.detailUrl ?? "#"} className="block">
+            <img
+              src={event.image}
+              alt={event.name}
+              className="w-full max-h-[480px] object-cover object-top"
+              style={{ objectPosition: "center top" }}
+            />
+          </Link>
+        )}
         <div className="grid grid-cols-1 lg:grid-cols-[auto_1fr_auto] gap-10 p-8 md:p-12 items-center">
           <div className="flex items-center gap-6">
             <div className="text-center">
@@ -33,9 +65,7 @@ export const EventCard = ({ event, variant = "default" }: EventCardProps) => {
               <div className="text-xs text-muted-foreground tracking-wider">per ticket</div>
             </div>
             <div className="flex flex-col sm:flex-row lg:flex-col gap-3">
-              <a href={event.ticketUrl} target="_blank" rel="noreferrer" className="btn-shimmer inline-flex items-center justify-center gap-2 bg-gold text-void px-7 py-3.5 rounded-md text-[11px] tracking-[0.2em] uppercase font-medium hover:bg-gold-bright transition-all">
-                <Ticket className="w-4 h-4" /> Get Tickets
-              </a>
+              <TicketButton event={event} size="lg" />
               <button className="inline-flex items-center justify-center gap-2 glass px-7 py-3.5 rounded-md text-[11px] tracking-[0.2em] uppercase font-light text-foreground hover:border-gold/40 transition-all">
                 Add to Calendar
               </button>
@@ -49,7 +79,13 @@ export const EventCard = ({ event, variant = "default" }: EventCardProps) => {
   return (
     <GlassCard goldAccentTop padding="p-0" className={cn("overflow-hidden flex flex-col", event.past && "grayscale opacity-70")}>
       <div className="relative">
-        <ImagePlaceholder aspect="aspect-[16/9]" rounded="rounded-none" label="Event Flyer" />
+        {event.image ? (
+          <div className="aspect-[16/9] w-full overflow-hidden">
+            <img src={event.image} alt={event.name} className="w-full h-full object-cover" style={{ objectPosition: "center top" }} />
+          </div>
+        ) : (
+          <ImagePlaceholder aspect="aspect-[16/9]" rounded="rounded-none" label="Event Flyer" />
+        )}
         {event.soldOut && (
           <span className="absolute top-4 right-4 glass bg-red-500/30 border-red-400/40 text-red-100 text-[10px] tracking-[0.2em] uppercase px-3 py-1 rounded-full">Sold Out</span>
         )}
@@ -69,9 +105,7 @@ export const EventCard = ({ event, variant = "default" }: EventCardProps) => {
         </div>
         <div className="font-display font-bold text-3xl gold-gradient-text mt-2">{event.price}</div>
         <div className="flex gap-2 mt-auto pt-4">
-          <a href={event.ticketUrl} target="_blank" rel="noreferrer" className="btn-shimmer flex-1 inline-flex items-center justify-center gap-2 bg-gold text-void px-4 py-2.5 rounded-md text-[11px] tracking-[0.2em] uppercase font-medium hover:bg-gold-bright transition-all">
-            <Ticket className="w-3.5 h-3.5" /> Tickets
-          </a>
+          <TicketButton event={event} size="sm" />
           <button className="inline-flex items-center justify-center w-11 glass rounded-md text-muted-foreground hover:text-gold transition-all" aria-label="Share">
             <Share2 className="w-4 h-4" />
           </button>
