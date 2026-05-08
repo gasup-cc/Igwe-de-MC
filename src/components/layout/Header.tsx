@@ -4,6 +4,18 @@ import { Calendar, Facebook, Instagram, Youtube, Phone } from "lucide-react";
 import { AnimatePresence, motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 
+const XIcon = (props: React.SVGProps<SVGSVGElement>) => (
+  <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16" {...props}>
+    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+  </svg>
+);
+
+const TikTokIcon = (props: React.SVGProps<SVGSVGElement>) => (
+  <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16" {...props}>
+    <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.69a8.18 8.18 0 0 0 4.78 1.52V6.76a4.85 4.85 0 0 1-1.01-.07z" />
+  </svg>
+);
+
 const NAV = [
   { to: "/", label: "Home" },
   { to: "/about", label: "About" },
@@ -236,8 +248,10 @@ export const Header = () => {
               <div className="flex items-center gap-4">
                 {[
                   { Icon: Facebook, href: "https://www.facebook.com/share/1DKNiGSfty/", label: "Facebook" },
+                  { Icon: XIcon, href: "https://x.com/igwedemc", label: "X" },
                   { Icon: Instagram, href: "https://www.instagram.com/igwedemc", label: "Instagram" },
                   { Icon: Youtube, href: "https://youtube.com/@igwedemc", label: "YouTube" },
+                  { Icon: TikTokIcon, href: "https://www.tiktok.com/@igwedemc", label: "TikTok" },
                 ].map(({ Icon, href, label }) => (
                   <a
                     key={label}
@@ -251,16 +265,6 @@ export const Header = () => {
                     <Icon className="w-4 h-4" />
                   </a>
                 ))}
-                <a
-                  href="https://www.tiktok.com/@igwedemc"
-                  target="_blank"
-                  rel="noreferrer"
-                  aria-label="TikTok"
-                  className="rounded-full glass flex items-center justify-center text-[10px] font-bold hover:text-gold transition-all"
-                  style={{ width: 36, height: 36, color: "rgba(212,175,55,0.7)" }}
-                >
-                  TT
-                </a>
               </div>
               <a
                 href="tel:+447733751948"

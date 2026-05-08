@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { Calendar, PlayCircle, Mic } from "lucide-react";
-import { ImagePlaceholder } from "@/components/ImagePlaceholder";
+import portraitImg from "@/assets/igwe-portrait.webp";
 
 export const HeroSection = () => {
   return (
@@ -76,8 +76,14 @@ export const HeroSection = () => {
 
           {/* RIGHT */}
           <div className="relative hidden lg:block">
-            <div className="relative" style={{ aspectRatio: "3 / 4", borderRadius: 24, overflow: "hidden" }}>
-              <ImagePlaceholder aspect="aspect-[3/4]" rounded="rounded-3xl" label="IGWE DE MC Portrait" />
+            <div className="relative group" style={{ aspectRatio: "3 / 4", borderRadius: 24, overflow: "hidden", border: "1px solid rgba(212,175,55,0.2)", boxShadow: "0 30px 80px -20px rgba(0,0,0,0.7), 0 0 60px -20px rgba(212,175,55,0.25)" }}>
+              <img
+                src={portraitImg}
+                alt="Ebubedike — IGWE DE MC, Master of Ceremony"
+                loading="eager"
+                className="absolute inset-0 w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-[1.03]"
+              />
+              <div aria-hidden className="absolute inset-0 bg-gradient-to-t from-void/80 via-void/10 to-transparent" />
               <div className="absolute bottom-6 left-6 glass-strong border-gold/30 rounded-xl px-4 py-2.5 text-xs flex items-center gap-2 shadow-[0_8px_32px_rgba(0,0,0,0.6)]">
                 <Mic className="w-4 h-4 text-gold" />
                 <span className="text-foreground">Available UK-Wide</span>
