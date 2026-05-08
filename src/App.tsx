@@ -8,6 +8,7 @@ import { ScrollToTop } from "@/components/ScrollToTop";
 import Index from "./pages/Index.tsx";
 import About from "./pages/About.tsx";
 import Events from "./pages/Events.tsx";
+import JokesApart from "./pages/JokesApart.tsx";
 import Videos from "./pages/Videos.tsx";
 import News from "./pages/News.tsx";
 import Shop from "./pages/Shop.tsx";
@@ -29,6 +30,7 @@ const App = () => (
             <Route path="/" element={<Index />} />
             <Route path="/about" element={<About />} />
             <Route path="/events" element={<Events />} />
+            <Route path="/events/jokes-apart" element={<JokesApart />} />
             <Route path="/videos" element={<Videos />} />
             <Route path="/news" element={<News />} />
             <Route path="/shop" element={<Shop />} />
