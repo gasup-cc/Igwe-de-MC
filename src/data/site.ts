@@ -12,10 +12,15 @@ export interface EventItem {
   price: string;
   category: EventCategory;
   ticketUrl?: string;
+  detailUrl?: string;
+  image?: string;
   soldOut?: boolean;
   past?: boolean;
   featured?: boolean;
 }
+
+import jokesApartFlyer from "@/assets/jokes-apart-flyer.webp";
+export { jokesApartFlyer };
 
 export const events: EventItem[] = [
   {
