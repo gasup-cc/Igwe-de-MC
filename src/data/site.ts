@@ -1,3 +1,7 @@
+import jokesApartFlyer from "@/assets/jokes-apart-flyer.webp";
+
+export { jokesApartFlyer };
+
 export type EventCategory = "Concert" | "DJ Night" | "Private Party" | "Corporate" | "Wedding" | "Birthday";
 
 export interface EventItem {
@@ -19,9 +23,6 @@ export interface EventItem {
   featured?: boolean;
 }
 
-import jokesApartFlyer from "@/assets/jokes-apart-flyer.webp";
-export { jokesApartFlyer };
-
 export const events: EventItem[] = [
   {
     id: "jokes-apart-2026",
@@ -34,10 +35,13 @@ export const events: EventItem[] = [
     city: "Southampton",
     price: "£50",
     category: "Concert",
-    ticketUrl: "https://www.eventbrite.co.uk/e/igwe-de-mc-jokes-apart-tickets-1986010202979",
+    ticketUrl: "https://crm.gasup.ai/v2/preview/L1MkUz1ic0x1ZzLd5qJH",
+    detailUrl: "/events/jokes-apart",
+    image: jokesApartFlyer,
     featured: true,
   },
 ];
+
 
 export interface VideoItem {
   id: string;
