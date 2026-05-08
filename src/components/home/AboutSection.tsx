@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { ArrowRight, Mic2, Sparkles, Briefcase, Laugh } from "lucide-react";
 import { AmbientOrbs } from "@/components/AmbientOrbs";
 import { GlassCard } from "@/components/GlassCard";
-import { ImagePlaceholder } from "@/components/ImagePlaceholder";
+import onStageImg from "@/assets/igwe-on-stage.webp";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { StaggerContainer, StaggerItem } from "@/components/ui/StaggerContainer";
 
@@ -20,7 +20,18 @@ export const AboutSection = () => {
       <div className="container-x relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-20 items-center">
         <ScrollReveal>
           <div className="relative">
-            <ImagePlaceholder aspect="aspect-[4/5]" label="IGWE DE MC On Stage" />
+            <div
+              className="relative aspect-[4/5] overflow-hidden rounded-2xl group"
+              style={{ border: "1px solid rgba(212,175,55,0.2)", boxShadow: "0 30px 80px -20px rgba(0,0,0,0.7), 0 0 60px -30px rgba(124,58,237,0.3)" }}
+            >
+              <img
+                src={onStageImg}
+                alt="IGWE DE MC on stage"
+                loading="lazy"
+                className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.04]"
+              />
+              <div aria-hidden className="absolute inset-0 bg-gradient-to-t from-void/70 via-transparent to-transparent" />
+            </div>
             <GlassCard padding="p-5" className="absolute -bottom-6 -right-4 max-w-[260px] border-gold/30">
               <p className="font-display italic text-lg leading-snug">"Every room deserves a great host."</p>
               <p className="mt-2 text-[10px] tracking-[0.3em] uppercase text-gold">— Igwe De MC</p>
