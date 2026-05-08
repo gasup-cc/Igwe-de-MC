@@ -8,6 +8,7 @@ import { ScrollToTop } from "@/components/ScrollToTop";
 import Index from "./pages/Index.tsx";
 import About from "./pages/About.tsx";
 import Events from "./pages/Events.tsx";
+import JokesApart from "./pages/JokesApart.tsx";
 import Videos from "./pages/Videos.tsx";
 import News from "./pages/News.tsx";
 import Shop from "./pages/Shop.tsx";
