@@ -280,7 +280,6 @@ const JokesApart = () => {
 
                 <a
                   href={TICKET_URL}
-                  target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center justify-center gap-2 w-full rounded-[10px] uppercase font-bold transition-all duration-[250ms] hover:-translate-y-0.5"
                   style={{
@@ -329,7 +328,6 @@ const JokesApart = () => {
         <div className="font-display font-semibold text-[22px] gold-text">£50+</div>
         <a
           href={TICKET_URL}
-          target="_blank"
           rel="noopener noreferrer"
           className="inline-flex items-center justify-center gap-2 rounded-[8px] uppercase font-bold transition-all"
           style={{
