@@ -14,6 +14,7 @@ import News from "./pages/News.tsx";
 import Shop from "./pages/Shop.tsx";
 import Booking from "./pages/Booking.tsx";
 import LegalPage from "./pages/LegalPage.tsx";
+import { bookingPolicyContent, termsContent, cookiePolicyContent } from "./data/legal";
 import NotFound from "./pages/NotFound.tsx";
 
 const queryClient = new QueryClient();
