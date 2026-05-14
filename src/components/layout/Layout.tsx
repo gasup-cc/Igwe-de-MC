@@ -4,6 +4,7 @@ import { Footer } from "./Footer";
 import { FloatingButtons } from "./FloatingButtons";
 import { ParticleField } from "@/components/ParticleField";
 import { FloatingIcons } from "@/components/FloatingIcons";
+import { ScrollToTopFooter } from "@/components/ScrollToTopFooter";
 
 export const Layout = ({ children }: { children: ReactNode }) => {
   return (
@@ -13,6 +14,7 @@ export const Layout = ({ children }: { children: ReactNode }) => {
       <Header />
       <main className="flex-1 pt-[72px] relative z-[1]">{children}</main>
       <Footer />
+      <ScrollToTopFooter />
       <FloatingButtons />
     </div>
   );
