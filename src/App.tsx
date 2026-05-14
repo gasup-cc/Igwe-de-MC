@@ -14,6 +14,7 @@ import News from "./pages/News.tsx";
 import Shop from "./pages/Shop.tsx";
 import Booking from "./pages/Booking.tsx";
 import LegalPage from "./pages/LegalPage.tsx";
+import { bookingPolicyContent, termsContent, cookiePolicyContent } from "./data/legal";
 import NotFound from "./pages/NotFound.tsx";
 
 const queryClient = new QueryClient();
@@ -35,10 +36,10 @@ const App = () => (
             <Route path="/news" element={<News />} />
             <Route path="/shop" element={<Shop />} />
             <Route path="/booking" element={<Booking />} />
-            <Route path="/privacy-policy" element={<LegalPage title="Privacy" goldTitle="Policy" />} />
-            <Route path="/terms" element={<LegalPage title="Terms of" goldTitle="Service" />} />
-            <Route path="/cookie-policy" element={<LegalPage title="Cookie" goldTitle="Policy" />} />
-            <Route path="/booking-policy" element={<LegalPage title="Booking" goldTitle="Policy" />} />
+            <Route path="/privacy-policy" element={<LegalPage {...bookingPolicyContent} />} />
+            <Route path="/terms" element={<LegalPage {...termsContent} />} />
+            <Route path="/cookie-policy" element={<LegalPage {...cookiePolicyContent} />} />
+            <Route path="/booking-policy" element={<LegalPage {...bookingPolicyContent} />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </Layout>

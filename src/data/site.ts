@@ -46,13 +46,23 @@ export const events: EventItem[] = [
 export interface VideoItem {
   id: string;
   title: string;
+  label: string;
   category: "On Stage" | "Weddings" | "Cultural Events" | "Comedy" | "Behind the Scenes";
-  duration: string;
-  views: string;
-  date: string;
+  url: string;
 }
 
-export const videos: VideoItem[] = [];
+const CDN = "https://assets.cdn.filesafe.space/anudewnYrwCmf0LVpuJw/media";
+
+export const videos: VideoItem[] = [
+  { id: "v1", title: "Stage Energy",            label: "Live Performance",   category: "On Stage",          url: `${CDN}/69fb1fbd0394c9850352be78.mov` },
+  { id: "v2", title: "The Crowd Goes Wild",     label: "Event Hosting",      category: "On Stage",          url: `${CDN}/6a0069aebc1f77cc3556a41e.mov` },
+  { id: "v3", title: "Comedy Night Highlights", label: "Stand-Up",           category: "Comedy",            url: `${CDN}/6a006567939c0e5f20116e27.mov` },
+  { id: "v4", title: "Wedding MC Moment",       label: "Wedding",            category: "Weddings",          url: `${CDN}/69fb2de10394c98503560c37.mov` },
+  { id: "v5", title: "Cultural Festival Vibes", label: "Cultural Event",     category: "Cultural Events",   url: `${CDN}/6a0069af0f3ad81fbdf557fd.mov` },
+  { id: "v6", title: "Corporate Event Hosting", label: "Corporate",          category: "On Stage",          url: `${CDN}/69fb2de19594baa062da8edc.mov` },
+  { id: "v7", title: "Birthday Bash",           label: "Private Party",      category: "On Stage",          url: `${CDN}/69fb1fbd7167fd9a35bf7809.mov` },
+  { id: "v8", title: "Backstage & Beyond",      label: "Behind the Scenes",  category: "Behind the Scenes", url: `${CDN}/6a006567f8231fbf0b1d9741.mov` },
+];
 
 export type PostCategory = "Lifestyle" | "Wedding" | "Cultural" | "Comedy" | "Announcements";
 

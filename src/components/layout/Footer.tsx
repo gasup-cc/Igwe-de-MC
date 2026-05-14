@@ -83,7 +83,7 @@ export const Footer = () => {
           <ul className="space-y-3 text-sm font-light">
             {[
               ["Privacy Policy", "/privacy-policy"], ["Terms of Service", "/terms"],
-              ["Cookie Policy", "/cookie-policy"], ["Booking Policy", "/booking-policy"],
+              ["Cookie Policy", "/cookie-policy"],
             ].map(([l, h]) => (
               <li key={h}><Link to={h} className="text-muted-foreground hover:text-gold transition-colors">{l}</Link></li>
             ))}
