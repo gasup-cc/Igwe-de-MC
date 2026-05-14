@@ -36,10 +36,10 @@ const App = () => (
             <Route path="/news" element={<News />} />
             <Route path="/shop" element={<Shop />} />
             <Route path="/booking" element={<Booking />} />
-            <Route path="/privacy-policy" element={<LegalPage title="Privacy" goldTitle="Policy" />} />
-            <Route path="/terms" element={<LegalPage title="Terms of" goldTitle="Service" />} />
-            <Route path="/cookie-policy" element={<LegalPage title="Cookie" goldTitle="Policy" />} />
-            <Route path="/booking-policy" element={<LegalPage title="Booking" goldTitle="Policy" />} />
+            <Route path="/privacy-policy" element={<LegalPage {...bookingPolicyContent} />} />
+            <Route path="/terms" element={<LegalPage {...termsContent} />} />
+            <Route path="/cookie-policy" element={<LegalPage {...cookiePolicyContent} />} />
+            <Route path="/booking-policy" element={<LegalPage {...bookingPolicyContent} />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </Layout>
