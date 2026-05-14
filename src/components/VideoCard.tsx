@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { GlassCard } from "./GlassCard";
-import { ImagePlaceholder } from "./ImagePlaceholder";
-import { PlayCircle, X } from "lucide-react";
+import { Play, X } from "lucide-react";
 import { VideoItem } from "@/data/site";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 
@@ -10,19 +9,16 @@ interface VideoCardProps {
   placeholder?: boolean;
 }
 
+const isDirectFile = (src: string) => /\.(mov|mp4|webm|m4v)(\?|$)/i.test(src);
+
 export const VideoCard = ({ video, placeholder }: VideoCardProps) => {
   const [open, setOpen] = useState(false);
 
   if (placeholder || !video) {
     return (
       <GlassCard padding="p-0" className="overflow-hidden flex flex-col">
-        <div className="relative">
-          <ImagePlaceholder aspect="aspect-video" rounded="rounded-none" label="Video Loading Soon" />
-          <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-            <div className="w-14 h-14 rounded-full glass-strong flex items-center justify-center text-gold/50">
-              <PlayCircle className="w-8 h-8" />
-            </div>
-          </div>
+        <div className="relative aspect-video bg-[rgba(255,255,255,0.04)] flex items-center justify-center">
+          <Play className="w-8 h-8 text-gold/50" />
         </div>
         <div className="p-4">
           <div className="h-3 w-3/4 bg-white/10 rounded skeleton-shimmer mb-2" />
@@ -35,32 +31,46 @@ export const VideoCard = ({ video, placeholder }: VideoCardProps) => {
   return (
     <>
       <GlassCard padding="p-0" className="overflow-hidden flex flex-col cursor-pointer group" onClick={() => setOpen(true)}>
-        <div className="relative">
-          <ImagePlaceholder aspect="aspect-video" rounded="rounded-none" label={video.category} />
-          <span className="absolute top-3 left-3 bg-gold text-void text-[9px] font-bold tracking-[0.2em] px-2 py-1 rounded">HD</span>
-          <span className="absolute top-3 right-3 glass text-[10px] font-mono-acc px-2 py-1 rounded">{video.duration}</span>
-          <div className="absolute inset-0 flex items-center justify-center bg-void/0 group-hover:bg-void/40 transition-all duration-500">
-            <div className="w-16 h-16 rounded-full glass-strong border-gold/40 flex items-center justify-center text-gold opacity-0 group-hover:opacity-100 transition-all duration-500 scale-90 group-hover:scale-100 shadow-[0_0_30px_rgba(212,175,55,0.4)]">
-              <PlayCircle className="w-9 h-9" />
-            </div>
-          </div>
+        <div className="relative aspect-video bg-[rgba(255,255,255,0.04)] flex items-center justify-center overflow-hidden">
+          <Play className="w-8 h-8 text-gold transition-transform duration-500 group-hover:scale-110" style={{ width: 32, height: 32 }} />
+          <div className="absolute inset-0 bg-void/0 group-hover:bg-void/20 transition-all duration-500" />
         </div>
         <div className="p-4">
-          <h4 className="text-sm font-medium leading-snug line-clamp-2">{video.title}</h4>
-          <p className="text-xs text-muted-foreground font-light mt-1">{video.views} views · {video.date}</p>
+          <div className="flex items-center gap-2 mb-2">
+            <span className="bg-gold/15 text-gold text-[10px] font-medium tracking-wider uppercase px-2 py-0.5 rounded-full border border-gold/30">{video.label}</span>
+          </div>
+          <h4 className="text-sm font-medium leading-snug line-clamp-2" style={{ fontFamily: "'DM Sans', sans-serif", fontWeight: 500 }}>{video.title}</h4>
+          <p className="text-xs text-muted-foreground font-light mt-1">— views</p>
         </div>
       </GlassCard>
 
       <Dialog open={open} onOpenChange={setOpen}>
-        <DialogContent className="max-w-5xl glass-strong border-white/10 bg-void/95 p-0 overflow-hidden">
+        <DialogContent className="max-w-5xl glass-strong border-white/10 !bg-[#050507] p-0 overflow-hidden">
           <div className="relative">
             <button onClick={() => setOpen(false)} className="absolute top-3 right-3 z-10 w-9 h-9 rounded-full glass flex items-center justify-center text-foreground hover:text-gold">
               <X className="w-4 h-4" />
             </button>
-            <ImagePlaceholder aspect="aspect-video" rounded="rounded-none" label="Video Player" />
+            <div className="relative w-full bg-black aspect-video flex items-center justify-center">
+              {isDirectFile(video.url) ? (
+                <video
+                  src={video.url}
+                  controls
+                  autoPlay
+                  playsInline
+                  className="w-full h-full object-contain"
+                />
+              ) : (
+                <iframe
+                  src={video.url}
+                  className="w-full h-full"
+                  allow="autoplay; encrypted-media; picture-in-picture"
+                  allowFullScreen
+                />
+              )}
+            </div>
             <div className="p-6">
               <h3 className="font-display text-2xl">{video.title}</h3>
-              <p className="text-sm text-muted-foreground mt-1">{video.category} · {video.views} views</p>
+              <p className="text-sm text-muted-foreground mt-1">{video.label} · {video.category}</p>
             </div>
           </div>
         </DialogContent>
