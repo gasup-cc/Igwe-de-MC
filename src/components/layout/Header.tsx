@@ -245,7 +245,7 @@ export const Header = () => {
               className="absolute left-0 right-0 px-6 flex items-center justify-between"
               style={{ bottom: 32 }}
             >
-              <div className="flex items-center gap-4">
+              <div className="flex items-center gap-3">
                 {[
                   { Icon: Facebook, href: "https://www.facebook.com/share/1DKNiGSfty/", label: "Facebook" },
                   { Icon: XIcon, href: "https://x.com/igwedemc", label: "X" },
