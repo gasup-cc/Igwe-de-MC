@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { PageHero } from "@/components/PageHero";
-import { ImagePlaceholder } from "@/components/ImagePlaceholder";
+import aboutImg from "@/assets/about.webp";
 import { GlassCard } from "@/components/GlassCard";
 import { Mic2, Disc3, PartyPopper, Briefcase, Heart, Cake, Sparkles } from "lucide-react";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
@@ -30,7 +30,20 @@ const About = () => {
 
       <section className="py-24">
         <div className="container-x grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-          <ScrollReveal><ImagePlaceholder aspect="aspect-[4/5]" label="Igwe De MC" /></ScrollReveal>
+          <ScrollReveal>
+            <div
+              className="relative aspect-[4/5] overflow-hidden rounded-2xl group"
+              style={{ border: "1px solid rgba(212,175,55,0.2)", boxShadow: "0 30px 80px -20px rgba(0,0,0,0.7), 0 0 60px -30px rgba(124,58,237,0.3)" }}
+            >
+              <img
+                src={aboutImg}
+                alt="Igwe De MC"
+                loading="lazy"
+                className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.04]"
+              />
+              <div aria-hidden className="absolute inset-0 bg-gradient-to-t from-void/70 via-transparent to-transparent" />
+            </div>
+          </ScrollReveal>
           <div className="space-y-6">
             <ScrollReveal><div className="eyebrow">The Story</div></ScrollReveal>
             <ScrollReveal delay={0.15}>

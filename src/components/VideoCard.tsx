@@ -31,9 +31,15 @@ export const VideoCard = ({ video, placeholder }: VideoCardProps) => {
   return (
     <>
       <GlassCard padding="p-0" className="overflow-hidden flex flex-col cursor-pointer group" onClick={() => setOpen(true)}>
-        <div className="relative aspect-video bg-[rgba(255,255,255,0.04)] flex items-center justify-center overflow-hidden">
-          <Play className="w-8 h-8 text-gold transition-transform duration-500 group-hover:scale-110" style={{ width: 32, height: 32 }} />
-          <div className="absolute inset-0 bg-void/0 group-hover:bg-void/20 transition-all duration-500" />
+        <div className="relative aspect-video overflow-hidden flex items-center justify-center">
+          <img
+            src={video.thumbnail}
+            alt={video.title}
+            loading="lazy"
+            className="absolute inset-0 w-full h-full object-cover object-[center_top]"
+          />
+          <Play className="relative z-10 w-8 h-8 text-gold transition-transform duration-500 group-hover:scale-110" style={{ width: 32, height: 32 }} />
+          <div className="absolute inset-0 z-[1] bg-void/0 group-hover:bg-void/20 transition-all duration-500 pointer-events-none" />
         </div>
         <div className="p-4">
           <div className="flex items-center gap-2 mb-2">
@@ -54,6 +60,7 @@ export const VideoCard = ({ video, placeholder }: VideoCardProps) => {
               {isDirectFile(video.url) ? (
                 <video
                   src={video.url}
+                  poster={video.thumbnail}
                   controls
                   autoPlay
                   playsInline

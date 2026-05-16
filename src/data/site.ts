@@ -43,25 +43,35 @@ export const events: EventItem[] = [
 ];
 
 
+import v1Thumb from "@/assets/v1.webp";
+import v2Thumb from "@/assets/v2.webp";
+import v3Thumb from "@/assets/v3.webp";
+import v4Thumb from "@/assets/v4.webp";
+import v5Thumb from "@/assets/v5.webp";
+import v6Thumb from "@/assets/v6.webp";
+import v7Thumb from "@/assets/v7.webp";
+import v8Thumb from "@/assets/v8.webp";
+
 export interface VideoItem {
   id: string;
   title: string;
   label: string;
   category: "On Stage" | "Weddings" | "Cultural Events" | "Comedy" | "Behind the Scenes";
   url: string;
+  thumbnail: string;
 }
 
 const CDN = "https://assets.cdn.filesafe.space/anudewnYrwCmf0LVpuJw/media";
 
 export const videos: VideoItem[] = [
-  { id: "v1", title: "Stage Energy",            label: "Live Performance",   category: "On Stage",          url: `${CDN}/69fb1fbd0394c9850352be78.mov` },
-  { id: "v2", title: "The Crowd Goes Wild",     label: "Event Hosting",      category: "On Stage",          url: `${CDN}/6a0069aebc1f77cc3556a41e.mov` },
-  { id: "v3", title: "Comedy Night Highlights", label: "Stand-Up",           category: "Comedy",            url: `${CDN}/6a006567939c0e5f20116e27.mov` },
-  { id: "v4", title: "Wedding MC Moment",       label: "Wedding",            category: "Weddings",          url: `${CDN}/69fb2de10394c98503560c37.mov` },
-  { id: "v5", title: "Cultural Festival Vibes", label: "Cultural Event",     category: "Cultural Events",   url: `${CDN}/6a0069af0f3ad81fbdf557fd.mov` },
-  { id: "v6", title: "Corporate Event Hosting", label: "Corporate",          category: "On Stage",          url: `${CDN}/69fb2de19594baa062da8edc.mov` },
-  { id: "v7", title: "Birthday Bash",           label: "Private Party",      category: "On Stage",          url: `${CDN}/69fb1fbd7167fd9a35bf7809.mov` },
-  { id: "v8", title: "Backstage & Beyond",      label: "Behind the Scenes",  category: "Behind the Scenes", url: `${CDN}/6a006567f8231fbf0b1d9741.mov` },
+  { id: "v1", title: "Stage Energy",            label: "Live Performance",   category: "On Stage",          url: `${CDN}/69fb1fbd0394c9850352be78.mov`, thumbnail: v1Thumb },
+  { id: "v2", title: "The Crowd Goes Wild",     label: "Event Hosting",      category: "On Stage",          url: `${CDN}/6a0069aebc1f77cc3556a41e.mov`, thumbnail: v2Thumb },
+  { id: "v3", title: "Comedy Night Highlights", label: "Stand-Up",           category: "Comedy",            url: `${CDN}/6a006567939c0e5f20116e27.mov`, thumbnail: v3Thumb },
+  { id: "v4", title: "Wedding MC Moment",       label: "Wedding",            category: "Weddings",          url: `${CDN}/69fb2de10394c98503560c37.mov`, thumbnail: v4Thumb },
+  { id: "v5", title: "Cultural Festival Vibes", label: "Cultural Event",     category: "Cultural Events",   url: `${CDN}/6a0069af0f3ad81fbdf557fd.mov`, thumbnail: v5Thumb },
+  { id: "v6", title: "Corporate Event Hosting", label: "Corporate",          category: "On Stage",          url: `${CDN}/69fb2de19594baa062da8edc.mov`, thumbnail: v6Thumb },
+  { id: "v7", title: "Birthday Bash",           label: "Private Party",      category: "On Stage",          url: `${CDN}/69fb1fbd7167fd9a35bf7809.mov`, thumbnail: v7Thumb },
+  { id: "v8", title: "Backstage & Beyond",      label: "Behind the Scenes",  category: "Behind the Scenes", url: `${CDN}/6a006567f8231fbf0b1d9741.mov`, thumbnail: v8Thumb },
 ];
 
 import newsTraditionalWedding from "@/assets/news-traditional-wedding.webp";
