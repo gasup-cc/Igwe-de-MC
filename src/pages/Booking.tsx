@@ -90,7 +90,7 @@ const Booking = () => {
             <StaggerContainer className="pt-4 flex flex-wrap gap-3">
               <StaggerItem><a href="tel:+447733751948" className="glass rounded-md px-4 py-3 text-sm flex items-center gap-2 hover:border-gold/40 transition"><Phone className="w-4 h-4 text-gold" /> +44 7733 751948</a></StaggerItem>
               <StaggerItem><a href="https://wa.me/447733751948" target="_blank" rel="noreferrer" className="glass rounded-md px-4 py-3 text-sm flex items-center gap-2 hover:border-gold/40 transition"><MessageCircle className="w-4 h-4 text-[#25D366]" /> WhatsApp</a></StaggerItem>
-              <StaggerItem><a href="mailto:info@igwedemc.com" className="glass rounded-md px-4 py-3 text-sm flex items-center gap-2 hover:border-gold/40 transition"><Mail className="w-4 h-4 text-gold" /> info@igwedemc.com</a></StaggerItem>
+              <StaggerItem><a href="mailto:info@igwedemc.uk" className="glass rounded-md px-4 py-3 text-sm flex items-center gap-2 hover:border-gold/40 transition"><Mail className="w-4 h-4 text-gold" /> info@igwedemc.uk</a></StaggerItem>
             </StaggerContainer>
           </div>
 

@@ -73,7 +73,7 @@ const LegalPage = ({ title, goldTitle, subtitle, effectiveDate, sections, contac
                 sections.map((s, i) => <SectionBlock key={i} s={s} />)
               ) : (
                 <>
-                  <p className="text-muted-foreground leading-relaxed">{body || "Detailed policy content coming soon. For any immediate questions, please contact us at info@igwedemc.com."}</p>
+                  <p className="text-muted-foreground leading-relaxed">{body || "Detailed policy content coming soon. For any immediate questions, please contact us at info@igwedemc.uk."}</p>
                   <p className="text-muted-foreground leading-relaxed mt-4">Last updated: 2026.</p>
                 </>
               )}
