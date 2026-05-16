@@ -1,6 +1,12 @@
 import { Link } from "react-router-dom";
 import { Calendar, PlayCircle, Mic } from "lucide-react";
 import portraitImg from "@/assets/igwe-portrait.webp";
+import avatar1 from "@/assets/avatar-1.webp";
+import avatar2 from "@/assets/avatar-2.webp";
+import avatar3 from "@/assets/avatar-3.webp";
+import avatar4 from "@/assets/avatar-4.webp";
+
+const HERO_AVATARS = [avatar1, avatar3, avatar2, avatar4];
 
 export const HeroSection = () => {
   return (
@@ -65,9 +71,11 @@ export const HeroSection = () => {
             </div>
 
             <div className="flex items-center gap-4 pt-4">
-              <div className="flex -space-x-2">
-                {[0, 1, 2, 3].map((i) => (
-                  <div key={i} className="w-9 h-9 rounded-full glass-strong border-2 border-void bg-gradient-to-br from-gold/30 to-violet/20" />
+              <div className="flex -space-x-2.5">
+                {HERO_AVATARS.map((src, i) => (
+                  <div key={i} className="w-9 h-9 rounded-full overflow-hidden border-2 border-void shadow-[0_2px_8px_rgba(0,0,0,0.4)]" style={{ marginLeft: i === 0 ? 0 : -10 }}>
+                    <img src={src} alt="" aria-hidden className="w-full h-full object-cover" style={{ objectPosition: "center top" }} />
+                  </div>
                 ))}
               </div>
               <span className="text-xs text-muted-foreground">100+ events hosted across the UK</span>

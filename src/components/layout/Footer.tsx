@@ -72,7 +72,7 @@ export const Footer = () => {
         <div>
           <h4 className="eyebrow mb-5 text-muted-foreground">Contact</h4>
           <ul className="space-y-3 text-sm font-light text-muted-foreground">
-            <li className="flex items-start gap-3"><Mail className="w-4 h-4 text-gold mt-0.5" /><a href="mailto:info@igwedemc.com" className="hover:text-gold">info@igwedemc.com</a></li>
+            <li className="flex items-start gap-3"><Mail className="w-4 h-4 text-gold mt-0.5" /><a href="mailto:info@igwedemc.uk" className="hover:text-gold">info@igwedemc.uk</a></li>
             <li className="flex items-start gap-3"><Phone className="w-4 h-4 text-gold mt-0.5" /><a href="tel:+447733751948" className="hover:text-gold">+44 7733 751948</a></li>
             <li className="flex items-start gap-3"><MapPin className="w-4 h-4 text-gold mt-0.5" /><span>Tremona Road, Southampton<br/>SO16 6TH</span></li>
           </ul>

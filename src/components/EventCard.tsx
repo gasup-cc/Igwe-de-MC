@@ -66,9 +66,6 @@ export const EventCard = ({ event, variant = "default" }: EventCardProps) => {
             </div>
             <div className="flex flex-col sm:flex-row lg:flex-col gap-3">
               <TicketButton event={event} size="lg" />
-              <button className="inline-flex items-center justify-center gap-2 glass px-7 py-3.5 rounded-md text-[11px] tracking-[0.2em] uppercase font-light text-foreground hover:border-gold/40 transition-all">
-                Add to Calendar
-              </button>
             </div>
           </div>
         </div>

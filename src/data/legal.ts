@@ -1,7 +1,7 @@
 import type { LegalSection, LegalContact } from "@/pages/LegalPage";
 
 const STANDARD_CONTACT_LINES = {
-  email: "info@igwedemc.com",
+  email: "info@igwedemc.uk",
   phone: "+44 7733 751948 | +234 806 367 8240",
   location: "United Kingdom",
 };
@@ -16,7 +16,7 @@ export const bookingPolicyContent: { title: string; goldTitle: string; subtitle:
     {
       heading: "Booking Requests",
       paragraphs: ["All booking requests must be submitted through:"],
-      list: ["The official website booking form", "Email: info@igwedemc.com"],
+      list: ["The official website booking form", "Email: info@igwedemc.uk"],
       subsections: [
         { heading: "Booking requests should include:", list: ["Event date", "Event location", "Type of event", "Expected audience size", "Organizer contact details"] },
       ],
