@@ -64,6 +64,13 @@ export const videos: VideoItem[] = [
   { id: "v8", title: "Backstage & Beyond",      label: "Behind the Scenes",  category: "Behind the Scenes", url: `${CDN}/6a006567f8231fbf0b1d9741.mov` },
 ];
 
+import newsTraditionalWedding from "@/assets/news-traditional-wedding.webp";
+import newsHereWeGoAgain from "@/assets/news-here-we-go-again.webp";
+import newsNewYam from "@/assets/news-new-yam-festival.webp";
+import news40thBirthday from "@/assets/news-40th-birthday.webp";
+import newsChildDedication from "@/assets/news-child-dedication.webp";
+import newsScholarships from "@/assets/news-scholarships.webp";
+
 export type PostCategory = "Lifestyle" | "Wedding" | "Cultural" | "Comedy" | "Announcements";
 
 export interface PostItem {
@@ -74,9 +81,22 @@ export interface PostItem {
   body: string;
   date: string;
   author: string;
+  image?: string;
+  externalLink?: { label: string; url: string };
 }
 
 export const posts: PostItem[] = [
+  {
+    id: "scholarships-uk-2026",
+    title: "Scholarships in United Kingdom For International Students",
+    category: "Lifestyle",
+    excerpt: "International students are welcome to apply for scholarships open for the 2026 and 2027 academic years across different disciplines in various UK universities.",
+    body: "International students are welcome to apply for scholarships open for the 2026 and 2027 academic years across different disciplines in various universities in the United Kingdom. The scholarships are provided by governments, private organizations, and universities and are either fully or partially funded.\n\nThis page is updated regularly to include new and active scholarships in the UK for international students, so bookmark it to check back for newly added scholarships.",
+    date: "April 15, 2026",
+    author: "Administrator",
+    image: newsScholarships,
+    externalLink: { label: "Click here to Apply", url: "https://booklab24.com/scholarships-in-united-kingdom-for-international-students/" },
+  },
   {
     id: "traditional-wedding",
     title: "Traditional Wedding",
@@ -85,6 +105,7 @@ export const posts: PostItem[] = [
     body: "A beautiful celebration of love, culture, and heritage, this traditional wedding ceremony was a true reflection of unity. From the colourful attire to the heartfelt vows and rich traditions, every moment was filled with meaning. Anchored with energy, structure and respect for the customs, the day flowed seamlessly from arrival of guests to the final dance.",
     date: "March 26, 2026",
     author: "IGWE DE MC",
+    image: newsTraditionalWedding,
   },
   {
     id: "here-we-go-again",
@@ -94,6 +115,7 @@ export const posts: PostItem[] = [
     body: "Another opportunity to create unforgettable moments, connect with people, and bring energy to the room. Every event is a new stage, a new audience and a new chance to deliver the kind of experience people will talk about for years.",
     date: "March 26, 2026",
     author: "IGWE DE MC",
+    image: newsHereWeGoAgain,
   },
   {
     id: "new-yam-festival-dorset",
@@ -103,6 +125,7 @@ export const posts: PostItem[] = [
     body: "From the ceremonial presentation of the new yam to cultural performances, every moment was handled with precision. Anchoring this event was a privilege — celebrating heritage, community and the traditions that bind us together as Igbo people in the UK.",
     date: "March 7, 2026",
     author: "IGWE DE MC",
+    image: newsNewYam,
   },
   {
     id: "40th-birthday",
@@ -112,6 +135,7 @@ export const posts: PostItem[] = [
     body: "Turning 40 is more than a milestone — it's a celebration of life, growth, and the journey so far. Hosting this party was about creating moments the celebrant and their guests will never forget.",
     date: "March 7, 2026",
     author: "IGWE DE MC",
+    image: news40thBirthday,
   },
   {
     id: "child-dedication-wales",
@@ -121,6 +145,7 @@ export const posts: PostItem[] = [
     body: "A heartfelt child dedication ceremony filled with love, gratitude, and community. Travelling to Wales to anchor this beautiful occasion was a reminder of how powerful family and faith are when brought together.",
     date: "March 7, 2026",
     author: "IGWE DE MC",
+    image: newsChildDedication,
   },
 ];
 
