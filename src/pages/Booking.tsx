@@ -47,16 +47,43 @@ const Booking = () => {
   });
   const update = (k: string, v: string) => setForm(f => ({ ...f, [k]: v }));
 
-  const submit = (e: React.FormEvent) => {
+  const submit = async (e: React.FormEvent) => {
     e.preventDefault();
     const r = schema.safeParse(form);
     if (!r.success) { toast.error("Please complete all required fields correctly."); return; }
     setSubmitting(true);
-    setTimeout(() => {
+
+    const payload = {
+      name: form.name,
+      email: form.email,
+      phone: form.phone,
+      eventType: form.eventType,
+      eventDate: form.eventDate,
+      location: form.location || '',
+      guests: form.guests || '',
+      budget: form.budget || '',
+      message: form.message || '',
+      source: form.source || '',
+    };
+
+    try {
+      const response = await fetch('https://services.leadconnectorhq.com/hooks/anudewnYrwCmf0LVpuJw/webhook-trigger/96422ad2-8466-432b-954e-e74cd59ee307', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      });
+
+      if (response.ok) {
+        toast.success("Booking enquiry sent. We'll be in touch within 24 hours.");
+        setForm({ name: "", email: "", phone: "", eventType: "", eventDate: "", location: "", guests: "", budget: "", message: "", source: "" });
+      } else {
+        toast.error("Something went wrong. Please try again or contact us directly.");
+      }
+    } catch {
+      toast.error("Network error. Please check your connection and try again.");
+    } finally {
       setSubmitting(false);
-      toast.success("Booking enquiry sent. We'll be in touch within 24 hours.");
-      setForm({ name: "", email: "", phone: "", eventType: "", eventDate: "", location: "", guests: "", budget: "", message: "", source: "" });
-    }, 800);
+    }
   };
 
   return (
@@ -98,7 +125,7 @@ const Booking = () => {
             <GlassCard goldAccentTop padding="p-8 md:p-10" hoverable={false}>
               <form onSubmit={submit} className="space-y-5">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-                  <div><label className={labelClass}>Full Name *</label><input required className={inputClass} value={form.name} onChange={e => update("name", e.target.value)} maxLength={100} /></div>
+                  <div><label className={labelClass}>Name *</label><input required className={inputClass} value={form.name} onChange={e => update("name", e.target.value)} maxLength={100} /></div>
                   <div><label className={labelClass}>Email *</label><input required type="email" className={inputClass} value={form.email} onChange={e => update("email", e.target.value)} maxLength={255} /></div>
                 </div>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
@@ -112,7 +139,7 @@ const Booking = () => {
                   </div>
                 </div>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-                  <div><label className={labelClass}>Event Date *</label><input required type="date" className={inputClass} value={form.eventDate} onChange={e => update("eventDate", e.target.value)} /></div>
+                  <div><label className={labelClass}>Event Date</label><input type="date" className={inputClass} value={form.eventDate} onChange={e => update("eventDate", e.target.value)} /></div>
                   <div><label className={labelClass}>Location</label><input className={inputClass} placeholder="City, Venue name" value={form.location} onChange={e => update("location", e.target.value)} maxLength={150} /></div>
                 </div>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
