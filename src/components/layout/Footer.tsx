@@ -27,11 +27,13 @@ export const Footer = () => {
       <LightningEffect variant="footer" />
       <div className="container-x relative z-[1] py-20 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
         <div>
-          <div className="flex items-center gap-2">
-            <span className="text-gold/60">●</span>
-            <span className="font-display font-bold uppercase tracking-[0.4em] gold-text">IGWE DE MC</span>
-          </div>
-          <p className="mt-5 text-sm text-muted-foreground leading-relaxed font-light">
+          <img
+            src="/igwedemc-no-bg-logo.webp"
+            alt="IGWE DE MC"
+            className="mb-4 h-auto w-[120px] object-contain md:w-[140px] lg:w-[160px]"
+            style={{ objectFit: "contain", marginBottom: "16px" }}
+          />
+          <p className="text-sm text-muted-foreground leading-relaxed font-light">
             Master of Ceremony · Comedian · Event Host. Based in Southampton, available UK-wide.
           </p>
           <div className="flex items-center gap-3 mt-6">

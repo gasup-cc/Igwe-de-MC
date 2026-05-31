@@ -71,12 +71,13 @@ export const Header = () => {
         }}
       >
         <div className="container-x h-full flex items-center justify-between">
-          <Link to="/" className="flex items-center gap-3 group">
-            <span className="relative flex h-2.5 w-2.5">
-              <span className="absolute inline-flex h-full w-full rounded-full bg-gold opacity-60 group-hover:animate-ping" />
-              <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-gold" />
-            </span>
-            <span className="font-display font-bold text-[1.1rem] uppercase tracking-[0.34em] gold-text">IGWE DE MC</span>
+          <Link to="/" className="flex items-center group">
+            <img
+              src="/Horizontal_Logo.webp"
+              alt="IGWE DE MC"
+              className="h-[34px] w-auto object-contain lg:h-10"
+              style={{ width: "auto", objectFit: "contain" }}
+            />
           </Link>
 
           <nav className="hidden lg:flex items-center gap-8">
@@ -198,7 +199,7 @@ export const Header = () => {
             {/* Nav links */}
             <m.nav
               className="absolute"
-              style={{ top: "50%", left: "50%", transform: "translate(-50%, -50%)", width: "80%", textAlign: "left" }}
+              style={{ top: "42%", left: "50%", transform: "translate(-50%, -50%)", width: "80%", textAlign: "left" }}
               initial="hidden"
               animate="visible"
               exit="exit"

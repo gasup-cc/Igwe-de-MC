@@ -13,41 +13,43 @@ const BookACall = () => {
     <section className="relative top-0 min-h-screen overflow-hidden pt-[120px]">
       <AnimatedGrid />
       <div className="container-x relative z-[1]">
-        <div className="mx-auto max-w-[640px] py-20 pb-12 text-center">
-          <ScrollReveal>
-            <span className="inline-flex rounded-full border border-gold/40 bg-white/[0.04] px-4 py-1.5 font-mono-acc text-[10px] uppercase tracking-[3px] text-gold">
-              FREE 15-MINUTE CALL
-            </span>
-          </ScrollReveal>
-          <ScrollReveal delay={0.12}>
-            <h1 className="mt-4 font-display text-4xl font-bold leading-tight text-white md:text-[56px]">
-              Book a Discovery Call
-            </h1>
-          </ScrollReveal>
-          <ScrollReveal delay={0.18}>
-            <p className="mx-auto mt-5 max-w-[520px] text-[17px] font-light leading-[1.8] text-muted-foreground">
-              Pick a date and time that works for you. We will discuss your event, answer your questions, confirm availability, and make sure Igwe De MC is the perfect fit.
-            </p>
-          </ScrollReveal>
-          <ScrollReveal delay={0.24}>
-            <div className="mt-6 flex flex-wrap items-center justify-center gap-3">
-              {benefits.map(({ icon: Icon, label }) => (
-                <span
-                  key={label}
-                  className="inline-flex items-center gap-2 rounded-full border border-white/[0.08] bg-white/[0.05] px-4 py-2 text-[13px] font-light text-muted-foreground"
-                >
-                  <Icon className="h-3.5 w-3.5 text-gold" />
-                  {label}
-                </span>
-              ))}
-            </div>
-          </ScrollReveal>
+        <div className="book-call-hero -mx-5 px-5 py-20 pb-12 text-center md:-mx-10 md:px-10">
+          <div className="relative z-[1] mx-auto max-w-[640px]">
+            <ScrollReveal>
+              <span className="inline-flex rounded-full border border-gold/40 bg-white/[0.04] px-4 py-1.5 font-mono-acc text-[10px] uppercase tracking-[3px] text-gold">
+                FREE 15-MINUTE CALL
+              </span>
+            </ScrollReveal>
+            <ScrollReveal delay={0.12}>
+              <h1 className="mt-4 font-display text-4xl font-bold leading-tight text-white md:text-[56px]">
+                Book a Discovery Call
+              </h1>
+            </ScrollReveal>
+            <ScrollReveal delay={0.18}>
+              <p className="mx-auto mt-5 max-w-[520px] text-[17px] font-light leading-[1.8] text-muted-foreground">
+                Pick a date and time that works for you. We will discuss your event, answer your questions, confirm availability, and make sure Igwe De MC is the perfect fit.
+              </p>
+            </ScrollReveal>
+            <ScrollReveal delay={0.24}>
+              <div className="mt-6 flex flex-wrap items-center justify-center gap-3">
+                {benefits.map(({ icon: Icon, label }) => (
+                  <span
+                    key={label}
+                    className="inline-flex items-center gap-2 rounded-full border border-white/[0.08] bg-white/[0.05] px-4 py-2 text-[13px] font-light text-muted-foreground"
+                  >
+                    <Icon className="h-3.5 w-3.5 text-gold" />
+                    {label}
+                  </span>
+                ))}
+              </div>
+            </ScrollReveal>
+          </div>
         </div>
 
         <div className="mx-auto max-w-[900px] pb-20">
           <ScrollReveal delay={0.3}>
             <div
-              className="overflow-hidden"
+              className="overflow-visible"
               style={{
                 background: "rgba(255,255,255,0.03)",
                 border: "1px solid rgba(212,175,55,0.15)",
@@ -57,7 +59,7 @@ const BookACall = () => {
             >
               <iframe
                 src="https://app.gasup.ai/widget/booking/VvAAQWOegarV4VdRZu1p"
-                className="h-[920px] w-full md:h-[800px] lg:h-[750px]"
+                className="h-[950px] w-full md:h-[1000px] lg:h-[1050px]"
                 style={{ border: "none" }}
                 title="Book a Discovery Call with Igwe De MC"
                 loading="lazy"

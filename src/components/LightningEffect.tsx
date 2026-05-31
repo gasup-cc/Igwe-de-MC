@@ -142,8 +142,8 @@ export const LightningEffect = ({ variant = "default" }: LightningEffectProps) =
 
     const schedule = () => {
       if (!isMountedRef.current) return;
-      const min = variant === "footer" ? 6000 : 4000;
-      const max = variant === "footer" ? 12000 : 8000;
+      const min = variant === "footer" ? 5000 : 3000;
+      const max = variant === "footer" ? 11000 : 7000;
       timeoutRef.current = window.setTimeout(trigger, randomBetween(min, max));
     };
 

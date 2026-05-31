@@ -10,41 +10,37 @@ import { Dialog, DialogContent } from "@/components/ui/dialog";
 const videoTestimonials = [
   {
     url: "https://assets.cdn.filesafe.space/anudewnYrwCmf0LVpuJw/media/6a16d4d35be84ad6400370ca.mov",
-    quote: "An absolutely incredible host. Had the whole room laughing and on their feet the entire night.",
+    thumbnail: "/Testimonial1.webp",
   },
   {
     url: "https://assets.cdn.filesafe.space/anudewnYrwCmf0LVpuJw/media/6a16d41850a5a2a5d2f84486.mov",
-    quote: "Igwe De MC made our event one we will never forget. Pure professionalism and energy.",
+    thumbnail: "/Testimonial2.webp",
   },
 ];
 
-const VideoTestimonialCard = ({ url, quote }: { url: string; quote: string }) => {
+const VideoTestimonialCard = ({ url, thumbnail }: { url: string; thumbnail: string }) => {
   const [open, setOpen] = useState(false);
 
   return (
     <>
-      <GlassCard padding="p-0" glowVariant="premium" className="h-full overflow-hidden flex flex-col">
+      <GlassCard padding="p-0" glowVariant="premium" className="overflow-hidden">
         <button
           type="button"
           className="group relative aspect-video w-full overflow-hidden bg-white/[0.035] flex items-center justify-center"
           onClick={() => setOpen(true)}
           aria-label="Play video testimonial"
         >
+          <img
+            src={thumbnail}
+            alt=""
+            className="absolute inset-0 h-full w-full object-cover object-top"
+            loading="lazy"
+          />
           <span className="absolute inset-0 bg-gradient-to-br from-white/[0.04] via-transparent to-gold/[0.05]" />
           <span className="relative z-[1] w-[60px] h-[60px] rounded-full glass border-gold/40 flex items-center justify-center animate-pulse">
             <Play className="w-10 h-10 text-gold ml-1" />
           </span>
         </button>
-        <div className="p-8 flex flex-col gap-4 flex-1">
-          <div className="text-gold text-sm tracking-[0.16em]">★★★★★</div>
-          <p className="font-display italic text-[18px] leading-snug text-foreground">"{quote}"</p>
-          <div className="mt-auto flex items-center justify-between gap-3">
-            <span className="text-sm font-medium">— Event Guest</span>
-            <span className="glass text-[10px] tracking-[0.2em] uppercase px-3 py-1 rounded-full text-gold border-gold/30">
-              Video Review
-            </span>
-          </div>
-        </div>
       </GlassCard>
 
       <Dialog open={open} onOpenChange={setOpen}>
@@ -54,7 +50,7 @@ const VideoTestimonialCard = ({ url, quote }: { url: string; quote: string }) =>
               <X className="w-4 h-4" />
             </button>
             <div className="relative w-full bg-black aspect-video flex items-center justify-center">
-              <video src={url} controls autoPlay playsInline preload="auto" className="w-full h-full object-contain" />
+              <video src={url} poster={thumbnail} controls autoPlay playsInline preload="auto" className="w-full h-full object-contain" />
             </div>
           </div>
         </DialogContent>
@@ -73,8 +69,8 @@ export const TestimonialsSection = () => {
         </div>
         <StaggerContainer className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5">
           {videoTestimonials.map((item) => (
-            <StaggerItem key={item.url}>
-              <VideoTestimonialCard url={item.url} quote={item.quote} />
+            <StaggerItem key={item.url} className="self-start">
+              <VideoTestimonialCard url={item.url} thumbnail={item.thumbnail} />
             </StaggerItem>
           ))}
           {testimonials.map((t, i) => (
