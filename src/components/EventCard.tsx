@@ -34,13 +34,13 @@ const TicketButton = ({ event, size = "lg" }: { event: EventItem; size?: "lg" | 
 export const EventCard = ({ event, variant = "default" }: EventCardProps) => {
   if (variant === "featured") {
     return (
-      <GlassCard goldAccentTop borderGlow padding="p-0" className="overflow-hidden border-gold/30">
+      <GlassCard goldAccentTop borderGlow padding="p-0" className="overflow-hidden border-gold/30 group">
         {event.image && (
-          <Link to={event.detailUrl ?? "#"} className="block">
+          <Link to={event.detailUrl ?? "#"} className="block overflow-hidden">
             <img
               src={event.image}
               alt={event.name}
-              className="w-full max-h-[480px] object-cover object-top"
+              className="w-full max-h-[480px] object-cover object-top transition-transform duration-700 group-hover:scale-[1.025]"
               style={{ objectPosition: "center top" }}
             />
           </Link>
@@ -55,7 +55,7 @@ export const EventCard = ({ event, variant = "default" }: EventCardProps) => {
           </div>
           <div className="space-y-3">
             <div className="eyebrow">Next Show</div>
-            <h3 className="font-display font-bold text-4xl md:text-6xl leading-[1] tracking-tight">{event.name}</h3>
+            <h3 className="font-display font-bold text-4xl md:text-6xl leading-[1]">{event.name}</h3>
             <div className="text-[11px] tracking-[0.3em] uppercase text-muted-foreground">{event.venue}</div>
             <div className="flex items-center gap-2 text-sm text-muted-foreground"><Clock className="w-4 h-4 text-gold" />{event.time}</div>
           </div>
@@ -74,11 +74,11 @@ export const EventCard = ({ event, variant = "default" }: EventCardProps) => {
   }
 
   return (
-    <GlassCard goldAccentTop padding="p-0" className={cn("overflow-hidden flex flex-col", event.past && "grayscale opacity-70")}>
+    <GlassCard goldAccentTop padding="p-0" className={cn("overflow-hidden flex flex-col group", event.past && "grayscale opacity-70")}>
       <div className="relative">
         {event.image ? (
           <div className="aspect-[16/9] w-full overflow-hidden">
-            <img src={event.image} alt={event.name} className="w-full h-full object-cover" style={{ objectPosition: "center top" }} />
+            <img src={event.image} alt={event.name} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.04]" style={{ objectPosition: "center top" }} />
           </div>
         ) : (
           <ImagePlaceholder aspect="aspect-[16/9]" rounded="rounded-none" label="Event Flyer" />

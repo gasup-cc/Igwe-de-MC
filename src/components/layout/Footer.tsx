@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { Facebook, Instagram, Youtube, Mail, Phone, MapPin } from "lucide-react";
+import { LightningEffect } from "@/components/LightningEffect";
 
 const XIcon = (props: React.SVGProps<SVGSVGElement>) => (
   <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16" {...props}>
@@ -22,8 +23,9 @@ const socials = [
 
 export const Footer = () => {
   return (
-    <footer className="relative mt-32 border-t border-white/[0.06] bg-void/60">
-      <div className="container-x py-20 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
+    <footer className="relative mt-32 overflow-hidden border-t border-white/[0.06] bg-void/60">
+      <LightningEffect variant="footer" />
+      <div className="container-x relative z-[1] py-20 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
         <div>
           <div className="flex items-center gap-2">
             <span className="text-gold/60">●</span>
@@ -91,10 +93,27 @@ export const Footer = () => {
         </div>
       </div>
 
-      <div className="border-t border-white/[0.06]">
-        <div className="container-x py-6 flex flex-col md:flex-row justify-between items-center gap-3 text-xs text-muted-foreground">
-          <p>© 2026 IGWE DE MC. All Rights Reserved.</p>
-          <p>Powered by <a href="https://www.gasup.ai" target="_blank" rel="noopener noreferrer" className="text-gold hover:brightness-110 transition-all" style={{ textDecoration: "none", borderBottom: "1px solid rgba(212,175,55,0.3)", transition: "border-color 0.2s ease" }} onMouseEnter={(e) => (e.currentTarget.style.borderBottomColor = "rgba(212,175,55,0.8)")} onMouseLeave={(e) => (e.currentTarget.style.borderBottomColor = "rgba(212,175,55,0.3)")}>GasUp.AI</a></p>
+      <div className="relative z-[1] border-t border-white/[0.06]">
+        <div className="container-x">
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              justifyContent: "center",
+              gap: 6,
+              textAlign: "center",
+              width: "100%",
+              padding: "20px 0",
+              fontFamily: "'DM Sans', sans-serif",
+              fontWeight: 300,
+              fontSize: 12,
+              color: "rgba(255,255,255,0.3)",
+            }}
+          >
+            <span>© 2026 IGWE DE MC. All Rights Reserved.</span>
+            <span>Powered by <a href="https://www.gasup.ai" target="_blank" rel="noopener noreferrer" className="text-gold hover:brightness-110 transition-all" style={{ textDecoration: "none", borderBottom: "1px solid rgba(212,175,55,0.3)", transition: "border-color 0.2s ease" }} onMouseEnter={(e) => (e.currentTarget.style.borderBottomColor = "rgba(212,175,55,0.8)")} onMouseLeave={(e) => (e.currentTarget.style.borderBottomColor = "rgba(212,175,55,0.3)")}>GasUp.AI</a></span>
+          </div>
         </div>
       </div>
     </footer>

@@ -32,8 +32,7 @@ const About = () => {
         <div className="container-x grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           <ScrollReveal>
             <div
-              className="relative aspect-[4/5] overflow-hidden rounded-2xl group"
-              style={{ border: "1px solid rgba(212,175,55,0.2)", boxShadow: "0 30px 80px -20px rgba(0,0,0,0.7), 0 0 60px -30px rgba(124,58,237,0.3)" }}
+              className="stage-frame relative aspect-[4/5] overflow-hidden rounded-2xl group"
             >
               <img
                 src={aboutImg}
@@ -68,7 +67,7 @@ const About = () => {
         </div>
       </section>
 
-      <section className="py-24 bg-surface-2">
+      <section className="section-surface py-24">
         <div className="container-x">
           <div className="text-center mb-14">
             <ScrollReveal><div className="eyebrow mb-3">What He Does</div></ScrollReveal>
@@ -79,7 +78,7 @@ const About = () => {
           <StaggerContainer className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
             {services.map((s) => (
               <StaggerItem key={s.name}>
-                <GlassCard padding="p-7" className="flex flex-col gap-4 h-full">
+                <GlassCard padding="p-7" glowVariant="premium" className="flex flex-col gap-4 h-full">
                   <div className="w-12 h-12 rounded-xl bg-gold/10 border border-gold/20 flex items-center justify-center"><s.icon className="w-5 h-5 text-gold" /></div>
                   <h3 className="font-display font-semibold text-xl">{s.name}</h3>
                   <p className="text-sm text-muted-foreground font-light leading-relaxed">{s.desc}</p>
@@ -103,7 +102,7 @@ const About = () => {
         </StaggerContainer>
       </section>
 
-      <section className="py-24 bg-void text-center">
+      <section className="section-surface py-24 bg-void text-center">
         <div className="container-x max-w-2xl mx-auto">
           <ScrollReveal>
             <h2 className="font-display font-bold text-4xl md:text-5xl">Work with <span className="gold-gradient-text">Igwe De MC</span></h2>

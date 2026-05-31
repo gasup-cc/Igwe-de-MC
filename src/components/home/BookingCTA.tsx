@@ -4,11 +4,11 @@ import { ScrollReveal } from "@/components/ui/ScrollReveal";
 
 export const BookingCTA = () => {
   return (
-    <section className="relative py-32 md:py-40 overflow-hidden bg-void">
+    <section className="section-surface relative py-32 md:py-40 overflow-hidden bg-void">
       <AmbientOrbs variant="gold" />
       <div className="container-x relative z-10 text-center max-w-3xl mx-auto">
         <ScrollReveal>
-          <h2 className="font-display font-bold text-4xl md:text-6xl leading-[1.05] tracking-tight">
+          <h2 className="font-display font-bold text-4xl md:text-6xl leading-[1.05]">
             Ready to Make Your Event <span className="gold-gradient-text">Unforgettable?</span>
           </h2>
         </ScrollReveal>

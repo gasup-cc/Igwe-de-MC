@@ -36,10 +36,12 @@ export const VideoCard = ({ video, placeholder }: VideoCardProps) => {
             src={video.thumbnail}
             alt={video.title}
             loading="lazy"
-            className="absolute inset-0 w-full h-full object-cover object-[center_top]"
+            className="absolute inset-0 w-full h-full object-cover object-[center_top] transition-transform duration-700 group-hover:scale-[1.04]"
           />
-          <Play className="relative z-10 w-8 h-8 text-gold transition-transform duration-500 group-hover:scale-110" style={{ width: 32, height: 32 }} />
-          <div className="absolute inset-0 z-[1] bg-void/0 group-hover:bg-void/20 transition-all duration-500 pointer-events-none" />
+          <div className="relative z-10 w-14 h-14 rounded-full glass flex items-center justify-center transition-transform duration-500 group-hover:scale-110">
+            <Play className="w-6 h-6 text-gold ml-0.5" />
+          </div>
+          <div className="absolute inset-0 z-[1] bg-void/20 group-hover:bg-void/35 transition-all duration-500 pointer-events-none" />
         </div>
         <div className="p-4">
           <div className="flex items-center gap-2 mb-2">

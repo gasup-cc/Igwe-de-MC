@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import {
   MapPin, Calendar, Clock, Clock3, Users, ParkingSquare, DoorOpen, Info,
   Car, Bus, Bike, PersonStanding, Sparkles, Ticket, ShieldCheck,
+  CheckCircle2,
 } from "lucide-react";
 import { AmbientOrbs } from "@/components/AmbientOrbs";
 import { GlassCard } from "@/components/GlassCard";
@@ -37,6 +38,62 @@ const TravelItem = ({ icon: Icon, label }: { icon: typeof Car; label: string }) 
   </div>
 );
 
+const TableFeature = ({ children }: { children: React.ReactNode }) => (
+  <li className="flex items-start gap-2.5">
+    <CheckCircle2 className="w-[15px] h-[15px] text-gold shrink-0 mt-[2px]" />
+    <span className="text-[13px] font-light text-muted-foreground">{children}</span>
+  </li>
+);
+
+const tablePackages = [
+  {
+    name: "Platinum Table",
+    price: "£1,000",
+    seats: "Seats 8",
+    description: "The ultimate front-row experience.",
+    features: [
+      "Front table — closest to the action",
+      "Special drinks selection",
+      "Full food platter",
+      "Nkwobi",
+      "Suya",
+    ],
+  },
+  {
+    name: "Gold Table",
+    price: "£700",
+    seats: "Seats 5",
+    description: "Premium seating with great views.",
+    features: [
+      "Second-row table",
+      "Special drinks selection",
+      "Full food platter",
+      "Nkwobi",
+    ],
+  },
+  {
+    name: "Silver Table",
+    price: "£500",
+    seats: "Seats 3",
+    description: "Great value, great vibes.",
+    features: [
+      "Table behind Gold section",
+      "Food platter",
+      "Drinks",
+      "Suya",
+    ],
+  },
+  {
+    name: "Regular",
+    price: "£50",
+    seats: "Single seat",
+    description: "Come for the comedy, stay for the food.",
+    features: [
+      "A plate of food",
+    ],
+  },
+];
+
 const goldButtonStyle: React.CSSProperties = {
   background: "linear-gradient(135deg, #D4AF37, #F0CC5A)",
   color: "#050507",
@@ -56,7 +113,7 @@ const JokesApart = () => {
   return (
     <div className="relative">
       <AmbientOrbs variant="gold" />
-      <div className="relative z-10 max-w-[1440px] mx-auto px-5 md:px-10 pt-[120px] pb-32 lg:pb-32">
+      <div className="relative z-10 max-w-[1440px] mx-auto px-5 md:px-10 pt-12 md:pt-16 pb-32 lg:pb-32">
         <div className="grid grid-cols-1 lg:grid-cols-[1fr_360px] gap-12">
           {/* LEFT COLUMN */}
           <div>
@@ -119,12 +176,45 @@ const JokesApart = () => {
               </section>
             </ScrollReveal>
 
+            {/* Tables & Seating */}
+            <ScrollReveal delay={0.05}>
+              <section className="mt-10">
+                <h2 className="font-display font-bold text-white text-[26px]">Tables & Seating</h2>
+                <p className="mt-3 text-[15px] font-light text-muted-foreground" style={{ lineHeight: 1.8 }}>
+                  Choose from four table and seating options, each designed for a different kind of night out.
+                </p>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-5">
+                  {tablePackages.map((tier) => (
+                    <GlassCard key={tier.name} padding="p-6" className="rounded-[14px]">
+                      <div className="flex items-start justify-between gap-4">
+                        <div>
+                          <h3 className="text-[17px] font-semibold text-white">{tier.name}</h3>
+                          <p className="text-[13px] font-light text-muted-foreground mt-1">{tier.description}</p>
+                        </div>
+                        <div className="text-right shrink-0">
+                          <div className="font-display font-bold text-[22px] gold-text leading-none">{tier.price}</div>
+                          <div className="text-[11px] text-muted-foreground mt-1 uppercase tracking-[0.16em]">
+                            {tier.seats}
+                          </div>
+                        </div>
+                      </div>
+                      <ul className="space-y-2.5 mt-5">
+                        {tier.features.map((feature) => (
+                          <TableFeature key={feature}>{feature}</TableFeature>
+                        ))}
+                      </ul>
+                    </GlassCard>
+                  ))}
+                </div>
+              </section>
+            </ScrollReveal>
+
             {/* Good to Know */}
             <ScrollReveal delay={0.05}>
               <section className="mt-10">
                 <h2 className="font-display font-bold text-white text-[26px] mb-4">Good to Know</h2>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <GlassCard padding="p-6" className="rounded-[14px]" hoverable={false}>
+                  <GlassCard padding="p-6" className="rounded-[14px]">
                     <h3 className="text-[14px] font-semibold text-white mb-3.5">Highlights</h3>
                     <ul className="space-y-[10px]">
                       <HighlightItem icon={Clock3}>5 hours 59 minutes</HighlightItem>
@@ -134,7 +224,7 @@ const JokesApart = () => {
                       <HighlightItem icon={DoorOpen}>Doors open at 5:00 PM</HighlightItem>
                     </ul>
                   </GlassCard>
-                  <GlassCard padding="p-6" className="rounded-[14px]" hoverable={false}>
+                  <GlassCard padding="p-6" className="rounded-[14px]">
                     <h3 className="text-[14px] font-semibold text-white mb-3.5">Refund Policy</h3>
                     <p className="text-[13px] font-light text-muted-foreground" style={{ lineHeight: 1.7 }}>
                       No refunds available for this event. Please ensure you can attend before purchasing.
@@ -217,7 +307,7 @@ const JokesApart = () => {
             <ScrollReveal delay={0.05}>
               <section className="mt-10">
                 <h2 className="font-display font-bold text-white text-[26px] mb-4">Organized By</h2>
-                <GlassCard padding="p-6" className="rounded-[14px]" hoverable={false}>
+                <GlassCard padding="p-6" className="rounded-[14px]">
                   <div className="flex items-center gap-4">
                     <img
                       src={jokesApartFlyer}
@@ -278,10 +368,39 @@ const JokesApart = () => {
 
                 <div className="my-5" style={{ borderTop: "1px solid rgba(255,255,255,0.07)" }} />
 
+                <div className="space-y-3">
+                  <div
+                    className="text-[11px] text-muted-foreground uppercase"
+                    style={{ fontFamily: "'Space Mono', monospace", letterSpacing: "2px" }}
+                  >
+                    Table options
+                  </div>
+                  <div className="space-y-2.5">
+                    {tablePackages.map((tier) => (
+                      <div
+                        key={tier.name}
+                        className="flex items-center justify-between gap-3 rounded-[10px] px-3.5 py-3"
+                        style={{
+                          background: "rgba(255,255,255,0.035)",
+                          border: "1px solid rgba(255,255,255,0.07)",
+                        }}
+                      >
+                        <div>
+                          <div className="text-[13px] font-semibold text-white">{tier.name}</div>
+                          <div className="text-[11px] font-light text-muted-foreground mt-0.5">{tier.seats}</div>
+                        </div>
+                        <div className="text-[14px] font-semibold text-gold shrink-0">{tier.price}</div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                <div className="my-5" style={{ borderTop: "1px solid rgba(255,255,255,0.07)" }} />
+
                 <a
                   href={TICKET_URL}
                   rel="noopener noreferrer"
-                  className="flex items-center justify-center gap-2 w-full rounded-[10px] uppercase font-bold transition-all duration-[250ms] hover:-translate-y-0.5"
+                  className="flex items-center justify-center gap-2 w-full rounded-[10px] uppercase font-bold transition-all duration-300 hover:-translate-y-0.5"
                   style={{
                     ...goldButtonStyle,
                     height: 56,

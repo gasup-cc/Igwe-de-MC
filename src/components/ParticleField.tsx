@@ -44,7 +44,7 @@ export const ParticleField = () => {
       initParticles();
     };
     resize();
-    window.addEventListener("resize", resize);
+    window.addEventListener("resize", resize, { passive: true });
 
     const draw = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);

@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { ArrowRight, Mic2, Sparkles, Briefcase, Laugh } from "lucide-react";
 import { AmbientOrbs } from "@/components/AmbientOrbs";
 import { GlassCard } from "@/components/GlassCard";
+import { LightningEffect } from "@/components/LightningEffect";
 import onStageImg from "@/assets/igwe-on-stage.webp";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { StaggerContainer, StaggerItem } from "@/components/ui/StaggerContainer";
@@ -17,12 +18,12 @@ export const AboutSection = () => {
   return (
     <section className="relative py-24 md:py-32 overflow-hidden">
       <AmbientOrbs />
+      <LightningEffect />
       <div className="container-x relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-20 items-center">
         <ScrollReveal>
           <div className="relative">
             <div
-              className="relative aspect-[4/5] overflow-hidden rounded-2xl group"
-              style={{ border: "1px solid rgba(212,175,55,0.2)", boxShadow: "0 30px 80px -20px rgba(0,0,0,0.7), 0 0 60px -30px rgba(124,58,237,0.3)" }}
+              className="stage-frame relative aspect-[4/5] overflow-hidden rounded-2xl group"
             >
               <img
                 src={onStageImg}
@@ -42,7 +43,7 @@ export const AboutSection = () => {
         <div className="space-y-7">
           <ScrollReveal><div className="eyebrow">About IGWE DE MC</div></ScrollReveal>
           <ScrollReveal delay={0.15}>
-            <h2 className="font-display font-bold text-4xl md:text-5xl leading-[1.05] tracking-tight">
+            <h2 className="font-display font-bold text-4xl md:text-5xl leading-[1.05]">
               The Man Who Commands <span className="gold-gradient-text">Every Room</span>
             </h2>
           </ScrollReveal>
@@ -54,7 +55,7 @@ export const AboutSection = () => {
 
           <StaggerContainer className="grid grid-cols-2 gap-4 pt-2">
             {features.map(({ icon: Icon, name, desc }) => (
-              <StaggerItem key={name} className="glass rounded-xl p-4 flex items-start gap-3 glass-hover">
+              <StaggerItem key={name} className="glass rounded-xl p-4 flex items-start gap-3 glass-hover glass-glow-premium">
                 <div className="w-10 h-10 rounded-lg bg-gold/10 border border-gold/20 flex items-center justify-center shrink-0">
                   <Icon className="w-4 h-4 text-gold" />
                 </div>

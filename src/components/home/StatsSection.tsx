@@ -1,3 +1,4 @@
+import { AnimatedGrid } from "@/components/AnimatedGrid";
 import { GlassCard } from "@/components/GlassCard";
 import { StaggerContainer, StaggerItem } from "@/components/ui/StaggerContainer";
 
@@ -10,8 +11,9 @@ const stats = [
 
 export const StatsSection = () => {
   return (
-    <section className="py-20 md:py-24 bg-surface-2 border-y border-white/[0.04] relative z-[1]">
-      <StaggerContainer className="container-x grid grid-cols-2 lg:grid-cols-4 gap-5">
+    <section className="section-surface py-20 md:py-24 border-y border-white/[0.06] relative z-[1]">
+      <AnimatedGrid />
+      <StaggerContainer className="container-x relative z-[1] grid grid-cols-2 lg:grid-cols-4 gap-5">
         {stats.map((s) => (
           <StaggerItem key={s.label}>
             <GlassCard goldAccentTop padding="p-8" className="text-center">
@@ -24,4 +26,3 @@ export const StatsSection = () => {
     </section>
   );
 };
-

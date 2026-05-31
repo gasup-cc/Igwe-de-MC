@@ -9,7 +9,7 @@ import { videos } from "@/data/site";
 export const VideosPreview = () => {
   const featured = videos.slice(0, 4);
   return (
-    <section className="py-24 md:py-28 bg-surface-2">
+    <section className="section-surface py-24 md:py-28">
       <div className="container-x">
         <SectionHeader eyebrow="Showreel" title="Watch IGWE DE MC" goldTitle="Live" subtitle="A glimpse into the energy he brings to every stage." />
         <StaggerContainer className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">

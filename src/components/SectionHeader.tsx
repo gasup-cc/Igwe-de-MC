@@ -23,7 +23,7 @@ export const SectionHeader = ({ eyebrow, title, subtitle, align = "left", goldTi
         </ScrollReveal>
       )}
       <ScrollReveal direction="up" delay={0.05}>
-        <h2 className="font-display font-bold text-4xl md:text-5xl lg:text-6xl leading-[1.05] tracking-tight">
+        <h2 className="font-display font-bold text-4xl md:text-5xl lg:text-6xl leading-[1.05]">
           {title} {goldTitle && <span className="gold-gradient-text">{goldTitle}</span>}
         </h2>
       </ScrollReveal>
@@ -37,4 +37,3 @@ export const SectionHeader = ({ eyebrow, title, subtitle, align = "left", goldTi
     </div>
   );
 };
-

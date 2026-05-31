@@ -1,76 +1,76 @@
 import { Link } from "react-router-dom";
-import { Calendar, PlayCircle, Mic } from "lucide-react";
-import portraitImg from "@/assets/igwe-portrait.webp";
+import { Calendar, Crown, Laugh, Mic, PlayCircle, Sparkles } from "lucide-react";
+import { HeroCarousel } from "@/components/HeroCarousel";
 import avatar1 from "@/assets/avatar-1.webp";
 import avatar2 from "@/assets/avatar-2.webp";
 import avatar3 from "@/assets/avatar-3.webp";
 import avatar4 from "@/assets/avatar-4.webp";
 
 const HERO_AVATARS = [avatar1, avatar3, avatar2, avatar4];
+const HERO_STATS = [
+  { value: "100+", label: "Events" },
+  { value: "UK", label: "Wide" },
+  { value: "5★", label: "Energy" },
+];
 
 export const HeroSection = () => {
   return (
-    <section className="relative min-h-screen flex items-center overflow-hidden">
-      {/* Full-viewport ambient orbs */}
-      <div aria-hidden className="pointer-events-none absolute inset-0 z-0">
-        <div
-          className="absolute"
-          style={{
-            top: "25%", left: "15%", width: 700, height: 600, transform: "translate(-50%, -50%)",
-            background: "radial-gradient(circle, rgba(212,175,55,0.18) 0%, transparent 70%)",
-          }}
-        />
-        <div
-          className="absolute"
-          style={{
-            top: "75%", left: "85%", width: 700, height: 600, transform: "translate(-50%, -50%)",
-            background: "radial-gradient(circle, rgba(124,58,237,0.14) 0%, transparent 70%)",
-          }}
-        />
+    <section className="hero-stage relative top-0 min-h-screen flex items-center overflow-hidden">
+      <div className="absolute inset-0 z-0">
+        <HeroCarousel />
       </div>
-
       <div
-        className="relative z-10 w-full max-w-[1440px] mx-auto px-5 md:px-10"
-        style={{ paddingTop: 96, paddingBottom: 96 }}
-      >
-        <div className="grid grid-cols-1 lg:grid-cols-[55fr_45fr] gap-10 lg:gap-20 items-center">
-          {/* LEFT */}
-          <div className="flex flex-col items-start text-left gap-7 animate-fade-up">
-            <span className="inline-flex items-center gap-2 glass border-gold/30 bg-gold/10 text-gold rounded-full px-4 py-1.5 text-[10px] tracking-[0.3em] uppercase">
-              <span className="w-1.5 h-1.5 rounded-full bg-gold animate-pulse" />
-              Southampton · UK · Master of Ceremony
-            </span>
+        aria-hidden
+        className="absolute inset-0 z-[1]"
+        style={{
+          background: "linear-gradient(to bottom, rgba(8,8,16,0.35) 0%, rgba(8,8,16,0.55) 60%, rgba(8,8,16,0.85) 100%)",
+        }}
+      />
 
-            <h1
-              className="font-display font-bold tracking-tight"
-              style={{ fontSize: "clamp(42px, 6vw, 80px)", lineHeight: 1.05 }}
+      <div className="container-x relative z-10 pt-24 pb-20 md:pt-28 md:pb-24 lg:pt-32 lg:pb-28">
+        <div className="max-w-3xl flex flex-col items-start text-left gap-7 animate-fade-up">
+          <span className="hero-kicker inline-flex items-center gap-2 glass border-gold/30 text-gold rounded-full px-4 py-1.5 text-[10px] tracking-[0.26em] uppercase">
+            <Sparkles className="w-3.5 h-3.5" />
+            Southampton · UK · Master of Ceremony
+          </span>
+
+          <h1 className="font-display font-bold text-5xl sm:text-6xl md:text-7xl xl:text-8xl leading-[0.98]">
+            <span className="block">Ebubedike</span>
+            <span className="block gold-gradient-text">IGWE DE MC</span>
+          </h1>
+
+          <p className="text-base md:text-lg text-foreground/80 font-light max-w-[560px] leading-[1.85]">
+            A comedian, crowd commander, and event host with the timing, culture, and stage presence to turn a room into a memory.
+          </p>
+
+          <div className="flex flex-col sm:flex-row gap-4 pt-2 w-full sm:w-auto">
+            <Link
+              to="/booking"
+              className="btn-shimmer inline-flex items-center justify-center gap-2 bg-gold text-void px-8 py-4 rounded-md text-xs tracking-[0.2em] uppercase font-semibold hover:bg-gold-bright transition-all shadow-[0_0_34px_rgba(212,175,55,0.26)]"
+              style={{ minWidth: 190 }}
             >
-              <span className="block whitespace-nowrap">Ebubedike</span>
-              <span className="block whitespace-nowrap gold-gradient-text">IGWE DE MC</span>
-            </h1>
+              <Calendar className="w-4 h-4" /> Book Your Event
+            </Link>
+            <Link
+              to="/videos"
+              className="inline-flex items-center justify-center gap-2 glass px-8 py-4 rounded-md text-xs tracking-[0.2em] uppercase font-light text-foreground hover:border-gold/40 transition-all"
+              style={{ minWidth: 190 }}
+            >
+              <PlayCircle className="w-4 h-4 text-gold" /> Watch Showreel
+            </Link>
+          </div>
 
-            <p className="text-base md:text-[17px] text-muted-foreground font-light max-w-[480px] leading-[1.8]">
-              MC · Comedian · Event Host · Southampton & UK-wide. Creating unforgettable moments at every event.
-            </p>
+          <div className="grid grid-cols-3 gap-3 w-full max-w-[460px] pt-2">
+            {HERO_STATS.map((stat) => (
+              <div key={stat.label} className="hero-stat rounded-xl px-4 py-3">
+                <div className="font-display text-3xl leading-none gold-gradient-text">{stat.value}</div>
+                <div className="mt-1 text-[10px] tracking-[0.22em] uppercase text-muted-foreground">{stat.label}</div>
+              </div>
+            ))}
+          </div>
 
-            <div className="flex flex-col sm:flex-row gap-4 pt-2 w-full sm:w-auto">
-              <Link
-                to="/booking"
-                className="btn-shimmer inline-flex items-center justify-center gap-2 bg-gold text-void px-9 py-4 rounded-md text-xs tracking-[0.2em] uppercase font-medium hover:bg-gold-bright transition-all shadow-[0_0_30px_rgba(212,175,55,0.25)]"
-                style={{ minWidth: 180 }}
-              >
-                <Calendar className="w-4 h-4" /> Book Your Event
-              </Link>
-              <Link
-                to="/videos"
-                className="inline-flex items-center justify-center gap-2 glass px-9 py-4 rounded-md text-xs tracking-[0.2em] uppercase font-light text-foreground hover:border-gold/40 transition-all"
-                style={{ minWidth: 180 }}
-              >
-                <PlayCircle className="w-4 h-4 text-gold" /> Watch Showreel
-              </Link>
-            </div>
-
-            <div className="flex items-center gap-4 pt-4">
+          <div className="flex flex-col sm:flex-row sm:items-center gap-4 pt-2">
+            <div className="flex items-center gap-4">
               <div className="flex -space-x-2.5">
                 {HERO_AVATARS.map((src, i) => (
                   <div key={i} className="w-9 h-9 rounded-full overflow-hidden border-2 border-void shadow-[0_2px_8px_rgba(0,0,0,0.4)]" style={{ marginLeft: i === 0 ? 0 : -10 }}>
@@ -78,26 +78,13 @@ export const HeroSection = () => {
                   </div>
                 ))}
               </div>
-              <span className="text-xs text-muted-foreground">100+ events hosted across the UK</span>
+              <span className="text-xs text-muted-foreground">Trusted across weddings, concerts, corporate nights, and cultural stages.</span>
             </div>
-          </div>
-
-          {/* RIGHT */}
-          <div className="relative hidden lg:block">
-            <div className="relative group" style={{ aspectRatio: "3 / 4", borderRadius: 24, overflow: "hidden", border: "1px solid rgba(212,175,55,0.2)", boxShadow: "0 30px 80px -20px rgba(0,0,0,0.7), 0 0 60px -20px rgba(212,175,55,0.25)" }}>
-              <img
-                src={portraitImg}
-                alt="Ebubedike — IGWE DE MC, Master of Ceremony"
-                loading="eager"
-                className="absolute inset-0 w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-[1.03]"
-              />
-              <div aria-hidden className="absolute inset-0 bg-gradient-to-t from-void/80 via-void/10 to-transparent" />
-              <div className="absolute bottom-6 left-6 glass-strong border-gold/30 rounded-xl px-4 py-2.5 text-xs flex items-center gap-2 shadow-[0_8px_32px_rgba(0,0,0,0.6)]">
-                <Mic className="w-4 h-4 text-gold" />
-                <span className="text-foreground">Available UK-Wide</span>
-              </div>
+            <div className="hidden md:flex items-center gap-3 text-[11px] uppercase tracking-[0.2em] text-gold/75">
+              <span className="inline-flex items-center gap-1.5"><Mic className="w-3.5 h-3.5" /> MC</span>
+              <span className="inline-flex items-center gap-1.5"><Laugh className="w-3.5 h-3.5" /> Comedy</span>
+              <span className="inline-flex items-center gap-1.5"><Crown className="w-3.5 h-3.5" /> Host</span>
             </div>
-            <div className="absolute -top-4 -right-4 w-32 h-32 rounded-full bg-gold/10 blur-3xl pointer-events-none" />
           </div>
         </div>
       </div>

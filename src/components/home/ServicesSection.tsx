@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { ArrowRight, Mic2, Disc3, PartyPopper, Briefcase, Heart, Cake, Sparkles, Globe2, Radio } from "lucide-react";
+import { AnimatedGrid } from "@/components/AnimatedGrid";
 import { GlassCard } from "@/components/GlassCard";
 import { SectionHeader } from "@/components/SectionHeader";
 import { StaggerContainer, StaggerItem } from "@/components/ui/StaggerContainer";
@@ -20,8 +21,9 @@ const services = [
 
 export const ServicesSection = () => {
   return (
-    <section className="py-24 md:py-28">
-      <div className="container-x">
+    <section className="relative overflow-hidden py-24 md:py-28">
+      <AnimatedGrid />
+      <div className="container-x relative z-[1]">
         <SectionHeader eyebrow="Services" title="What IGWE DE MC" goldTitle="Does" subtitle="From cultural ceremonies to corporate stages — every event built around the moment." />
         <StaggerContainer className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
           {services.map((s) => {
@@ -29,7 +31,7 @@ export const ServicesSection = () => {
             return (
               <StaggerItem key={s.name}>
                 <Link to="/booking">
-                  <GlassCard padding="p-7" className="h-full group flex flex-col gap-4">
+                  <GlassCard padding="p-7" glowVariant="premium" className="h-full group flex flex-col gap-4">
                     <div className="w-12 h-12 rounded-xl bg-gold/10 border border-gold/20 flex items-center justify-center">
                       <Icon className="w-5 h-5 text-gold" />
                     </div>

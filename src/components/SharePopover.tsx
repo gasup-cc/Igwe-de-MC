@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { Share2, Facebook, Linkedin } from "lucide-react";
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 
 const WhatsAppIcon = () => (
   <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20" aria-hidden>
@@ -37,6 +37,46 @@ interface SharePopoverProps {
   buttonLabel?: React.ReactNode;
 }
 
+const getSharePlatforms = (title: string, shareUrl: string) => {
+  const t = encodeURIComponent(title);
+  const u = encodeURIComponent(shareUrl);
+
+  return [
+    { key: "wa", label: "WhatsApp", icon: <span style={{ color: "#25D366" }}><WhatsAppIcon /></span>, onClick: () => window.open(`https://wa.me/?text=${encodeURIComponent(title + " " + shareUrl)}`, "_blank", "noopener,noreferrer") },
+    { key: "fb", label: "Facebook", icon: <Facebook size={20} color="#1877F2" fill="#1877F2" />, onClick: () => window.open(`https://www.facebook.com/sharer/sharer.php?u=${u}`, "_blank", "noopener,noreferrer") },
+    { key: "x", label: "X", icon: <span className="text-foreground"><XIcon /></span>, onClick: () => window.open(`https://twitter.com/intent/tweet?text=${t}&url=${u}`, "_blank", "noopener,noreferrer") },
+    { key: "li", label: "LinkedIn", icon: <Linkedin size={20} color="#0A66C2" fill="#0A66C2" />, onClick: () => window.open(`https://www.linkedin.com/shareArticle?mini=true&url=${u}&title=${t}`, "_blank", "noopener,noreferrer") },
+    { key: "ig", label: "Instagram", icon: <InstagramIcon />, onClick: () => window.open("https://www.instagram.com/igwedemc", "_blank", "noopener,noreferrer") },
+  ];
+};
+
+export const SocialShareRow = ({ title, url }: { title: string; url?: string }) => {
+  const shareUrl = typeof window !== "undefined" ? (url ?? window.location.href) : (url ?? "");
+  const platforms = getSharePlatforms(title, shareUrl);
+
+  return (
+    <div className="share-modal-block">
+      <div className="share-modal-label">Share this post</div>
+      <div className="share-modal-icons">
+        {platforms.map((platform) => (
+          <button
+            key={platform.key}
+            type="button"
+            className="share-modal-icon-button"
+            onClick={(e) => {
+              e.stopPropagation();
+              platform.onClick();
+            }}
+            aria-label={`Share on ${platform.label}`}
+          >
+            {platform.icon}
+          </button>
+        ))}
+      </div>
+    </div>
+  );
+};
+
 export const SharePopover = ({
   title,
   url,
@@ -48,6 +88,7 @@ export const SharePopover = ({
   const [placeAbove, setPlaceAbove] = useState(false);
   const wrapRef = useRef<HTMLDivElement>(null);
   const btnRef = useRef<HTMLButtonElement>(null);
+  const reduceMotion = useReducedMotion();
 
   useEffect(() => {
     if (!open) return;
@@ -69,16 +110,7 @@ export const SharePopover = ({
   };
 
   const shareUrl = typeof window !== "undefined" ? (url ?? window.location.href) : (url ?? "");
-  const t = encodeURIComponent(title);
-  const u = encodeURIComponent(shareUrl);
-
-  const platforms: { key: string; label: string; icon: React.ReactNode; onClick: () => void }[] = [
-    { key: "wa", label: "WhatsApp", icon: <span style={{ color: "#25D366" }}><WhatsAppIcon /></span>, onClick: () => window.open(`https://wa.me/?text=${encodeURIComponent(title + " " + shareUrl)}`, "_blank", "noopener,noreferrer") },
-    { key: "fb", label: "Facebook", icon: <Facebook size={20} color="#1877F2" fill="#1877F2" />, onClick: () => window.open(`https://www.facebook.com/sharer/sharer.php?u=${u}`, "_blank", "noopener,noreferrer") },
-    { key: "x", label: "X", icon: <span className="text-foreground"><XIcon /></span>, onClick: () => window.open(`https://twitter.com/intent/tweet?text=${t}&url=${u}`, "_blank", "noopener,noreferrer") },
-    { key: "li", label: "LinkedIn", icon: <Linkedin size={20} color="#0A66C2" fill="#0A66C2" />, onClick: () => window.open(`https://www.linkedin.com/shareArticle?mini=true&url=${u}&title=${t}`, "_blank", "noopener,noreferrer") },
-    { key: "ig", label: "Instagram", icon: <InstagramIcon />, onClick: () => window.open("https://www.instagram.com/igwedemc", "_blank", "noopener,noreferrer") },
-  ];
+  const platforms = getSharePlatforms(title, shareUrl);
 
   return (
     <div ref={wrapRef} className={`relative inline-block ${className}`}>
@@ -96,9 +128,9 @@ export const SharePopover = ({
         {open && (
           <motion.div
             key="share-pop"
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1, transition: { duration: 0.15, ease: "easeOut" } }}
-            exit={{ opacity: 0, scale: 0.9, transition: { duration: 0.1 } }}
+            initial={reduceMotion ? { opacity: 1 } : { opacity: 0, scale: 0.9 }}
+            animate={reduceMotion ? { opacity: 1 } : { opacity: 1, scale: 1, transition: { duration: 0.15, ease: "easeOut" } }}
+            exit={reduceMotion ? { opacity: 0 } : { opacity: 0, scale: 0.9, transition: { duration: 0.1 } }}
             onClick={(e) => e.stopPropagation()}
             className="absolute z-50"
             style={{

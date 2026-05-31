@@ -2,13 +2,15 @@ import { Link } from "react-router-dom";
 import { events } from "@/data/site";
 import { EventCard } from "@/components/EventCard";
 import { AmbientOrbs } from "@/components/AmbientOrbs";
+import { LightningEffect } from "@/components/LightningEffect";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
 
 export const EventSpotlight = () => {
   const featured = events.find(e => e.featured) || events[0];
   return (
-    <section className="relative py-24 md:py-28 bg-surface-2 overflow-hidden">
+    <section className="section-surface relative py-24 md:py-28 overflow-hidden">
       <AmbientOrbs variant="gold" />
+      <LightningEffect />
       <div className="container-x relative z-10">
         <ScrollReveal>
           <div className="flex items-center gap-3 mb-10">

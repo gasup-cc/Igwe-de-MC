@@ -4,18 +4,20 @@ import { forwardRef, HTMLAttributes } from "react";
 interface GlassCardProps extends HTMLAttributes<HTMLDivElement> {
   borderGlow?: boolean;
   goldAccentTop?: boolean;
+  glowVariant?: "primary" | "premium";
   hoverable?: boolean;
   padding?: string;
 }
 
 export const GlassCard = forwardRef<HTMLDivElement, GlassCardProps>(
-  ({ className, borderGlow, goldAccentTop, hoverable = true, padding = "p-6", children, ...props }, ref) => {
+  ({ className, borderGlow, goldAccentTop, glowVariant = "primary", hoverable = true, padding = "p-6", children, ...props }, ref) => {
     return (
       <div
         ref={ref}
         className={cn(
-          "glass relative rounded-2xl",
+          "glass glass-card-shell relative rounded-2xl",
           hoverable && "glass-hover",
+          hoverable && glowVariant === "premium" && "glass-glow-premium",
           borderGlow && "shadow-[0_0_40px_rgba(212,175,55,0.15)]",
           padding,
           className

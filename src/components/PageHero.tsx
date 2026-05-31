@@ -15,11 +15,11 @@ interface PageHeroProps {
 
 export const PageHero = ({ title, goldTitle, eyebrow, subtitle, breadcrumb, children, size = "default" }: PageHeroProps) => {
   return (
-    <section className={`relative ${size === "narrow" ? "py-20" : "py-28 md:py-32"} overflow-hidden border-b border-white/[0.04] bg-void/60`}>
+    <section className={`section-surface relative ${size === "narrow" ? "py-20" : "py-28 md:py-32"} border-b border-white/[0.06] bg-void/70`}>
       <AmbientOrbs variant="hero" />
       <div className="container-x relative z-10 text-center">
         {eyebrow && <div className="eyebrow mb-5">{eyebrow}</div>}
-        <h1 className="font-display font-bold text-5xl md:text-7xl leading-[1.02] tracking-tight">
+        <h1 className="font-display font-bold text-5xl md:text-7xl leading-[1.02]">
           {title} {goldTitle && <span className="gold-gradient-text">{goldTitle}</span>}
         </h1>
         {subtitle && <p className="mt-6 max-w-2xl mx-auto text-base md:text-lg text-muted-foreground font-light leading-relaxed">{subtitle}</p>}

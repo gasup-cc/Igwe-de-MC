@@ -4,7 +4,7 @@ import { ImagePlaceholder } from "./ImagePlaceholder";
 import { ArrowRight, Calendar, X } from "lucide-react";
 import { PostItem } from "@/data/site";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
-import { SharePopover } from "./SharePopover";
+import { SharePopover, SocialShareRow } from "./SharePopover";
 
 interface PostCardProps {
   post: PostItem;
@@ -15,7 +15,7 @@ const PostImage = ({ post, aspect, rounded = "rounded-none" }: { post: PostItem;
   if (post.image) {
     return (
       <div className={`${aspect} w-full overflow-hidden ${rounded}`}>
-        <img src={post.image} alt={post.title} className="w-full h-full object-cover" style={{ objectPosition: "center top" }} />
+        <img src={post.image} alt={post.title} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.035]" style={{ objectPosition: "center top" }} />
       </div>
     );
   }
@@ -50,7 +50,7 @@ export const PostCard = ({ post, variant = "default" }: PostCardProps) => {
           <div className="absolute top-4 right-4 z-10">
             <SharePopover
               title={post.title}
-              buttonClassName="w-10 h-10 rounded-full glass flex items-center justify-center text-muted-foreground hover:text-gold"
+              buttonClassName="w-10 h-10 rounded-full glass flex items-center justify-center text-gold hover:text-[#F0CC5A] transition-colors"
             />
           </div>
         </div>
@@ -73,7 +73,7 @@ export const PostCard = ({ post, variant = "default" }: PostCardProps) => {
           <div className="absolute top-3 right-3 z-10">
             <SharePopover
               title={post.title}
-              buttonClassName="w-9 h-9 rounded-full glass flex items-center justify-center text-muted-foreground hover:text-gold"
+              buttonClassName="w-9 h-9 rounded-full glass flex items-center justify-center text-gold hover:text-[#F0CC5A] transition-colors"
             />
           </div>
         </div>
@@ -106,9 +106,7 @@ export const PostCard = ({ post, variant = "default" }: PostCardProps) => {
                   </a>
                 </p>
               )}
-              <div className="flex items-center gap-3 pt-4">
-                <SharePopover title={post.title} />
-              </div>
+              <SocialShareRow title={post.title} />
             </div>
           </div>
         </DialogContent>

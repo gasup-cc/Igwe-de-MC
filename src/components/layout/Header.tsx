@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link, NavLink, useLocation } from "react-router-dom";
 import { Calendar, Facebook, Instagram, Youtube, Phone } from "lucide-react";
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { cn } from "@/lib/utils";
 
 const XIcon = (props: React.SVGProps<SVGSVGElement>) => (
@@ -30,6 +30,7 @@ export const Header = () => {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const location = useLocation();
+  const reduceMotion = useReducedMotion();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 100);
@@ -58,14 +59,19 @@ export const Header = () => {
       <header
         className={cn(
           "fixed top-0 inset-x-0 z-50 h-[72px] transition-all duration-300 border-b",
-          scrolled ? "bg-void/85 border-white/10" : "bg-void/60 border-white/[0.06]"
+          scrolled
+            ? "bg-void/82 border-gold/20 shadow-[0_16px_44px_rgba(0,0,0,0.34)]"
+            : "bg-void/48 border-white/[0.07]"
         )}
-        style={{ backdropFilter: "blur(20px) saturate(180%)", WebkitBackdropFilter: "blur(20px) saturate(180%)" }}
+        style={{ backdropFilter: "blur(10px) saturate(155%)", WebkitBackdropFilter: "blur(10px) saturate(155%)" }}
       >
         <div className="container-x h-full flex items-center justify-between">
           <Link to="/" className="flex items-center gap-3 group">
-            <span className="text-gold/60 group-hover:text-gold transition-colors">●</span>
-            <span className="font-display font-bold text-[1.1rem] uppercase tracking-[0.4em] gold-text">IGWE DE MC</span>
+            <span className="relative flex h-2.5 w-2.5">
+              <span className="absolute inline-flex h-full w-full rounded-full bg-gold opacity-60 group-hover:animate-ping" />
+              <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-gold" />
+            </span>
+            <span className="font-display font-bold text-[1.1rem] uppercase tracking-[0.34em] gold-text">IGWE DE MC</span>
           </Link>
 
           <nav className="hidden lg:flex items-center gap-8">
@@ -77,6 +83,7 @@ export const Header = () => {
                 className={({ isActive }) =>
                   cn(
                     "relative text-[11px] tracking-[0.25em] uppercase font-light transition-colors py-2",
+                    "nav-glow-link",
                     "after:content-[''] after:absolute after:left-0 after:bottom-0 after:h-px after:bg-gold after:transition-all after:duration-300",
                     isActive
                       ? "text-gold after:w-full"
@@ -114,19 +121,19 @@ export const Header = () => {
                 className="block bg-gold rounded-[1px] absolute"
                 style={{ width: 22, height: 2 }}
                 animate={open ? { rotate: 45, y: 0 } : { rotate: 0, y: -7 }}
-                transition={{ duration: 0.3, ease: "easeInOut" }}
+                transition={{ duration: reduceMotion ? 0 : 0.3, ease: "easeInOut" }}
               />
               <motion.span
                 className="block bg-gold rounded-[1px] absolute"
                 style={{ width: 22, height: 2 }}
                 animate={open ? { opacity: 0, scaleX: 0 } : { opacity: 1, scaleX: 1 }}
-                transition={{ duration: 0.3, ease: "easeInOut" }}
+                transition={{ duration: reduceMotion ? 0 : 0.3, ease: "easeInOut" }}
               />
               <motion.span
                 className="block bg-gold rounded-[1px] absolute"
                 style={{ width: 22, height: 2 }}
                 animate={open ? { rotate: -45, y: 0 } : { rotate: 0, y: 7 }}
-                transition={{ duration: 0.3, ease: "easeInOut" }}
+                transition={{ duration: reduceMotion ? 0 : 0.3, ease: "easeInOut" }}
               />
             </button>
           </div>
@@ -145,10 +152,10 @@ export const Header = () => {
               height: "100dvh",
               background: "linear-gradient(135deg, #050507 0%, #0d0d14 50%, #0a0810 100%)",
             }}
-            initial={{ clipPath: "inset(0 0 0 100%)" }}
-            animate={{ clipPath: "inset(0 0 0 0%)" }}
-            exit={{ clipPath: "inset(0 0 0 100%)" }}
-            transition={{ duration: 0.4, ease: [0.76, 0, 0.24, 1] }}
+            initial={{ x: "100%" }}
+            animate={{ x: 0 }}
+            exit={{ x: "100%" }}
+            transition={{ duration: reduceMotion ? 0 : 0.4, ease: [0.76, 0, 0.24, 1] }}
           >
             {/* Ambient orbs */}
             <div aria-hidden className="absolute inset-0 pointer-events-none overflow-hidden">
@@ -192,8 +199,8 @@ export const Header = () => {
               exit="exit"
               variants={{
                 hidden: {},
-                visible: { transition: { staggerChildren: 0.06, delayChildren: 0.2 } },
-                exit: { transition: { staggerChildren: 0.03, staggerDirection: -1 } },
+                visible: { transition: { staggerChildren: reduceMotion ? 0 : 0.06, delayChildren: reduceMotion ? 0 : 0.2 } },
+                exit: { transition: { staggerChildren: reduceMotion ? 0 : 0.03, staggerDirection: -1 } },
               }}
             >
               {NAV.map((item) => {
@@ -203,8 +210,8 @@ export const Header = () => {
                     key={item.to}
                     variants={{
                       hidden: { opacity: 0, x: 40 },
-                      visible: { opacity: 1, x: 0, transition: { duration: 0.35, ease: [0.25, 0.46, 0.45, 0.94] } },
-                      exit: { opacity: 0, x: 40, transition: { duration: 0.2 } },
+                      visible: { opacity: 1, x: 0, transition: { duration: reduceMotion ? 0 : 0.35, ease: [0.25, 0.46, 0.45, 0.94] } },
+                      exit: { opacity: 0, x: 40, transition: { duration: reduceMotion ? 0 : 0.2 } },
                     }}
                   >
                     <Link
@@ -221,10 +228,11 @@ export const Header = () => {
                       }}
                     >
                       <span
-                        className="inline-block transition-all duration-200"
+                        className="inline-block transition-transform duration-200 origin-left"
                         style={{
                           color: "#D4AF37",
-                          width: isActive ? 24 : 0,
+                          width: 24,
+                          transform: isActive ? "scaleX(1)" : "scaleX(0)",
                           opacity: isActive ? 1 : 0,
                           overflow: "hidden",
                         }}
@@ -242,10 +250,30 @@ export const Header = () => {
 
             {/* Bottom info strip */}
             <div
-              className="absolute left-0 right-0 px-6 flex items-center justify-between"
+              className="absolute left-0 right-0 px-6 flex flex-col items-center"
               style={{ bottom: 32 }}
             >
-              <div className="flex items-center gap-3">
+              <div
+                aria-hidden
+                className="w-full max-w-[320px]"
+                style={{ borderTop: "1px solid rgba(255,255,255,0.06)", marginBottom: 16 }}
+              />
+              <a
+                href="tel:+447733751948"
+                className="text-[rgba(240,237,230,0.7)] hover:text-gold transition-colors flex items-center justify-center gap-2"
+                style={{
+                  minHeight: 44,
+                  fontFamily: "'DM Sans', sans-serif",
+                  fontSize: 14,
+                  fontWeight: 400,
+                  letterSpacing: "1px",
+                  marginBottom: 16,
+                }}
+              >
+                <Phone className="w-3.5 h-3.5 text-gold" />
+                +44 7733 751948
+              </a>
+              <div className="flex items-center justify-center gap-3">
                 {[
                   { Icon: Facebook, href: "https://www.facebook.com/share/1DKNiGSfty/", label: "Facebook" },
                   { Icon: XIcon, href: "https://x.com/igwedemc", label: "X" },
@@ -266,14 +294,6 @@ export const Header = () => {
                   </a>
                 ))}
               </div>
-              <a
-                href="tel:+447733751948"
-                className="text-muted-foreground hover:text-gold transition-colors flex items-center gap-2"
-                style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 12, letterSpacing: "1px" }}
-              >
-                <Phone className="w-3.5 h-3.5" />
-                +447733751948
-              </a>
             </div>
           </motion.div>
         )}

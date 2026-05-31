@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import { ReactNode } from "react";
 
 interface ScrollRevealProps {
@@ -23,13 +23,15 @@ export function ScrollReveal({
   as = "div",
 }: ScrollRevealProps) {
   const MotionTag = motion[as] as typeof motion.div;
+  const reduceMotion = useReducedMotion();
+
   return (
     <MotionTag
       className={className}
-      initial={{ opacity: 0, y: 40, filter: "blur(4px)" }}
-      whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+      initial={reduceMotion ? { opacity: 1 } : { opacity: 0, y: 40, filter: "blur(4px)" }}
+      whileInView={reduceMotion ? { opacity: 1 } : { opacity: 1, y: 0, filter: "blur(0px)" }}
       viewport={{ once: true, amount: 0.15, margin: "0px 0px -50px 0px" }}
-      transition={{ type: "spring", duration: 0.9, bounce: 0.2, delay }}
+      transition={reduceMotion ? { duration: 0 } : { type: "spring", duration: 0.9, bounce: 0.2, delay }}
     >
       {children}
     </MotionTag>
