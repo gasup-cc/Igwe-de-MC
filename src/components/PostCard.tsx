@@ -15,7 +15,15 @@ const PostImage = ({ post, aspect, rounded = "rounded-none" }: { post: PostItem;
   if (post.image) {
     return (
       <div className={`${aspect} w-full overflow-hidden ${rounded}`}>
-        <img src={post.image} alt={post.title} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.035]" style={{ objectPosition: "center top" }} />
+        <img
+          src={post.image}
+          alt={post.title}
+          loading="lazy"
+          width={768}
+          height={512}
+          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.035]"
+          style={{ objectPosition: "center top" }}
+        />
       </div>
     );
   }

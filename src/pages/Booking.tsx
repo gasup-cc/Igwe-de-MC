@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { z } from "zod";
 import { toast } from "sonner";
-import { ArrowDown, Send, Phone, Mail, MessageCircle, Check } from "lucide-react";
+import { Send, Phone, Mail, MessageCircle, Check } from "lucide-react";
 import { AnimatedGrid } from "@/components/AnimatedGrid";
 import { PageHero } from "@/components/PageHero";
 import { GlassCard } from "@/components/GlassCard";
@@ -90,47 +90,6 @@ const Booking = () => {
   return (
     <>
       <PageHero title="Book" goldTitle="IGWE DE MC" eyebrow="Bookings Open" breadcrumb={[{ label: "Booking" }]} />
-
-      <section className="py-20 md:py-24">
-        <div className="container-x max-w-5xl mx-auto">
-          <ScrollReveal>
-            <div className="text-center mb-10">
-              <h2 className="font-display font-bold text-[38px] leading-tight text-white">Book a Discovery Call</h2>
-              <p className="mt-4 text-base text-muted-foreground font-light max-w-[520px] mx-auto">
-                Pick a date and time that works for you. We'll discuss your event, answer your questions, and confirm availability.
-              </p>
-            </div>
-          </ScrollReveal>
-          <ScrollReveal delay={0.15}>
-            <div
-              className="overflow-hidden"
-              style={{
-                background: "rgba(255,255,255,0.03)",
-                border: "1px solid rgba(255,255,255,0.08)",
-                borderRadius: 20,
-                padding: 0,
-              }}
-            >
-              <iframe
-                src="https://app.gasup.ai/widget/booking/VvAAQWOegarV4VdRZu1p"
-                className="w-full h-[950px] sm:h-[900px] lg:h-[700px]"
-                style={{ border: "none", borderRadius: 20 }}
-                title="Book a Discovery Call"
-                loading="lazy"
-              />
-            </div>
-          </ScrollReveal>
-          <ScrollReveal delay={0.2}>
-            <div className="mt-10 flex flex-col items-center text-center">
-              <div className="w-full max-w-xl h-px bg-white/[0.08]" />
-              <div className="mt-5 inline-flex items-center gap-2 text-muted-foreground font-light text-[15px]">
-                Prefer to send a detailed enquiry instead?
-                <ArrowDown className="w-4 h-4 text-gold" />
-              </div>
-            </div>
-          </ScrollReveal>
-        </div>
-      </section>
 
       <section className="py-20">
         <div className="container-x grid grid-cols-1 lg:grid-cols-2 gap-16">

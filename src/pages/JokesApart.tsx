@@ -130,6 +130,8 @@ const JokesApart = () => {
                 <img
                   src={jokesApartFlyer}
                   alt="JOKES APART event flyer"
+                  width={1288}
+                  height={1824}
                   className="w-full h-full object-cover"
                   style={{ maxHeight: 480, objectPosition: "center top" }}
                 />
@@ -148,6 +150,8 @@ const JokesApart = () => {
                 <img
                   src={jokesApartFlyer}
                   alt="Igwe De MC"
+                  width={1288}
+                  height={1824}
                   className="w-11 h-11 rounded-full object-cover"
                   style={{ objectPosition: "center 30%", border: "1px solid rgba(212,175,55,0.3)" }}
                 />
@@ -312,6 +316,8 @@ const JokesApart = () => {
                     <img
                       src={jokesApartFlyer}
                       alt="Igwe De MC"
+                      width={1288}
+                      height={1824}
                       className="w-16 h-16 rounded-full object-cover shrink-0"
                       style={{ objectPosition: "center 30%", border: "1px solid rgba(212,175,55,0.3)" }}
                     />

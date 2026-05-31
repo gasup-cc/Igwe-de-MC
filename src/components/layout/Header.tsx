@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link, NavLink, useLocation } from "react-router-dom";
 import { Calendar, Facebook, Instagram, Youtube, Phone } from "lucide-react";
-import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
+import { AnimatePresence, m, useReducedMotion } from "framer-motion";
 import { cn } from "@/lib/utils";
 
 const XIcon = (props: React.SVGProps<SVGSVGElement>) => (
@@ -23,6 +23,7 @@ const NAV = [
   { to: "/videos", label: "Videos" },
   { to: "/news", label: "News" },
   { to: "/shop", label: "Shop" },
+  { to: "/book-a-call", label: "Book a Call" },
   { to: "/booking", label: "Book Now" },
 ];
 
@@ -31,13 +32,15 @@ export const Header = () => {
   const [open, setOpen] = useState(false);
   const location = useLocation();
   const reduceMotion = useReducedMotion();
+  const isHome = location.pathname === "/";
+  const isSolid = !isHome || scrolled;
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 100);
+    const onScroll = () => setScrolled(window.scrollY > 80);
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
-  }, []);
+  }, [location.pathname]);
 
   useEffect(() => { setOpen(false); }, [location.pathname]);
 
@@ -57,13 +60,15 @@ export const Header = () => {
   return (
     <>
       <header
-        className={cn(
-          "fixed top-0 inset-x-0 z-50 h-[72px] transition-all duration-300 border-b",
-          scrolled
-            ? "bg-void/82 border-gold/20 shadow-[0_16px_44px_rgba(0,0,0,0.34)]"
-            : "bg-void/48 border-white/[0.07]"
-        )}
-        style={{ backdropFilter: "blur(10px) saturate(155%)", WebkitBackdropFilter: "blur(10px) saturate(155%)" }}
+        className="fixed top-0 inset-x-0 z-50 h-[72px]"
+        style={{
+          background: isSolid ? "rgba(5, 5, 10, 0.85)" : "transparent",
+          backdropFilter: isSolid ? "blur(20px) saturate(180%)" : "none",
+          WebkitBackdropFilter: isSolid ? "blur(20px) saturate(180%)" : "none",
+          borderBottom: isSolid ? "1px solid rgba(255, 255, 255, 0.06)" : "none",
+          boxShadow: isSolid ? "0 4px 24px rgba(0, 0, 0, 0.3)" : "none",
+          transition: "all 0.4s ease",
+        }}
       >
         <div className="container-x h-full flex items-center justify-between">
           <Link to="/" className="flex items-center gap-3 group">
@@ -75,19 +80,19 @@ export const Header = () => {
           </Link>
 
           <nav className="hidden lg:flex items-center gap-8">
-            {NAV.slice(0, 6).map((item) => (
+            {NAV.filter((item) => item.to !== "/booking").map((item) => (
               <NavLink
                 key={item.to}
                 to={item.to}
                 end={item.to === "/"}
                 className={({ isActive }) =>
                   cn(
-                    "relative text-[11px] tracking-[0.25em] uppercase font-light transition-colors py-2",
+                    "relative text-[11px] tracking-[3px] uppercase font-normal py-2",
                     "nav-glow-link",
                     "after:content-[''] after:absolute after:left-0 after:bottom-0 after:h-px after:bg-gold after:transition-all after:duration-300",
                     isActive
                       ? "text-gold after:w-full"
-                      : "text-muted-foreground hover:text-gold after:w-0 hover:after:w-full"
+                      : "text-[rgba(240,237,230,0.82)] hover:text-white after:w-0 hover:after:w-full"
                   )
                 }
               >
@@ -117,19 +122,19 @@ export const Header = () => {
               aria-label={open ? "Close menu" : "Open menu"}
               aria-expanded={open}
             >
-              <motion.span
+              <m.span
                 className="block bg-gold rounded-[1px] absolute"
                 style={{ width: 22, height: 2 }}
                 animate={open ? { rotate: 45, y: 0 } : { rotate: 0, y: -7 }}
                 transition={{ duration: reduceMotion ? 0 : 0.3, ease: "easeInOut" }}
               />
-              <motion.span
+              <m.span
                 className="block bg-gold rounded-[1px] absolute"
                 style={{ width: 22, height: 2 }}
                 animate={open ? { opacity: 0, scaleX: 0 } : { opacity: 1, scaleX: 1 }}
                 transition={{ duration: reduceMotion ? 0 : 0.3, ease: "easeInOut" }}
               />
-              <motion.span
+              <m.span
                 className="block bg-gold rounded-[1px] absolute"
                 style={{ width: 22, height: 2 }}
                 animate={open ? { rotate: -45, y: 0 } : { rotate: 0, y: 7 }}
@@ -143,7 +148,7 @@ export const Header = () => {
       {/* Mobile fullscreen overlay */}
       <AnimatePresence>
         {open && (
-          <motion.div
+          <m.div
             key="mobile-overlay"
             className="lg:hidden fixed inset-0"
             style={{
@@ -191,7 +196,7 @@ export const Header = () => {
             </button>
 
             {/* Nav links */}
-            <motion.nav
+            <m.nav
               className="absolute"
               style={{ top: "50%", left: "50%", transform: "translate(-50%, -50%)", width: "80%", textAlign: "left" }}
               initial="hidden"
@@ -206,7 +211,7 @@ export const Header = () => {
               {NAV.map((item) => {
                 const isActive = location.pathname === item.to;
                 return (
-                  <motion.div
+                  <m.div
                     key={item.to}
                     variants={{
                       hidden: { opacity: 0, x: 40 },
@@ -243,24 +248,24 @@ export const Header = () => {
                         {item.label}
                       </span>
                     </Link>
-                  </motion.div>
+                  </m.div>
                 );
               })}
-            </motion.nav>
+            </m.nav>
 
             {/* Bottom info strip */}
             <div
-              className="absolute left-0 right-0 px-6 flex flex-col items-center"
-              style={{ bottom: 32 }}
+              className="absolute flex flex-col items-start"
+              style={{ bottom: 32, left: "50%", width: "80%", transform: "translateX(-50%)" }}
             >
               <div
                 aria-hidden
-                className="w-full max-w-[320px]"
+                className="w-full"
                 style={{ borderTop: "1px solid rgba(255,255,255,0.06)", marginBottom: 16 }}
               />
               <a
                 href="tel:+447733751948"
-                className="text-[rgba(240,237,230,0.7)] hover:text-gold transition-colors flex items-center justify-center gap-2"
+                className="text-[rgba(240,237,230,0.7)] hover:text-gold transition-colors flex items-center justify-start gap-2 text-left"
                 style={{
                   minHeight: 44,
                   fontFamily: "'DM Sans', sans-serif",
@@ -273,7 +278,7 @@ export const Header = () => {
                 <Phone className="w-3.5 h-3.5 text-gold" />
                 +44 7733 751948
               </a>
-              <div className="flex items-center justify-center gap-3">
+              <div className="flex items-center justify-start gap-3">
                 {[
                   { Icon: Facebook, href: "https://www.facebook.com/share/1DKNiGSfty/", label: "Facebook" },
                   { Icon: XIcon, href: "https://x.com/igwedemc", label: "X" },
@@ -285,8 +290,8 @@ export const Header = () => {
                     key={label}
                     href={href}
                     target="_blank"
-                    rel="noreferrer"
-                    aria-label={label}
+                  rel="noreferrer"
+                  aria-label={label}
                     className="rounded-full glass flex items-center justify-center transition-all hover:text-gold"
                     style={{ width: 36, height: 36, color: "rgba(212,175,55,0.7)" }}
                   >
@@ -295,7 +300,7 @@ export const Header = () => {
                 ))}
               </div>
             </div>
-          </motion.div>
+          </m.div>
         )}
       </AnimatePresence>
     </>

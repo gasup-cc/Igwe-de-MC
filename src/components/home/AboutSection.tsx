@@ -29,6 +29,8 @@ export const AboutSection = () => {
                 src={onStageImg}
                 alt="IGWE DE MC on stage"
                 loading="lazy"
+                width={1200}
+                height={1800}
                 className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.04]"
               />
               <div aria-hidden className="absolute inset-0 bg-gradient-to-t from-void/70 via-transparent to-transparent" />

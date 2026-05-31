@@ -19,13 +19,12 @@ export const HeroSection = () => {
       <div className="absolute inset-0 z-0">
         <HeroCarousel />
       </div>
-      <div
-        aria-hidden
-        className="absolute inset-0 z-[1]"
-        style={{
-          background: "linear-gradient(to bottom, rgba(8,8,16,0.35) 0%, rgba(8,8,16,0.55) 60%, rgba(8,8,16,0.85) 100%)",
-        }}
-      />
+      <div aria-hidden className="hero-overlay">
+        <div className="hero-overlay__base" />
+        <div className="hero-overlay__left-vignette" />
+        <div className="hero-overlay__top-vignette" />
+        <div className="hero-overlay__gold-grade" />
+      </div>
 
       <div className="container-x relative z-10 pt-24 pb-20 md:pt-28 md:pb-24 lg:pt-32 lg:pb-28">
         <div className="max-w-3xl flex flex-col items-start text-left gap-7 animate-fade-up">
@@ -59,6 +58,13 @@ export const HeroSection = () => {
               <PlayCircle className="w-4 h-4 text-gold" /> Watch Showreel
             </Link>
           </div>
+          <Link
+            to="/book-a-call"
+            className="text-[13px] font-light text-gold/70 hover:text-gold hover:underline underline-offset-4 transition-colors"
+            style={{ fontFamily: "'DM Sans', sans-serif" }}
+          >
+            or schedule a free discovery call →
+          </Link>
 
           <div className="grid grid-cols-3 gap-3 w-full max-w-[460px] pt-2">
             {HERO_STATS.map((stat) => (
@@ -74,7 +80,7 @@ export const HeroSection = () => {
               <div className="flex -space-x-2.5">
                 {HERO_AVATARS.map((src, i) => (
                   <div key={i} className="w-9 h-9 rounded-full overflow-hidden border-2 border-void shadow-[0_2px_8px_rgba(0,0,0,0.4)]" style={{ marginLeft: i === 0 ? 0 : -10 }}>
-                    <img src={src} alt="" aria-hidden className="w-full h-full object-cover" style={{ objectPosition: "center top" }} />
+                    <img src={src} alt="" aria-hidden width={36} height={36} className="w-full h-full object-cover" style={{ objectPosition: "center top" }} />
                   </div>
                 ))}
               </div>

@@ -16,17 +16,20 @@ export const ParticleField = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const rafRef = useRef<number>();
   const particlesRef = useRef<Particle[]>([]);
+  const isMountedRef = useRef(false);
 
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
+    isMountedRef.current = true;
 
     const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    let resizeTimer: number | undefined;
 
     const initParticles = () => {
-      particlesRef.current = Array.from({ length: 80 }, () => ({
+      particlesRef.current = Array.from({ length: 50 }, () => ({
         x: Math.random() * canvas.width,
         y: Math.random() * canvas.height,
         vx: (Math.random() - 0.5) * 0.3,
@@ -43,10 +46,15 @@ export const ParticleField = () => {
       canvas.height = window.innerHeight;
       initParticles();
     };
+    const debouncedResize = () => {
+      window.clearTimeout(resizeTimer);
+      resizeTimer = window.setTimeout(resize, 200);
+    };
     resize();
-    window.addEventListener("resize", resize, { passive: true });
+    window.addEventListener("resize", debouncedResize, { passive: true });
 
     const draw = () => {
+      if (!isMountedRef.current) return;
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       const particles = particlesRef.current;
       const t = Date.now() * 0.001;
@@ -57,8 +65,8 @@ export const ParticleField = () => {
           const dx = particles[i].x - particles[j].x;
           const dy = particles[i].y - particles[j].y;
           const dist = Math.sqrt(dx * dx + dy * dy);
-          if (dist < 120) {
-            ctx.globalAlpha = 0.03 * (1 - dist / 120);
+          if (dist < 100) {
+            ctx.globalAlpha = 0.02 * (1 - dist / 100);
             ctx.strokeStyle = "#D4AF37";
             ctx.lineWidth = 0.5;
             ctx.beginPath();
@@ -86,13 +94,15 @@ export const ParticleField = () => {
       }
       ctx.globalAlpha = 1;
 
-      if (!reduced) rafRef.current = requestAnimationFrame(draw);
+      if (!reduced && isMountedRef.current) rafRef.current = requestAnimationFrame(draw);
     };
 
     draw();
 
     return () => {
-      window.removeEventListener("resize", resize);
+      isMountedRef.current = false;
+      window.clearTimeout(resizeTimer);
+      window.removeEventListener("resize", debouncedResize);
       if (rafRef.current) cancelAnimationFrame(rafRef.current);
     };
   }, []);

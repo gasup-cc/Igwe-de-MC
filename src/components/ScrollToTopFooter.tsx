@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { ChevronUp } from "lucide-react";
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, m } from "framer-motion";
 
 export const ScrollToTopFooter = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -19,7 +19,7 @@ export const ScrollToTopFooter = () => {
   return (
     <AnimatePresence>
       {isVisible && (
-        <motion.button
+        <m.button
           key="scroll-top-footer"
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
@@ -53,7 +53,7 @@ export const ScrollToTopFooter = () => {
           }}
         >
           <ChevronUp size={20} color="#D4AF37" />
-        </motion.button>
+        </m.button>
       )}
     </AnimatePresence>
   );

@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
 type Point = { x: number; y: number };
 type LightningEffectProps = {
@@ -81,26 +81,50 @@ const drawPath = (
 };
 
 export const LightningEffect = ({ variant = "default" }: LightningEffectProps) => {
+  const [shouldRender, setShouldRender] = useState(() => {
+    if (typeof window === "undefined") return false;
+    return window.innerWidth >= 1024 && !window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  });
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const timeoutRef = useRef<number>();
   const rafRef = useRef<number>();
+  const renderResizeTimeoutRef = useRef<number>();
+  const canvasResizeTimeoutRef = useRef<number>();
+  const isMountedRef = useRef(false);
 
   useEffect(() => {
+    const reducedMotionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const update = () => {
+      window.clearTimeout(renderResizeTimeoutRef.current);
+      renderResizeTimeoutRef.current = window.setTimeout(() => {
+        setShouldRender(window.innerWidth >= 1024 && !reducedMotionQuery.matches);
+      }, 200);
+    };
+
+    setShouldRender(window.innerWidth >= 1024 && !reducedMotionQuery.matches);
+    window.addEventListener("resize", update, { passive: true });
+    reducedMotionQuery.addEventListener("change", update);
+
+    return () => {
+      window.removeEventListener("resize", update);
+      reducedMotionQuery.removeEventListener("change", update);
+      window.clearTimeout(renderResizeTimeoutRef.current);
+    };
+  }, []);
+
+  useEffect(() => {
+    if (!shouldRender) return;
+
     const canvas = canvasRef.current;
     const ctx = canvas?.getContext("2d");
     if (!canvas || !ctx) return;
 
-    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (reducedMotion) {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      return;
-    }
-
-    let disposed = false;
+    isMountedRef.current = true;
     let width = 0;
     let height = 0;
 
     const resize = () => {
+      if (!isMountedRef.current) return;
       const rect = canvas.getBoundingClientRect();
       const dpr = Math.min(window.devicePixelRatio || 1, 2);
       width = Math.max(1, rect.width);
@@ -111,14 +135,20 @@ export const LightningEffect = ({ variant = "default" }: LightningEffectProps) =
       ctx.clearRect(0, 0, width, height);
     };
 
+    const debouncedResize = () => {
+      window.clearTimeout(canvasResizeTimeoutRef.current);
+      canvasResizeTimeoutRef.current = window.setTimeout(resize, 200);
+    };
+
     const schedule = () => {
+      if (!isMountedRef.current) return;
       const min = variant === "footer" ? 6000 : 4000;
       const max = variant === "footer" ? 12000 : 8000;
       timeoutRef.current = window.setTimeout(trigger, randomBetween(min, max));
     };
 
     const trigger = () => {
-      if (disposed) return;
+      if (!isMountedRef.current) return;
 
       const bolt = createBolt(width, height);
       const branches = createBranches(bolt, height);
@@ -126,7 +156,7 @@ export const LightningEffect = ({ variant = "default" }: LightningEffectProps) =
       const duration = 320;
 
       const frame = (now: number) => {
-        if (disposed) return;
+        if (!isMountedRef.current) return;
 
         const elapsed = now - startedAt;
         ctx.clearRect(0, 0, width, height);
@@ -159,17 +189,20 @@ export const LightningEffect = ({ variant = "default" }: LightningEffectProps) =
     };
 
     resize();
-    window.addEventListener("resize", resize, { passive: true });
+    window.addEventListener("resize", debouncedResize, { passive: true });
     schedule();
 
     return () => {
-      disposed = true;
-      window.removeEventListener("resize", resize);
+      isMountedRef.current = false;
+      window.removeEventListener("resize", debouncedResize);
+      window.clearTimeout(canvasResizeTimeoutRef.current);
       if (timeoutRef.current) window.clearTimeout(timeoutRef.current);
       if (rafRef.current) cancelAnimationFrame(rafRef.current);
       ctx.clearRect(0, 0, width, height);
     };
-  }, [variant]);
+  }, [shouldRender, variant]);
+
+  if (!shouldRender) return null;
 
   return (
     <canvas

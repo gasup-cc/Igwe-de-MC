@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { Share2, Facebook, Linkedin } from "lucide-react";
-import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
+import { AnimatePresence, m, useReducedMotion } from "framer-motion";
 
 const WhatsAppIcon = () => (
   <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20" aria-hidden>
@@ -126,7 +126,7 @@ export const SharePopover = ({
       </button>
       <AnimatePresence>
         {open && (
-          <motion.div
+          <m.div
             key="share-pop"
             initial={reduceMotion ? { opacity: 1 } : { opacity: 0, scale: 0.9 }}
             animate={reduceMotion ? { opacity: 1 } : { opacity: 1, scale: 1, transition: { duration: 0.15, ease: "easeOut" } }}
@@ -161,7 +161,7 @@ export const SharePopover = ({
                 </button>
               ))}
             </div>
-          </motion.div>
+          </m.div>
         )}
       </AnimatePresence>
     </div>

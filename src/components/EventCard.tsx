@@ -40,6 +40,9 @@ export const EventCard = ({ event, variant = "default" }: EventCardProps) => {
             <img
               src={event.image}
               alt={event.name}
+              loading="lazy"
+              width={1288}
+              height={1824}
               className="w-full max-h-[480px] object-cover object-top transition-transform duration-700 group-hover:scale-[1.025]"
               style={{ objectPosition: "center top" }}
             />
@@ -78,7 +81,15 @@ export const EventCard = ({ event, variant = "default" }: EventCardProps) => {
       <div className="relative">
         {event.image ? (
           <div className="aspect-[16/9] w-full overflow-hidden">
-            <img src={event.image} alt={event.name} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.04]" style={{ objectPosition: "center top" }} />
+            <img
+              src={event.image}
+              alt={event.name}
+              loading="lazy"
+              width={1288}
+              height={1824}
+              className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.04]"
+              style={{ objectPosition: "center top" }}
+            />
           </div>
         ) : (
           <ImagePlaceholder aspect="aspect-[16/9]" rounded="rounded-none" label="Event Flyer" />

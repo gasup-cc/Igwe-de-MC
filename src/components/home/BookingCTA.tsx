@@ -23,6 +23,15 @@ export const BookingCTA = () => {
               Book IGWE DE MC Now
             </Link>
           </ScrollReveal>
+          <ScrollReveal delay={0.3}>
+            <Link
+              to="/book-a-call"
+              className="inline-flex items-center justify-center rounded-md border border-gold/30 bg-white/[0.03] px-8 py-3.5 text-[13px] font-medium uppercase tracking-[2px] text-gold transition-colors hover:bg-gold/10"
+              style={{ fontFamily: "'DM Sans', sans-serif" }}
+            >
+              Schedule a Free Discovery Call
+            </Link>
+          </ScrollReveal>
           <ScrollReveal delay={0.35}>
             <p className="text-xs text-muted-foreground tracking-wider">Weddings · Corporates · Parties · Festivals</p>
           </ScrollReveal>

@@ -1,4 +1,4 @@
-import { motion, useReducedMotion, Variants } from "framer-motion";
+import { m, useReducedMotion, Variants } from "framer-motion";
 import { cloneElement, isValidElement, ReactElement, ReactNode } from "react";
 
 const containerVariants: Variants = {
@@ -9,11 +9,10 @@ const containerVariants: Variants = {
 };
 
 const itemVariants: Variants = {
-  hidden: { opacity: 0, y: 40, filter: "blur(4px)" },
+  hidden: { opacity: 0, y: 40 },
   visible: (index = 0) => ({
     opacity: 1,
     y: 0,
-    filter: "blur(0px)",
     transition: {
       type: "spring",
       duration: 0.9,
@@ -32,7 +31,7 @@ export function StaggerContainer({
   className?: string;
   as?: "div" | "ul" | "section";
 }) {
-  const MotionTag = motion[as] as typeof motion.div;
+  const MotionTag = m[as] as typeof m.div;
   const reduceMotion = useReducedMotion();
   const cappedChildren = Array.isArray(children)
     ? children.map((child, index) => {
@@ -69,7 +68,7 @@ export function StaggerItem({
   as?: "div" | "li" | "span";
   staggerIndex?: number;
 }) {
-  const MotionTag = motion[as] as typeof motion.div;
+  const MotionTag = m[as] as typeof m.div;
   const reduceMotion = useReducedMotion();
 
   return (

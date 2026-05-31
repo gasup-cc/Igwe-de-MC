@@ -9,14 +9,14 @@ import { ScrollToTopFooter } from "@/components/ScrollToTopFooter";
 
 export const Layout = ({ children }: { children: ReactNode }) => {
   const location = useLocation();
-  const isHome = location.pathname === "/";
+  const hasPageTopControl = location.pathname === "/" || location.pathname === "/book-a-call";
 
   return (
     <div className="site-shell min-h-screen bg-surface text-foreground flex flex-col relative">
       <ParticleField />
       <FloatingIcons />
       <Header />
-      <main className={`flex-1 relative z-[1] ${isHome ? "" : "pt-[72px]"}`}>{children}</main>
+      <main className={`flex-1 relative z-[1] ${hasPageTopControl ? "" : "pt-[72px]"}`}>{children}</main>
       <Footer />
       {/* SCROLL TO TOP BUTTON — temporarily disabled. Remove comment tags to re-enable. */}
       {/* <ScrollToTopFooter /> */}

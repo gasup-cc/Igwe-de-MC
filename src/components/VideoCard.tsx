@@ -36,6 +36,8 @@ export const VideoCard = ({ video, placeholder }: VideoCardProps) => {
             src={video.thumbnail}
             alt={video.title}
             loading="lazy"
+            width={644}
+            height={541}
             className="absolute inset-0 w-full h-full object-cover object-[center_top] transition-transform duration-700 group-hover:scale-[1.04]"
           />
           <div className="relative z-10 w-14 h-14 rounded-full glass flex items-center justify-center transition-transform duration-500 group-hover:scale-110">
@@ -66,6 +68,7 @@ export const VideoCard = ({ video, placeholder }: VideoCardProps) => {
                   controls
                   autoPlay
                   playsInline
+                  preload="auto"
                   className="w-full h-full object-contain"
                 />
               ) : (

@@ -46,6 +46,12 @@ export const ServicesSection = () => {
             );
           })}
         </StaggerContainer>
+        <div className="mt-8 flex flex-wrap items-center justify-center gap-2 text-center text-sm font-light text-muted-foreground">
+          <span>Not sure which service you need?</span>
+          <Link to="/book-a-call" className="text-gold hover:underline underline-offset-4 transition-colors">
+            Let's talk on a free call →
+          </Link>
+        </div>
       </div>
     </section>
   );

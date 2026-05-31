@@ -54,7 +54,7 @@ const VideoTestimonialCard = ({ url, quote }: { url: string; quote: string }) =>
               <X className="w-4 h-4" />
             </button>
             <div className="relative w-full bg-black aspect-video flex items-center justify-center">
-              <video src={url} controls autoPlay playsInline className="w-full h-full object-contain" />
+              <video src={url} controls autoPlay playsInline preload="auto" className="w-full h-full object-contain" />
             </div>
           </div>
         </DialogContent>
@@ -71,7 +71,7 @@ export const TestimonialsSection = () => {
         <div className="mb-12">
           <SectionHeader eyebrow="Testimonials" title="What People" goldTitle="Say" className="mb-0" />
         </div>
-        <StaggerContainer className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5 overflow-visible">
+        <StaggerContainer className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5">
           {videoTestimonials.map((item) => (
             <StaggerItem key={item.url}>
               <VideoTestimonialCard url={item.url} quote={item.quote} />
