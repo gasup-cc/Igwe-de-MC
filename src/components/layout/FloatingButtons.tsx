@@ -9,7 +9,7 @@ export const FloatingButtons = () => {
       aria-label="WhatsApp IGWE DE MC"
       className="whatsapp-float rounded-full bg-[#25D366] text-white items-center justify-center shadow-lg pulse-ring hover:scale-110 transition-transform"
     >
-      <MessageCircle className="w-6 h-6" />
+      <MessageCircle className="h-[28px] w-[28px]" />
     </a>
   );
 };
