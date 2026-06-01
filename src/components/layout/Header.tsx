@@ -75,7 +75,7 @@ export const Header = () => {
             <img
               src="/Horizontal_Logo.webp"
               alt="IGWE DE MC"
-              className="h-[34px] w-auto object-contain lg:h-10"
+              className="h-[48px] w-auto object-contain lg:h-14"
               style={{ width: "auto", objectFit: "contain" }}
             />
           </Link>
