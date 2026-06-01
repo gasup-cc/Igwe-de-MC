@@ -62,8 +62,8 @@ export const Header = () => {
       <header
         className="fixed top-0 inset-x-0 z-50 h-[72px]"
         style={{
-          background: isSolid ? "rgba(5, 5, 10, 0.85)" : "transparent",
-          backdropFilter: isSolid ? "blur(20px) saturate(180%)" : "none",
+          background: isSolid ? "rgba(5, 5, 10, 0.68)" : "transparent",
+          backdropFilter: isSolid ? "blur(8px) saturate(180%)" : "none",
           WebkitBackdropFilter: isSolid ? "blur(20px) saturate(180%)" : "none",
           borderBottom: isSolid ? "1px solid rgba(255, 255, 255, 0.06)" : "none",
           boxShadow: isSolid ? "0 4px 24px rgba(0, 0, 0, 0.3)" : "none",

@@ -405,6 +405,28 @@
     }
   }
 
+  @media (max-width: 767px) {
+    .hero-overlay {
+      background: rgba(8, 8, 16, 0.72) !important;
+      background-image: none !important;
+    }
+    .hero-overlay > div {
+      display: none !important;
+      background: transparent !important;
+      background-image: none !important;
+    }
+    .hero-mobile-hidden {
+      display: none !important;
+    }
+    .hero-cta-button {
+      width: 85% !important;
+      max-width: 340px !important;
+      margin-left: auto !important;
+      margin-right: auto !important;
+      align-self: center !important;
+    }
+  }
+
   .animated-grid {
     position: absolute;
     inset: 0;

@@ -45,14 +45,14 @@ export const HeroSection = () => {
           <div className="flex flex-col sm:flex-row gap-4 pt-2 w-full sm:w-auto">
             <Link
               to="/booking"
-              className="btn-shimmer inline-flex items-center justify-center gap-2 bg-gold text-void px-8 py-4 rounded-md text-xs tracking-[0.2em] uppercase font-semibold hover:bg-gold-bright transition-all shadow-[0_0_34px_rgba(212,175,55,0.26)]"
+              className="hero-cta-button btn-shimmer inline-flex items-center justify-center gap-2 bg-gold text-void px-8 py-4 rounded-md text-xs tracking-[0.2em] uppercase font-semibold hover:bg-gold-bright transition-all shadow-[0_0_34px_rgba(212,175,55,0.26)]"
               style={{ minWidth: 190 }}
             >
               <Calendar className="w-4 h-4" /> Book Your Event
             </Link>
             <Link
               to="/videos"
-              className="inline-flex items-center justify-center gap-2 glass px-8 py-4 rounded-md text-xs tracking-[0.2em] uppercase font-light text-foreground hover:border-gold/40 transition-all"
+              className="hero-cta-button inline-flex items-center justify-center gap-2 glass px-8 py-4 rounded-md text-xs tracking-[0.2em] uppercase font-light text-foreground hover:border-gold/40 transition-all"
               style={{ minWidth: 190 }}
             >
               <PlayCircle className="w-4 h-4 text-gold" /> Watch Showreel
@@ -60,13 +60,13 @@ export const HeroSection = () => {
           </div>
           <Link
             to="/book-a-call"
-            className="text-[13px] font-light text-gold/70 hover:text-gold hover:underline underline-offset-4 transition-colors"
+            className="hero-mobile-hidden text-[13px] font-light text-gold/70 hover:text-gold hover:underline underline-offset-4 transition-colors"
             style={{ fontFamily: "'DM Sans', sans-serif" }}
           >
             or schedule a free discovery call →
           </Link>
 
-          <div className="grid grid-cols-3 gap-3 w-full max-w-[460px] pt-2">
+          <div className="hero-mobile-hidden grid grid-cols-3 gap-3 w-full max-w-[460px] pt-2">
             {HERO_STATS.map((stat) => (
               <div key={stat.label} className="hero-stat rounded-xl px-4 py-3">
                 <div className="font-display text-3xl leading-none gold-gradient-text">{stat.value}</div>
@@ -75,7 +75,7 @@ export const HeroSection = () => {
             ))}
           </div>
 
-          <div className="flex flex-col sm:flex-row sm:items-center gap-4 pt-2">
+          <div className="hero-mobile-hidden flex flex-col sm:flex-row sm:items-center gap-4 pt-2">
             <div className="flex items-center gap-4">
               <div className="flex -space-x-2.5">
                 {HERO_AVATARS.map((src, i) => (
