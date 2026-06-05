@@ -71,13 +71,23 @@ export const Header = () => {
         }}
       >
         <div className="container-x h-full flex items-center justify-between">
-          <Link to="/" className="flex items-center group">
-            <img
-              src="/Horizontal_Logo.webp"
-              alt="IGWE DE MC"
-              className="h-[48px] w-auto object-contain lg:h-14"
-              style={{ width: "auto", objectFit: "contain" }}
-            />
+          <Link to="/" className="logo-hover-link flex items-center group">
+            <m.div
+              className="logo-hover-shell"
+              whileHover={{
+                scale: 1.06,
+                filter: "drop-shadow(0 0 12px rgba(212,175,55,0.55)) drop-shadow(0 0 24px rgba(212,175,55,0.25)) brightness(1.12)",
+              }}
+              transition={{ duration: reduceMotion ? 0 : 0.35, ease: [0.25, 0.46, 0.45, 0.94] }}
+            >
+              <img
+                src="/Horizontal_Logo.webp"
+                alt="IGWE DE MC"
+                className="h-[48px] w-auto object-contain lg:h-14"
+                style={{ width: "auto", objectFit: "contain" }}
+              />
+              <span className="logo-hover-shimmer" aria-hidden />
+            </m.div>
           </Link>
 
           <nav className="hidden lg:flex items-center gap-8">

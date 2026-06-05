@@ -25,28 +25,30 @@ export const AnimatedGrid = () => {
 
   return (
     <div className="animated-grid" aria-hidden>
-      <svg className="animated-grid__svg" width="100%" height="100%" preserveAspectRatio="none">
-        <defs>
-          <pattern id={patternId} width="40" height="40" patternUnits="userSpaceOnUse">
-            <path d="M 40 0 L 0 0 0 40" fill="none" stroke="rgba(255,255,255,0.10)" strokeWidth="0.8" />
-          </pattern>
-        </defs>
-        <rect width="100%" height="100%" fill={`url(#${patternId})`} />
-      </svg>
-      <svg className="animated-grid__glow" width="100%" height="100%" preserveAspectRatio="none">
-        <defs>
-          <filter id={glowFilterId} x="-50%" y="-50%" width="200%" height="200%">
-            <feGaussianBlur stdDeviation="2" />
-          </filter>
-        </defs>
-        <g filter={`url(#${glowFilterId})`}>
-          {ACCENT_DOTS.map((dot) => (
-            <circle key={`${dot.cx}-${dot.cy}`} cx={dot.cx} cy={dot.cy} r="2" fill={dot.fill} />
-          ))}
-        </g>
-      </svg>
-      <span className="animated-grid__orb animated-grid__orb--purple" />
-      <span className="animated-grid__orb animated-grid__orb--gold" />
+      <div className="animated-grid__fixed-plane">
+        <svg className="animated-grid__svg" width="100%" height="100%" preserveAspectRatio="none">
+          <defs>
+            <pattern id={patternId} width="40" height="40" patternUnits="userSpaceOnUse">
+              <path d="M 40 0 L 0 0 0 40" fill="none" stroke="rgba(255,255,255,0.10)" strokeWidth="0.8" />
+            </pattern>
+          </defs>
+          <rect width="100%" height="100%" fill={`url(#${patternId})`} />
+        </svg>
+        <svg className="animated-grid__glow" width="100%" height="100%" preserveAspectRatio="none">
+          <defs>
+            <filter id={glowFilterId} x="-50%" y="-50%" width="200%" height="200%">
+              <feGaussianBlur stdDeviation="2" />
+            </filter>
+          </defs>
+          <g filter={`url(#${glowFilterId})`}>
+            {ACCENT_DOTS.map((dot) => (
+              <circle key={`${dot.cx}-${dot.cy}`} cx={dot.cx} cy={dot.cy} r="2" fill={dot.fill} />
+            ))}
+          </g>
+        </svg>
+        <span className="animated-grid__orb animated-grid__orb--purple" />
+        <span className="animated-grid__orb animated-grid__orb--gold" />
+      </div>
     </div>
   );
 };

@@ -313,9 +313,19 @@
     filter: blur(18px);
   }
   .hero-kicker {
-    background:
-      linear-gradient(135deg, rgba(212,175,55,0.18), rgba(124,58,237,0.10)),
-      rgba(255,255,255,0.04);
+    color: #F0CC5A;
+    background: rgba(212, 175, 55, 0.14);
+    border: 1px solid rgba(212, 175, 55, 0.45);
+    box-shadow:
+      0 0 12px rgba(212, 175, 55, 0.35),
+      0 0 28px rgba(212, 175, 55, 0.18),
+      0 0 50px rgba(212, 175, 55, 0.08),
+      inset 0 1px 0 rgba(255, 255, 255, 0.12);
+    text-shadow:
+      0 0 12px rgba(212, 175, 55, 0.6),
+      0 0 24px rgba(212, 175, 55, 0.3);
+    backdrop-filter: blur(16px) saturate(200%);
+    -webkit-backdrop-filter: blur(16px) saturate(200%);
   }
   .hero-stat {
     background: rgba(255,255,255,0.045);
@@ -397,6 +407,24 @@
       transparent 70%
     );
   }
+  .hero-overlay-mobile-replacement {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    pointer-events: none;
+    display: none;
+    background: linear-gradient(
+      to bottom,
+      rgba(8, 8, 16, 0.00) 0%,
+      rgba(8, 8, 16, 0.00) 30%,
+      rgba(8, 8, 16, 0.08) 42%,
+      rgba(8, 8, 16, 0.28) 52%,
+      rgba(8, 8, 16, 0.55) 65%,
+      rgba(8, 8, 16, 0.78) 80%,
+      rgba(8, 8, 16, 0.92) 92%,
+      rgba(8, 8, 16, 0.96) 100%
+    );
+  }
 
   @media (min-width: 1024px) {
     .hero-overlay__left-vignette,
@@ -407,13 +435,16 @@
 
   @media (max-width: 767px) {
     .hero-overlay {
-      background: rgba(8, 8, 16, 0.72) !important;
+      background: none !important;
       background-image: none !important;
     }
     .hero-overlay > div {
       display: none !important;
       background: transparent !important;
       background-image: none !important;
+    }
+    .hero-overlay-mobile-replacement {
+      display: block !important;
     }
     .hero-mobile-hidden {
       display: none !important;
@@ -429,13 +460,18 @@
 
   .animated-grid {
     position: absolute;
-    top: -40px;
-    left: -40px;
+    inset: 0;
     z-index: 0;
-    width: calc(100% + 80px);
-    height: calc(100% + 80px);
     pointer-events: none;
     overflow: hidden;
+    clip-path: inset(0);
+  }
+  .animated-grid__fixed-plane {
+    position: fixed;
+    top: -40px;
+    left: -40px;
+    width: calc(100vw + 80px);
+    height: calc(100vh + 80px);
     animation: gridDrift 12s linear infinite;
     will-change: transform;
   }
@@ -552,6 +588,111 @@
   }
   .btn-shimmer:hover::before { transform: translateX(100%); }
 
+  .gold-3d-button,
+  .btn-shimmer.bg-gold {
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
+    color: #050507;
+    background: linear-gradient(
+      145deg,
+      #F5E070 0%,
+      #E8C430 18%,
+      #D4AF37 40%,
+      #C49A20 62%,
+      #D4AF37 78%,
+      #F0CC5A 92%,
+      #E8C430 100%
+    ) !important;
+    border: 1px solid rgba(255,220,60,0.6) !important;
+    border-top-color: rgba(255,240,120,0.7) !important;
+    border-bottom-color: rgba(160,120,10,0.5) !important;
+    box-shadow:
+      0 2px 0 rgba(255,255,255,0.35) inset,
+      0 -2px 0 rgba(0,0,0,0.25) inset,
+      0 6px 20px rgba(212,175,55,0.45),
+      0 2px 6px rgba(0,0,0,0.3) !important;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+  }
+  .gold-3d-button::before,
+  .btn-shimmer.bg-gold::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 60%;
+    height: 100%;
+    pointer-events: none;
+    background: linear-gradient(
+      90deg,
+      transparent 0%,
+      rgba(255,255,255,0.28) 50%,
+      transparent 100%
+    );
+    transform: translateX(-170%) skewX(-20deg);
+    transition: transform 0.5s ease;
+  }
+  .gold-3d-button:hover,
+  .btn-shimmer.bg-gold:hover {
+    background: linear-gradient(
+      145deg,
+      #FFE87A 0%,
+      #F0CC5A 18%,
+      #E8C430 40%,
+      #D4AF37 62%,
+      #E8C430 78%,
+      #F5E070 92%,
+      #F0CC5A 100%
+    ) !important;
+    box-shadow:
+      0 2px 0 rgba(255,255,255,0.4) inset,
+      0 -2px 0 rgba(0,0,0,0.2) inset,
+      0 10px 32px rgba(212,175,55,0.6),
+      0 4px 10px rgba(0,0,0,0.25) !important;
+    transform: translateY(-2px) !important;
+  }
+  .gold-3d-button:hover::before,
+  .btn-shimmer.bg-gold:hover::before {
+    transform: translateX(270%) skewX(-20deg);
+  }
+  .gold-3d-button:active,
+  .btn-shimmer.bg-gold:active {
+    transform: translateY(1px) !important;
+    box-shadow:
+      0 1px 0 rgba(255,255,255,0.3) inset,
+      0 -1px 0 rgba(0,0,0,0.2) inset,
+      0 3px 10px rgba(212,175,55,0.35) !important;
+  }
+
+  .featured-event-card-frame {
+    width: 100%;
+    max-width: 92%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .logo-hover-link {
+    cursor: pointer;
+  }
+  .logo-hover-shell {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    overflow: hidden;
+  }
+  .logo-hover-shimmer {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0;
+    background: linear-gradient(105deg, transparent 30%, rgba(255,230,80,0.12) 50%, transparent 70%);
+    transition: opacity 300ms ease;
+  }
+  .logo-hover-link:hover .logo-hover-shimmer {
+    opacity: 1;
+  }
+
   .gold-line {
     height: 1px;
     background: linear-gradient(90deg, transparent, rgba(212,175,55,0.6), transparent);
@@ -597,6 +738,29 @@
     footer img[alt="IGWE DE MC"] {
       width: 200px !important;
       height: auto !important;
+    }
+    footer .contact-column .footer-contact-item {
+      display: flex !important;
+      flex-direction: row !important;
+      justify-content: center !important;
+      align-items: center !important;
+      text-align: center !important;
+      width: 100% !important;
+    }
+    footer .contact-column .footer-contact-item svg {
+      margin-top: 0 !important;
+    }
+  }
+
+  @media (min-width: 768px) and (max-width: 1023px) {
+    .featured-event-card-frame {
+      max-width: 80%;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .featured-event-card-frame {
+      max-width: 65%;
     }
   }
 
@@ -727,6 +891,7 @@
   .hero-carousel__image,
   .hero-carousel__image--active,
   .animated-grid,
+  .animated-grid__fixed-plane,
   .animated-grid__orb,
   .floating-icon-mobile,
   .pulse-ring::after,

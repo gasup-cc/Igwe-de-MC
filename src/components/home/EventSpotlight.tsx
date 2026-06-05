@@ -21,7 +21,7 @@ export const EventSpotlight = () => {
             <span className="eyebrow">Next Show</span>
           </div>
         </ScrollReveal>
-        {featured && <ScrollReveal delay={0.15}><EventCard event={featured} variant="featured" /></ScrollReveal>}
+        {featured && <ScrollReveal delay={0.15} className="featured-event-card-frame"><EventCard event={featured} variant="featured" /></ScrollReveal>}
         <ScrollReveal delay={0.25}>
           <p className="mt-8 text-center text-sm text-muted-foreground">
             More events coming soon — <Link to="/events" className="text-gold underline-offset-4 hover:underline">view all events</Link>

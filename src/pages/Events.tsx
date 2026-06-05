@@ -36,7 +36,7 @@ const Events = () => {
 
       <section className="pb-24">
         <div className="container-x space-y-8">
-          {featured && <ScrollReveal>{<EventCard event={featured} variant="featured" />}</ScrollReveal>}
+          {featured && <ScrollReveal className="featured-event-card-frame">{<EventCard event={featured} variant="featured" />}</ScrollReveal>}
           {rest.length > 0 && (
             <StaggerContainer className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {rest.map(e => <StaggerItem key={e.id}><EventCard event={e} /></StaggerItem>)}

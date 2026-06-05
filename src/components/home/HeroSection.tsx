@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Calendar, Crown, Laugh, Mic, PlayCircle, Sparkles } from "lucide-react";
+import { Calendar, Crown, Laugh, Mic, Sparkles, Ticket } from "lucide-react";
 import { HeroCarousel } from "@/components/HeroCarousel";
 import avatar1 from "@/assets/avatar-1.webp";
 import avatar2 from "@/assets/avatar-2.webp";
@@ -25,8 +25,9 @@ export const HeroSection = () => {
         <div className="hero-overlay__top-vignette" />
         <div className="hero-overlay__gold-grade" />
       </div>
+      <div aria-hidden className="hero-overlay-mobile-replacement" />
 
-      <div className="container-x relative z-10 pt-24 pb-20 md:pt-28 md:pb-24 lg:pt-32 lg:pb-28">
+      <div className="container-x relative z-10 pt-36 pb-6 md:pt-28 md:pb-24 lg:pt-32 lg:pb-28">
         <div className="max-w-3xl flex flex-col items-start text-left gap-7 animate-fade-up">
           <span className="hero-kicker inline-flex items-center gap-2 glass border-gold/30 text-gold rounded-full px-4 py-1.5 text-[10px] tracking-[0.26em] uppercase">
             <Sparkles className="w-3.5 h-3.5" />
@@ -51,11 +52,11 @@ export const HeroSection = () => {
               <Calendar className="w-4 h-4" /> Book Your Event
             </Link>
             <Link
-              to="/videos"
+              to="/events/jokes-apart"
               className="hero-cta-button inline-flex items-center justify-center gap-2 glass px-8 py-4 rounded-md text-xs tracking-[0.2em] uppercase font-light text-foreground hover:border-gold/40 transition-all"
               style={{ minWidth: 190 }}
             >
-              <PlayCircle className="w-4 h-4 text-gold" /> Watch Showreel
+              <Ticket className="w-4 h-4 text-gold" /> Book Jokes Apart
             </Link>
           </div>
           <Link

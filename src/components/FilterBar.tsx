@@ -19,7 +19,7 @@ export function FilterBar<T extends string>({ options, active, onChange, classNa
             className={cn(
               "px-5 py-2.5 rounded-full text-[11px] tracking-[0.2em] uppercase font-light transition-all duration-300",
               isActive
-                ? "bg-gold text-void border border-gold shadow-[0_0_24px_rgba(212,175,55,0.4)]"
+                ? "gold-3d-button bg-gold text-void border border-gold shadow-[0_0_24px_rgba(212,175,55,0.4)]"
                 : "glass text-muted-foreground hover:text-gold hover:border-gold/40"
             )}
           >

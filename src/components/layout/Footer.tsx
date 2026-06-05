@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { Facebook, Instagram, Youtube, Mail, Phone, MapPin } from "lucide-react";
+import { m, useReducedMotion } from "framer-motion";
 import { LightningEffect } from "@/components/LightningEffect";
 
 const XIcon = (props: React.SVGProps<SVGSVGElement>) => (
@@ -22,17 +23,31 @@ const socials = [
 ];
 
 export const Footer = () => {
+  const reduceMotion = useReducedMotion();
+
   return (
     <footer className="relative mt-32 overflow-hidden border-t border-white/[0.06] bg-void/60">
       <LightningEffect variant="footer" />
       <div className="footer-grid container-x relative z-[1] py-20 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
         <div className="footer-column footer-brand">
-          <img
-            src="/igwedemc-no-bg-logo.webp"
-            alt="IGWE DE MC"
-            className="mb-4 h-auto w-[120px] object-contain md:w-[140px] lg:w-[160px]"
-            style={{ objectFit: "contain", marginBottom: "16px" }}
-          />
+          <Link to="/" className="logo-hover-link inline-flex">
+            <m.div
+              className="logo-hover-shell mb-4"
+              whileHover={{
+                scale: 1.06,
+                filter: "drop-shadow(0 0 12px rgba(212,175,55,0.55)) drop-shadow(0 0 24px rgba(212,175,55,0.25)) brightness(1.12)",
+              }}
+              transition={{ duration: reduceMotion ? 0 : 0.35, ease: [0.25, 0.46, 0.45, 0.94] }}
+            >
+              <img
+                src="/igwedemc-no-bg-logo.webp"
+                alt="IGWE DE MC"
+                className="h-auto w-[120px] object-contain md:w-[140px] lg:w-[160px]"
+                style={{ objectFit: "contain" }}
+              />
+              <span className="logo-hover-shimmer" aria-hidden />
+            </m.div>
+          </Link>
           <p className="text-sm text-muted-foreground leading-relaxed font-light">
             Master of Ceremony · Comedian · Event Host. Based in Southampton, available UK-wide.
           </p>
@@ -73,7 +88,7 @@ export const Footer = () => {
           </ul>
         </div>
 
-        <div className="footer-column">
+        <div className="footer-column contact-column">
           <h4 className="eyebrow mb-5 text-muted-foreground">Contact</h4>
           <ul className="space-y-3 text-sm font-light text-muted-foreground">
             <li className="footer-contact-item flex items-start gap-3"><Mail className="w-4 h-4 text-gold mt-0.5" /><a href="mailto:info@igwedemc.uk" className="hover:text-gold">info@igwedemc.uk</a></li>

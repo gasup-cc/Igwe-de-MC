@@ -94,21 +94,12 @@ const tablePackages = [
   },
 ];
 
-const goldButtonStyle: React.CSSProperties = {
-  background: "linear-gradient(135deg, #D4AF37, #F0CC5A)",
-  color: "#050507",
-};
-
 const JokesApart = () => {
   useEffect(() => {
     const prev = document.title;
     document.title = "JOKES APART — Igwe De MC | Live Event Southampton";
     return () => { document.title = prev; };
   }, []);
-
-  const scrollToTicket = () => {
-    document.getElementById("ticket-card")?.scrollIntoView({ behavior: "smooth", block: "start" });
-  };
 
   return (
     <div className="relative">
@@ -329,7 +320,7 @@ const JokesApart = () => {
                     </div>
                   </div>
                   <button
-                    onClick={scrollToTicket}
+                    onClick={() => window.open(TICKET_URL, "_blank", "noopener,noreferrer")}
                     className="btn-shimmer mt-5 w-full inline-flex items-center justify-center gap-2 bg-gold text-void px-7 py-3.5 rounded-md text-[11px] tracking-[0.2em] uppercase font-medium hover:bg-gold-bright transition-all"
                   >
                     <Ticket className="w-4 h-4" /> Book This Event
@@ -406,22 +397,13 @@ const JokesApart = () => {
                 <a
                   href={TICKET_URL}
                   rel="noopener noreferrer"
-                  className="flex items-center justify-center gap-2 w-full rounded-[10px] uppercase font-bold transition-all duration-300 hover:-translate-y-0.5"
+                  className="gold-3d-button flex items-center justify-center gap-2 w-full rounded-[10px] uppercase font-bold transition-all duration-300 hover:-translate-y-0.5"
                   style={{
-                    ...goldButtonStyle,
                     height: 56,
                     fontFamily: "'DM Sans', sans-serif",
                     fontWeight: 700,
                     fontSize: 14,
                     letterSpacing: "2px",
-                  }}
-                  onMouseEnter={(e) => {
-                    e.currentTarget.style.filter = "brightness(1.1)";
-                    e.currentTarget.style.boxShadow = "0 12px 32px rgba(212,175,55,0.4)";
-                  }}
-                  onMouseLeave={(e) => {
-                    e.currentTarget.style.filter = "";
-                    e.currentTarget.style.boxShadow = "";
                   }}
                 >
                   <Ticket className="w-4 h-4" /> GET TICKETS NOW
@@ -454,9 +436,8 @@ const JokesApart = () => {
         <a
           href={TICKET_URL}
           rel="noopener noreferrer"
-          className="inline-flex items-center justify-center gap-2 rounded-[8px] uppercase font-bold transition-all"
+          className="gold-3d-button inline-flex items-center justify-center gap-2 rounded-[8px] uppercase font-bold transition-all"
           style={{
-            ...goldButtonStyle,
             height: 48,
             padding: "0 20px",
             fontFamily: "'DM Sans', sans-serif",
