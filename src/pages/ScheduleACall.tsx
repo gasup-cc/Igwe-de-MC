@@ -8,12 +8,12 @@ const benefits = [
   { icon: ShieldCheck, label: "No commitment" },
 ];
 
-const BookACall = () => {
+const ScheduleACall = () => {
   return (
     <section className="relative top-0 min-h-screen overflow-hidden pt-[120px]">
       <AnimatedGrid />
       <div className="container-x relative z-[1]">
-        <div className="book-call-hero -mx-5 px-5 py-20 pb-12 text-center md:-mx-10 md:px-10">
+        <div className="schedule-call-hero -mx-5 px-5 py-20 pb-12 text-center md:-mx-10 md:px-10">
           <div className="relative z-[1] mx-auto max-w-[640px]">
             <ScrollReveal>
               <span className="inline-flex rounded-full border border-gold/40 bg-white/[0.04] px-4 py-1.5 font-mono-acc text-[10px] uppercase tracking-[3px] text-gold">
@@ -22,7 +22,7 @@ const BookACall = () => {
             </ScrollReveal>
             <ScrollReveal delay={0.12}>
               <h1 className="mt-4 font-display text-4xl font-bold leading-tight text-white md:text-[56px]">
-                Book a Discovery Call
+                Schedule a Discovery Call
               </h1>
             </ScrollReveal>
             <ScrollReveal delay={0.18}>
@@ -61,7 +61,7 @@ const BookACall = () => {
                 src="https://app.gasup.ai/widget/booking/VvAAQWOegarV4VdRZu1p"
                 className="h-[950px] w-full md:h-[1000px] lg:h-[1050px]"
                 style={{ border: "none" }}
-                title="Book a Discovery Call with Igwe De MC"
+                title="Schedule a Discovery Call with Igwe De MC"
                 loading="lazy"
               />
             </div>
@@ -78,4 +78,4 @@ const BookACall = () => {
   );
 };
 
-export default BookACall;
+export default ScheduleACall;

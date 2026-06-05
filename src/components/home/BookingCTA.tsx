@@ -1,11 +1,14 @@
 import { Link } from "react-router-dom";
 import { AmbientOrbs } from "@/components/AmbientOrbs";
+import { ParallaxSection } from "@/components/ui/ParallaxSection";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
 
 export const BookingCTA = () => {
   return (
     <section className="section-surface relative py-32 md:py-40 overflow-hidden bg-void">
-      <AmbientOrbs variant="gold" />
+      <ParallaxSection className="absolute inset-0 z-0 pointer-events-none" speed={0.08}>
+        <AmbientOrbs variant="gold" />
+      </ParallaxSection>
       <div className="container-x relative z-10 text-center max-w-3xl mx-auto">
         <ScrollReveal>
           <h2 className="font-display font-bold text-4xl md:text-6xl leading-[1.05]">
@@ -25,7 +28,7 @@ export const BookingCTA = () => {
           </ScrollReveal>
           <ScrollReveal delay={0.3}>
             <Link
-              to="/book-a-call"
+              to="/schedule-a-call"
               className="inline-flex items-center justify-center rounded-md border border-gold/30 bg-white/[0.03] px-8 py-3.5 text-[13px] font-medium uppercase tracking-[2px] text-gold transition-colors hover:bg-gold/10"
               style={{ fontFamily: "'DM Sans', sans-serif" }}
             >

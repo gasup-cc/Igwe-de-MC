@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { toast } from "sonner";
 import { GlassCard } from "@/components/GlassCard";
+import { ParallaxSection } from "@/components/ui/ParallaxSection";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { z } from "zod";
 
@@ -16,8 +17,17 @@ export const NewsletterSection = () => {
     setEmail("");
   };
   return (
-    <section className="py-24">
-      <div className="container-x">
+    <section className="newsletter-section relative overflow-hidden py-24">
+      <ParallaxSection className="absolute inset-0 z-0 pointer-events-none" speed={0.08}>
+        <div
+          className="absolute inset-0"
+          style={{
+            background:
+              "radial-gradient(ellipse 620px 360px at 50% 50%, rgba(212,175,55,0.08) 0%, transparent 70%), radial-gradient(ellipse 520px 320px at 70% 40%, rgba(124,58,237,0.05) 0%, transparent 72%)",
+          }}
+        />
+      </ParallaxSection>
+      <div className="container-x relative z-10">
         <ScrollReveal>
           <GlassCard padding="p-10 md:p-14" className="max-w-xl mx-auto text-center" goldAccentTop>
             <div className="eyebrow mb-4">Newsletter</div>

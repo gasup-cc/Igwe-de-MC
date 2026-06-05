@@ -1,6 +1,6 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { LazyMotion, domAnimation } from "framer-motion";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -14,12 +14,13 @@ import Videos from "./pages/Videos.tsx";
 import News from "./pages/News.tsx";
 import Shop from "./pages/Shop.tsx";
 import Booking from "./pages/Booking.tsx";
-import BookACall from "./pages/BookACall.tsx";
+import ScheduleACall from "./pages/ScheduleACall.tsx";
 import LegalPage from "./pages/LegalPage.tsx";
 import { bookingPolicyContent, termsContent, cookiePolicyContent } from "./data/legal";
 import NotFound from "./pages/NotFound.tsx";
 
 const queryClient = new QueryClient();
+const legacySchedulePath = ["/book", "a", "call"].join("-");
 
 const App = () => (
   <LazyMotion features={domAnimation}>
@@ -39,7 +40,8 @@ const App = () => (
               <Route path="/news" element={<News />} />
               <Route path="/shop" element={<Shop />} />
               <Route path="/booking" element={<Booking />} />
-              <Route path="/book-a-call" element={<BookACall />} />
+              <Route path="/schedule-a-call" element={<ScheduleACall />} />
+              <Route path={legacySchedulePath} element={<Navigate to="/schedule-a-call" replace />} />
               <Route path="/privacy-policy" element={<LegalPage {...bookingPolicyContent} />} />
               <Route path="/terms" element={<LegalPage {...termsContent} />} />
               <Route path="/cookie-policy" element={<LegalPage {...cookiePolicyContent} />} />

@@ -25,8 +25,8 @@ export const Footer = () => {
   return (
     <footer className="relative mt-32 overflow-hidden border-t border-white/[0.06] bg-void/60">
       <LightningEffect variant="footer" />
-      <div className="container-x relative z-[1] py-20 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
-        <div>
+      <div className="footer-grid container-x relative z-[1] py-20 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
+        <div className="footer-column footer-brand">
           <img
             src="/igwedemc-no-bg-logo.webp"
             alt="IGWE DE MC"
@@ -36,7 +36,7 @@ export const Footer = () => {
           <p className="text-sm text-muted-foreground leading-relaxed font-light">
             Master of Ceremony · Comedian · Event Host. Based in Southampton, available UK-wide.
           </p>
-          <div className="flex items-center gap-3 mt-6">
+          <div className="social-icons flex items-center gap-3 mt-6">
             {socials.map(({ icon: Icon, href, label }) => (
               <a
                 key={label}
@@ -61,35 +61,35 @@ export const Footer = () => {
           </div>
         </div>
 
-        <div>
+        <div className="footer-column">
           <h4 className="eyebrow mb-5 text-muted-foreground">Quick Links</h4>
-          <ul className="space-y-3 text-sm font-light">
+          <ul className="footer-links flex flex-col space-y-3 text-sm font-light">
             {[
               ["Home", "/"], ["About", "/about"], ["Events", "/events"], ["Videos", "/videos"],
-              ["News", "/news"], ["Shop", "/shop"], ["Book Now", "/booking"],
+              ["News", "/news"], ["Shop", "/shop"], ["Book Now", "/booking"], ["Schedule a Call", "/schedule-a-call"],
             ].map(([l, h]) => (
-              <li key={h}><Link to={h} className="text-muted-foreground hover:text-gold transition-colors">{l}</Link></li>
+              <li key={h}><Link to={h} className="footer-link text-muted-foreground hover:text-gold transition-colors">{l}</Link></li>
             ))}
           </ul>
         </div>
 
-        <div>
+        <div className="footer-column">
           <h4 className="eyebrow mb-5 text-muted-foreground">Contact</h4>
           <ul className="space-y-3 text-sm font-light text-muted-foreground">
-            <li className="flex items-start gap-3"><Mail className="w-4 h-4 text-gold mt-0.5" /><a href="mailto:info@igwedemc.uk" className="hover:text-gold">info@igwedemc.uk</a></li>
-            <li className="flex items-start gap-3"><Phone className="w-4 h-4 text-gold mt-0.5" /><a href="tel:+447733751948" className="hover:text-gold">+44 7733 751948</a></li>
-            <li className="flex items-start gap-3"><MapPin className="w-4 h-4 text-gold mt-0.5" /><span>Tremona Road, Southampton<br/>SO16 6TH</span></li>
+            <li className="footer-contact-item flex items-start gap-3"><Mail className="w-4 h-4 text-gold mt-0.5" /><a href="mailto:info@igwedemc.uk" className="hover:text-gold">info@igwedemc.uk</a></li>
+            <li className="footer-contact-item flex items-start gap-3"><Phone className="w-4 h-4 text-gold mt-0.5" /><a href="tel:+447733751948" className="hover:text-gold">+44 7733 751948</a></li>
+            <li className="footer-contact-item flex items-start gap-3"><MapPin className="w-4 h-4 text-gold mt-0.5" /><span>Tremona Road, Southampton<br/>SO16 6TH</span></li>
           </ul>
         </div>
 
-        <div>
+        <div className="footer-column">
           <h4 className="eyebrow mb-5 text-muted-foreground">Legal</h4>
-          <ul className="space-y-3 text-sm font-light">
+          <ul className="footer-links flex flex-col space-y-3 text-sm font-light">
             {[
               ["Privacy Policy", "/privacy-policy"], ["Terms of Service", "/terms"],
               ["Cookie Policy", "/cookie-policy"],
             ].map(([l, h]) => (
-              <li key={h}><Link to={h} className="text-muted-foreground hover:text-gold transition-colors">{l}</Link></li>
+              <li key={h}><Link to={h} className="footer-link text-muted-foreground hover:text-gold transition-colors">{l}</Link></li>
             ))}
           </ul>
         </div>
@@ -98,6 +98,7 @@ export const Footer = () => {
       <div className="relative z-[1] border-t border-white/[0.06]">
         <div className="container-x">
           <div
+            className="footer-bottom"
             style={{
               display: "flex",
               flexDirection: "column",

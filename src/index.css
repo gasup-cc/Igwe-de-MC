@@ -245,7 +245,7 @@
     z-index: 1;
   }
 
-  .book-call-hero {
+  .schedule-call-hero {
     position: relative;
     overflow: hidden;
     background: linear-gradient(
@@ -256,18 +256,18 @@
       rgba(8, 8, 16, 0.0) 100%
     );
   }
-  .book-call-hero::before,
-  .book-call-hero::after {
+  .schedule-call-hero::before,
+  .schedule-call-hero::after {
     content: "";
     position: absolute;
     inset: 0;
     z-index: 0;
     pointer-events: none;
   }
-  .book-call-hero::before {
+  .schedule-call-hero::before {
     background: radial-gradient(ellipse 500px 300px at 15% 50%, rgba(212,175,55,0.08) 0%, transparent 70%);
   }
-  .book-call-hero::after {
+  .schedule-call-hero::after {
     background: radial-gradient(ellipse 400px 400px at 85% 50%, rgba(124,58,237,0.06) 0%, transparent 70%);
   }
 
@@ -429,17 +429,26 @@
 
   .animated-grid {
     position: absolute;
-    inset: 0;
+    top: -40px;
+    left: -40px;
     z-index: 0;
+    width: calc(100% + 80px);
+    height: calc(100% + 80px);
     pointer-events: none;
     overflow: hidden;
+    animation: gridDrift 12s linear infinite;
+    will-change: transform;
   }
-  .animated-grid__svg {
+  .animated-grid__svg,
+  .animated-grid__glow {
     position: absolute;
     inset: 0;
     width: 100%;
     height: 100%;
     opacity: 1;
+  }
+  .animated-grid__glow {
+    overflow: visible;
   }
   .animated-grid__orb {
     position: absolute;
@@ -454,14 +463,14 @@
     width: 40%;
     min-width: 280px;
     aspect-ratio: 1 / 1;
-    background: radial-gradient(circle, rgba(124,58,237,0.06) 0%, transparent 68%);
+    background: radial-gradient(circle, rgba(124,58,237,0.07) 0%, transparent 68%);
     animation: gridOrbPurple 20s ease-in-out infinite;
   }
   .animated-grid__orb--gold {
     width: 50%;
     min-width: 320px;
     aspect-ratio: 1 / 1;
-    background: radial-gradient(circle, rgba(212,175,55,0.05) 0%, transparent 70%);
+    background: radial-gradient(circle, rgba(212,175,55,0.09) 0%, transparent 70%);
     animation: gridOrbGold 25s ease-in-out infinite;
     animation-delay: -8s;
   }
@@ -549,6 +558,69 @@
   }
 
   .container-x { @apply max-w-[1440px] mx-auto px-5 md:px-10; }
+
+  @media (max-width: 767px) {
+    .newsletter-section {
+      /* padding-bottom: 32px !important; */
+      margin-bottom: 0 !important;
+    }
+    footer {
+      margin-top: 0 !important;
+      padding-top: 70px !important;
+    }
+    footer .footer-grid {
+      padding-top: 0 !important;
+    }
+    footer .footer-grid,
+    footer .footer-column,
+    footer .footer-brand,
+    footer .footer-links,
+    footer .social-icons,
+    footer .footer-bottom {
+      align-items: center !important;
+      text-align: center !important;
+      justify-content: center !important;
+    }
+    footer .footer-column,
+    footer .footer-brand {
+      display: flex !important;
+      flex-direction: column !important;
+    }
+    footer .footer-link,
+    footer .footer-contact-item,
+    footer p,
+    footer span,
+    footer a {
+      text-align: center !important;
+    }
+    footer .footer-logo img,
+    footer img[alt="IGWE DE MC"] {
+      width: 200px !important;
+      height: auto !important;
+    }
+  }
+
+  @media (min-width: 768px) and (max-width: 1023px) {
+    footer .footer-column,
+    footer .footer-brand {
+      display: flex !important;
+      flex-direction: column !important;
+      align-items: center !important;
+      text-align: center !important;
+    }
+    footer .footer-links {
+      align-items: center !important;
+    }
+    footer .footer-link {
+      text-align: center !important;
+    }
+    footer .social-icons {
+      justify-content: center !important;
+    }
+    footer .footer-contact-item {
+      justify-content: center !important;
+    }
+  }
 }
 
 @layer utilities {
@@ -617,6 +689,10 @@
   from { transform: scale(1); }
   to { transform: scale(1.08); }
 }
+@keyframes gridDrift {
+  from { transform: translate(0px, 0px); }
+  to { transform: translate(40px, 40px); }
+}
 @keyframes gridOrbPurple {
   0%, 100% { transform: translate3d(-70%, -55%, 0); }
   25% { transform: translate3d(10%, -72%, 0); }
@@ -649,10 +725,13 @@
     transition-duration: 0.001ms !important;
   }
   .hero-carousel__image,
+  .hero-carousel__image--active,
+  .animated-grid,
   .animated-grid__orb,
   .floating-icon-mobile,
   .pulse-ring::after,
-  .glass-card-shell::after {
+  .glass-card-shell::after,
+  .skeleton-shimmer {
     animation: none !important;
     transition: none !important;
   }

@@ -23,7 +23,7 @@ const NAV = [
   { to: "/videos", label: "Videos" },
   { to: "/news", label: "News" },
   { to: "/shop", label: "Shop" },
-  { to: "/book-a-call", label: "Book a Call" },
+  { to: "/schedule-a-call", label: "Schedule a Call" },
   { to: "/booking", label: "Book Now" },
 ];
 
@@ -180,7 +180,7 @@ export const Header = () => {
               aria-hidden
               className="absolute"
               style={{
-                left: 40, top: "20%", width: 2, height: "60%",
+                left: 40, top: "12%", width: 2, height: "60%",
                 background: "linear-gradient(to bottom, transparent, #D4AF37, transparent)",
               }}
             />

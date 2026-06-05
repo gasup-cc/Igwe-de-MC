@@ -3,13 +3,16 @@ import { events } from "@/data/site";
 import { EventCard } from "@/components/EventCard";
 import { AmbientOrbs } from "@/components/AmbientOrbs";
 import { LightningEffect } from "@/components/LightningEffect";
+import { ParallaxSection } from "@/components/ui/ParallaxSection";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
 
 export const EventSpotlight = () => {
   const featured = events.find(e => e.featured) || events[0];
   return (
     <section className="section-surface relative py-24 md:py-28 overflow-hidden">
-      <AmbientOrbs variant="gold" />
+      <ParallaxSection className="absolute inset-0 z-0 pointer-events-none" speed={0.10}>
+        <AmbientOrbs variant="gold" />
+      </ParallaxSection>
       <LightningEffect />
       <div className="container-x relative z-10">
         <ScrollReveal>

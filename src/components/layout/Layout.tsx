@@ -9,7 +9,7 @@ import { ScrollToTopFooter } from "@/components/ScrollToTopFooter";
 
 export const Layout = ({ children }: { children: ReactNode }) => {
   const location = useLocation();
-  const hasPageTopControl = location.pathname === "/" || location.pathname === "/book-a-call";
+  const hasPageTopControl = location.pathname === "/" || location.pathname === "/schedule-a-call";
 
   return (
     <div className="site-shell min-h-screen bg-surface text-foreground flex flex-col relative">

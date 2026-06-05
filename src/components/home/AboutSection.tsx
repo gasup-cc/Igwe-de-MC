@@ -4,6 +4,7 @@ import { AmbientOrbs } from "@/components/AmbientOrbs";
 import { GlassCard } from "@/components/GlassCard";
 import { LightningEffect } from "@/components/LightningEffect";
 import onStageImg from "@/assets/igwe-on-stage.webp";
+import { ParallaxSection } from "@/components/ui/ParallaxSection";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { StaggerContainer, StaggerItem } from "@/components/ui/StaggerContainer";
 
@@ -25,15 +26,17 @@ export const AboutSection = () => {
             <div
               className="stage-frame relative aspect-[4/5] overflow-hidden rounded-2xl group"
             >
-              <img
-                src={onStageImg}
-                alt="IGWE DE MC on stage"
-                loading="lazy"
-                width={1200}
-                height={1800}
-                className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.04]"
-              />
-              <div aria-hidden className="absolute inset-0 bg-gradient-to-t from-void/70 via-transparent to-transparent" />
+              <ParallaxSection className="absolute inset-0 pointer-events-none" speed={0.12}>
+                <img
+                  src={onStageImg}
+                  alt="IGWE DE MC on stage"
+                  loading="lazy"
+                  width={1200}
+                  height={1800}
+                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.04]"
+                />
+                <div aria-hidden className="absolute inset-0 bg-gradient-to-t from-void/70 via-transparent to-transparent" />
+              </ParallaxSection>
             </div>
             <GlassCard padding="p-5" className="absolute -bottom-6 -right-4 max-w-[260px] border-gold/30">
               <p className="font-display italic text-lg leading-snug">"Every room deserves a great host."</p>

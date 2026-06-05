@@ -37,7 +37,7 @@ export const ServicesSection = () => {
                     </div>
                     <h3 className="font-display font-semibold text-xl">{s.name}</h3>
                     <p className="text-sm text-muted-foreground font-light leading-relaxed">{s.desc}</p>
-                    <span className="text-gold text-[11px] tracking-[0.25em] uppercase inline-flex items-center gap-2 opacity-0 group-hover:opacity-100 transition-all">
+                    <span className="text-gold text-[11px] tracking-[0.25em] uppercase inline-flex items-center gap-2 opacity-100">
                       Enquire <ArrowRight className="w-3.5 h-3.5" />
                     </span>
                   </GlassCard>
@@ -48,7 +48,7 @@ export const ServicesSection = () => {
         </StaggerContainer>
         <div className="mt-8 flex flex-wrap items-center justify-center gap-2 text-center text-sm font-light text-muted-foreground">
           <span>Not sure?</span>
-          <Link to="/book-a-call" className="text-gold hover:underline underline-offset-4 transition-colors">
+          <Link to="/schedule-a-call" className="text-gold hover:underline underline-offset-4 transition-colors">
             Let's talk on a free call →
           </Link>
         </div>
