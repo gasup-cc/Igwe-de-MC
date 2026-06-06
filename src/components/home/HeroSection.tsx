@@ -34,9 +34,9 @@ export const HeroSection = () => {
             Southampton · UK · Master of Ceremony
           </span>
 
-          <h1 className="font-display font-bold text-5xl sm:text-6xl md:text-7xl xl:text-8xl leading-[0.98]">
-            <span className="block">Ebubedike</span>
-            <span className="block gold-gradient-text">IGWE DE MC</span>
+          <h1 className="hero-headline font-display">
+            <span className="hero-headline__line hero-headline__line--white block">Ebubedike</span>
+            <span className="hero-headline__line hero-headline__line--gold block">IGWE DE MC</span>
           </h1>
 
           <p className="text-base md:text-lg text-foreground/80 font-light max-w-[560px] leading-[1.85]">

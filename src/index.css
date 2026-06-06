@@ -312,20 +312,43 @@
       conic-gradient(from 210deg at 50% 100%, transparent 0deg, rgba(212,175,55,0.16) 24deg, transparent 52deg, rgba(36,217,232,0.07) 84deg, transparent 112deg);
     filter: blur(18px);
   }
-  .hero-kicker {
-    color: #F0CC5A;
-    background: rgba(212, 175, 55, 0.14);
-    border: 1px solid rgba(212, 175, 55, 0.45);
-    box-shadow:
-      0 0 12px rgba(212, 175, 55, 0.35),
-      0 0 28px rgba(212, 175, 55, 0.18),
-      0 0 50px rgba(212, 175, 55, 0.08),
-      inset 0 1px 0 rgba(255, 255, 255, 0.12);
+  .hero-headline {
+    font-weight: 800;
+    font-size: clamp(44px, 11vw, 62px);
+    line-height: 1.05;
+  }
+  .hero-headline__line {
+    font-weight: 800;
+  }
+  .hero-headline__line--white {
+    color: #F0EDE6;
+    letter-spacing: -0.02em;
     text-shadow:
-      0 0 12px rgba(212, 175, 55, 0.6),
-      0 0 24px rgba(212, 175, 55, 0.3);
-    backdrop-filter: blur(16px) saturate(200%);
-    -webkit-backdrop-filter: blur(16px) saturate(200%);
+      0 2px 8px rgba(0, 0, 0, 0.6),
+      0 4px 24px rgba(0, 0, 0, 0.4),
+      0 0 40px rgba(240, 237, 230, 0.12);
+  }
+  .hero-headline__line--gold {
+    color: #D4AF37;
+    letter-spacing: -0.01em;
+    text-shadow:
+      0 2px 8px rgba(0, 0, 0, 0.7),
+      0 4px 24px rgba(0, 0, 0, 0.5),
+      0 0 32px rgba(212, 175, 55, 0.35),
+      0 0 64px rgba(212, 175, 55, 0.15);
+  }
+  .hero-kicker {
+    color: #F0EDE6 !important;
+    background: rgba(8, 8, 16, 0.72) !important;
+    border: 1px solid rgba(212, 175, 55, 0.30) !important;
+    border-radius: 999px;
+    box-shadow:
+      0 0 0 1px rgba(212, 175, 55, 0.12),
+      0 4px 16px rgba(0, 0, 0, 0.45),
+      0 0 20px rgba(212, 175, 55, 0.10) !important;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5) !important;
+    backdrop-filter: blur(20px) saturate(160%) !important;
+    -webkit-backdrop-filter: blur(20px) saturate(160%) !important;
   }
   .hero-stat {
     background: rgba(255,255,255,0.045);
@@ -427,9 +450,18 @@
   }
 
   @media (min-width: 1024px) {
+    .hero-headline {
+      font-size: clamp(72px, 7.5vw, 96px);
+    }
     .hero-overlay__left-vignette,
     .hero-overlay__gold-grade {
       display: block;
+    }
+  }
+
+  @media (min-width: 768px) and (max-width: 1023px) {
+    .hero-headline {
+      font-size: clamp(58px, 7vw, 78px);
     }
   }
 

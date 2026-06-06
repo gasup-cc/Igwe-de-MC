@@ -81,6 +81,10 @@ const drawPath = (
 };
 
 export const LightningEffect = ({ variant = "default" }: LightningEffectProps) => {
+  const [isMobile, setIsMobile] = useState(() => {
+    if (typeof window === "undefined") return true;
+    return window.innerWidth < 1024;
+  });
   const [shouldRender, setShouldRender] = useState(() => {
     if (typeof window === "undefined") return false;
     return window.innerWidth >= 1024 && !window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -97,11 +101,15 @@ export const LightningEffect = ({ variant = "default" }: LightningEffectProps) =
     const update = () => {
       window.clearTimeout(renderResizeTimeoutRef.current);
       renderResizeTimeoutRef.current = window.setTimeout(() => {
-        setShouldRender(window.innerWidth >= 1024 && !reducedMotionQuery.matches);
+        const mobile = window.innerWidth < 1024;
+        setIsMobile(mobile);
+        setShouldRender(!mobile && !reducedMotionQuery.matches);
       }, 200);
     };
 
-    setShouldRender(window.innerWidth >= 1024 && !reducedMotionQuery.matches);
+    const mobile = window.innerWidth < 1024;
+    setIsMobile(mobile);
+    setShouldRender(!mobile && !reducedMotionQuery.matches);
     window.addEventListener("resize", update, { passive: true });
     reducedMotionQuery.addEventListener("change", update);
 
@@ -113,6 +121,9 @@ export const LightningEffect = ({ variant = "default" }: LightningEffectProps) =
   }, []);
 
   useEffect(() => {
+    if (window.innerWidth < 1024) {
+      return;
+    }
     if (!shouldRender) return;
 
     const canvas = canvasRef.current;
@@ -140,10 +151,19 @@ export const LightningEffect = ({ variant = "default" }: LightningEffectProps) =
       canvasResizeTimeoutRef.current = window.setTimeout(resize, 200);
     };
 
+    const handleResize = () => {
+      if (window.innerWidth < 1024) {
+        isMountedRef.current = false;
+        if (rafRef.current) cancelAnimationFrame(rafRef.current);
+        if (timeoutRef.current) window.clearTimeout(timeoutRef.current);
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+      }
+    };
+
     const schedule = () => {
       if (!isMountedRef.current) return;
-      const min = variant === "footer" ? 5000 : 3000;
-      const max = variant === "footer" ? 11000 : 7000;
+      const min = variant === "footer" ? 4000 : 2500;
+      const max = variant === "footer" ? 9500 : 6000;
       timeoutRef.current = window.setTimeout(trigger, randomBetween(min, max));
     };
 
@@ -190,11 +210,13 @@ export const LightningEffect = ({ variant = "default" }: LightningEffectProps) =
 
     resize();
     window.addEventListener("resize", debouncedResize, { passive: true });
+    window.addEventListener("resize", handleResize, { passive: true });
     schedule();
 
     return () => {
       isMountedRef.current = false;
       window.removeEventListener("resize", debouncedResize);
+      window.removeEventListener("resize", handleResize);
       window.clearTimeout(canvasResizeTimeoutRef.current);
       if (timeoutRef.current) window.clearTimeout(timeoutRef.current);
       if (rafRef.current) cancelAnimationFrame(rafRef.current);
@@ -202,7 +224,7 @@ export const LightningEffect = ({ variant = "default" }: LightningEffectProps) =
     };
   }, [shouldRender, variant]);
 
-  if (!shouldRender) return null;
+  if (isMobile || !shouldRender) return null;
 
   return (
     <canvas
