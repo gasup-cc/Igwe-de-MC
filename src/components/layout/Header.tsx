@@ -134,20 +134,17 @@ export const Header = () => {
               aria-expanded={open}
             >
               <m.span
-                className="block bg-gold rounded-[1px] absolute"
-                style={{ width: 22, height: 2 }}
+                className="mobile-menu-bar block bg-gold rounded-[1px] absolute"
                 animate={open ? { rotate: 45, y: 0 } : { rotate: 0, y: -7 }}
                 transition={{ duration: reduceMotion ? 0 : 0.3, ease: "easeInOut" }}
               />
               <m.span
-                className="block bg-gold rounded-[1px] absolute"
-                style={{ width: 22, height: 2 }}
+                className="mobile-menu-bar block bg-gold rounded-[1px] absolute"
                 animate={open ? { opacity: 0, scaleX: 0 } : { opacity: 1, scaleX: 1 }}
                 transition={{ duration: reduceMotion ? 0 : 0.3, ease: "easeInOut" }}
               />
               <m.span
-                className="block bg-gold rounded-[1px] absolute"
-                style={{ width: 22, height: 2 }}
+                className="mobile-menu-bar block bg-gold rounded-[1px] absolute"
                 animate={open ? { rotate: -45, y: 0 } : { rotate: 0, y: 7 }}
                 transition={{ duration: reduceMotion ? 0 : 0.3, ease: "easeInOut" }}
               />
@@ -202,8 +199,8 @@ export const Header = () => {
               className="absolute top-[14px] right-5 lg:hidden flex flex-col items-center justify-center"
               style={{ width: 44, height: 44, zIndex: 10 }}
             >
-              <span className="block bg-gold rounded-[1px] absolute" style={{ width: 22, height: 2, transform: "rotate(45deg)" }} />
-              <span className="block bg-gold rounded-[1px] absolute" style={{ width: 22, height: 2, transform: "rotate(-45deg)" }} />
+              <span className="mobile-menu-bar block bg-gold rounded-[1px] absolute" style={{ transform: "rotate(45deg)" }} />
+              <span className="mobile-menu-bar block bg-gold rounded-[1px] absolute" style={{ transform: "rotate(-45deg)" }} />
             </button>
 
             {/* Nav links */}
