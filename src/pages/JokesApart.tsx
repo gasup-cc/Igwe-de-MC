@@ -424,7 +424,7 @@ const JokesApart = () => {
 
       {/* Mobile floating bottom bar */}
       <div
-        className="lg:hidden fixed bottom-0 left-0 right-0 z-50 flex items-center justify-between gap-3"
+        className="lg:hidden fixed bottom-0 left-0 right-0 z-50 flex items-center gap-3"
         style={{
           background: "rgba(5,5,7,0.95)",
           backdropFilter: "blur(20px)",
@@ -432,7 +432,7 @@ const JokesApart = () => {
           borderTop: "1px solid rgba(212,175,55,0.2)",
         }}
       >
-        <div className="font-display font-semibold text-[22px] gold-text">£50+</div>
+        <div className="font-display font-semibold text-[28px] gold-text">£50+</div>
         <a
           href={TICKET_URL}
           rel="noopener noreferrer"
@@ -444,6 +444,9 @@ const JokesApart = () => {
             fontWeight: 700,
             fontSize: 13,
             letterSpacing: "2px",
+            position: "absolute",
+            left: "50%",
+            transform: "translateX(-50%)",
           }}
         >
           <Ticket className="w-4 h-4" /> GET TICKETS
