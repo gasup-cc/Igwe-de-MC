@@ -3,6 +3,7 @@ import { useEffect, useRef, useState } from "react";
 type Point = { x: number; y: number };
 type LightningEffectProps = {
   variant?: "default" | "footer";
+  enableOnMobile?: boolean;
 };
 
 const randomBetween = (min: number, max: number) => min + Math.random() * (max - min);
@@ -54,13 +55,21 @@ const drawPath = (
   ctx: CanvasRenderingContext2D,
   points: Point[],
   alpha: number,
-  widthScale = 1
+  widthScale = 1,
+  variant: "default" | "footer" = "default",
+  enhancedFooter = false
 ) => {
-  const layers = [
-    { stroke: "rgba(212,175,55,0.08)", width: 8, blur: 12 },
-    { stroke: "rgba(212,175,55,0.15)", width: 3, blur: 4 },
-    { stroke: "rgba(255,240,180,0.6)", width: 1, blur: 0 },
-  ];
+  const layers = variant === "footer" && enhancedFooter
+    ? [
+        { stroke: "rgba(212,175,55,0.14)", width: 8, blur: 12 },
+        { stroke: "rgba(212,175,55,0.25)", width: 3, blur: 4 },
+        { stroke: "rgba(255,240,180,0.8)", width: 1, blur: 0 },
+      ]
+    : [
+        { stroke: "rgba(212,175,55,0.08)", width: 8, blur: 12 },
+        { stroke: "rgba(212,175,55,0.15)", width: 3, blur: 4 },
+        { stroke: "rgba(255,240,180,0.6)", width: 1, blur: 0 },
+      ];
 
   layers.forEach((layer) => {
     ctx.save();
@@ -80,14 +89,14 @@ const drawPath = (
   });
 };
 
-export const LightningEffect = ({ variant = "default" }: LightningEffectProps) => {
+export const LightningEffect = ({ variant = "default", enableOnMobile = false }: LightningEffectProps) => {
   const [isMobile, setIsMobile] = useState(() => {
     if (typeof window === "undefined") return true;
     return window.innerWidth < 1024;
   });
   const [shouldRender, setShouldRender] = useState(() => {
     if (typeof window === "undefined") return false;
-    return window.innerWidth >= 1024 && !window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    return (enableOnMobile || window.innerWidth >= 1024) && !window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   });
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const timeoutRef = useRef<number>();
@@ -103,13 +112,13 @@ export const LightningEffect = ({ variant = "default" }: LightningEffectProps) =
       renderResizeTimeoutRef.current = window.setTimeout(() => {
         const mobile = window.innerWidth < 1024;
         setIsMobile(mobile);
-        setShouldRender(!mobile && !reducedMotionQuery.matches);
+        setShouldRender((enableOnMobile || !mobile) && !reducedMotionQuery.matches);
       }, 200);
     };
 
     const mobile = window.innerWidth < 1024;
     setIsMobile(mobile);
-    setShouldRender(!mobile && !reducedMotionQuery.matches);
+    setShouldRender((enableOnMobile || !mobile) && !reducedMotionQuery.matches);
     window.addEventListener("resize", update, { passive: true });
     reducedMotionQuery.addEventListener("change", update);
 
@@ -118,10 +127,10 @@ export const LightningEffect = ({ variant = "default" }: LightningEffectProps) =
       reducedMotionQuery.removeEventListener("change", update);
       window.clearTimeout(renderResizeTimeoutRef.current);
     };
-  }, []);
+  }, [enableOnMobile]);
 
   useEffect(() => {
-    if (window.innerWidth < 1024) {
+    if (!enableOnMobile && window.innerWidth < 1024) {
       return;
     }
     if (!shouldRender) return;
@@ -153,6 +162,7 @@ export const LightningEffect = ({ variant = "default" }: LightningEffectProps) =
 
     const handleResize = () => {
       if (window.innerWidth < 1024) {
+        if (enableOnMobile) return;
         isMountedRef.current = false;
         if (rafRef.current) cancelAnimationFrame(rafRef.current);
         if (timeoutRef.current) window.clearTimeout(timeoutRef.current);
@@ -162,8 +172,9 @@ export const LightningEffect = ({ variant = "default" }: LightningEffectProps) =
 
     const schedule = () => {
       if (!isMountedRef.current) return;
-      const min = variant === "footer" ? 4000 : 2500;
-      const max = variant === "footer" ? 9500 : 6000;
+      const mobileFooter = variant === "footer" && window.innerWidth < 1024;
+      const min = variant === "footer" ? (mobileFooter ? 3000 : 4000) : 2500;
+      const max = variant === "footer" ? (mobileFooter ? 8000 : 9500) : 6000;
       timeoutRef.current = window.setTimeout(trigger, randomBetween(min, max));
     };
 
@@ -193,8 +204,9 @@ export const LightningEffect = ({ variant = "default" }: LightningEffectProps) =
 
         const boltAlpha = Math.max(0, 1 - elapsed / 220);
         if (boltAlpha > 0) {
-          drawPath(ctx, bolt, boltAlpha);
-          branches.forEach((branch) => drawPath(ctx, branch, boltAlpha * 0.4, 0.75));
+          const enhancedFooter = variant === "footer" && window.innerWidth < 1024;
+          drawPath(ctx, bolt, boltAlpha, 1, variant, enhancedFooter);
+          branches.forEach((branch) => drawPath(ctx, branch, boltAlpha * 0.4, 0.75, variant, enhancedFooter));
         }
 
         if (elapsed < duration) {
@@ -222,9 +234,9 @@ export const LightningEffect = ({ variant = "default" }: LightningEffectProps) =
       if (rafRef.current) cancelAnimationFrame(rafRef.current);
       ctx.clearRect(0, 0, width, height);
     };
-  }, [shouldRender, variant]);
+  }, [shouldRender, variant, enableOnMobile]);
 
-  if (isMobile || !shouldRender) return null;
+  if ((!enableOnMobile && isMobile) || !shouldRender) return null;
 
   return (
     <canvas
