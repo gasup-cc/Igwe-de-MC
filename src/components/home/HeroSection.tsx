@@ -59,13 +59,13 @@ export const HeroSection = () => {
               <Ticket className="w-4 h-4 text-gold" /> Book Jokes Apart
             </Link>
           </div>
-          <Link
+          {/* <Link
             to="/book-a-call"
             className="hero-mobile-hidden text-[13px] font-light text-gold/70 hover:text-gold hover:underline underline-offset-4 transition-colors"
             style={{ fontFamily: "'DM Sans', sans-serif" }}
           >
             or schedule a free discovery call →
-          </Link>
+          </Link> */}
 
           <div className="hero-mobile-hidden grid grid-cols-3 gap-3 w-full max-w-[460px] pt-2">
             {HERO_STATS.map((stat) => (
