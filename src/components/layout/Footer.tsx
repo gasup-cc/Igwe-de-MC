@@ -28,6 +28,54 @@ export const Footer = () => {
   return (
     <footer className="relative mt-32 overflow-hidden border-t border-white/[0.06] bg-void/60">
       <LightningEffect variant="footer" />
+<div
+  className="
+    absolute inset-0 pointer-events-none overflow-hidden select-none
+    flex items-end justify-center
+    md:items-end md:justify-center
+  "
+  style={{
+    zIndex: 0,
+    paddingBottom: "40px",
+  }}
+  aria-hidden="true"
+>
+  <span
+    className="
+      font-display font-bold text-gold select-none
+      hidden md:block
+    "
+    style={{
+      fontSize: "clamp(100px, 14vw, 350px)",
+      letterSpacing: "0.08em",
+      opacity: 0.03,
+      filter: "blur(0.8px)",
+      lineHeight: 0.9,
+      whiteSpace: "nowrap",
+    }}
+  >
+    IGWE DE MC
+  </span>
+
+  {/* Mobile Version */}
+  <span
+    className="
+      md:hidden absolute right-0 bottom-40
+      font-display font-bold text-gold
+    "
+    style={{
+      writingMode: "vertical-rl",
+      textOrientation: "mixed",
+      fontSize: "clamp(90px, 13vw, 90px)",
+      letterSpacing: "0.15em",
+      opacity: 0.05,
+      filter: "blur(0.2px)",
+      lineHeight: 0.3,
+    }}
+  >
+    IGWE DE MC
+  </span>
+</div>
       <div className="footer-grid container-x relative z-[1] py-20 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
         <div className="footer-column footer-brand">
           <Link to="/" className="logo-hover-link inline-flex">
