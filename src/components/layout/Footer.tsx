@@ -68,7 +68,7 @@ export const Footer = () => {
       textOrientation: "mixed",
       fontSize: "clamp(90px, 13vw, 90px)",
       letterSpacing: "0.15em",
-      opacity: 0.05,
+      opacity: 0.06,
       filter: "blur(0.2px)",
       lineHeight: 0.3,
     }}
