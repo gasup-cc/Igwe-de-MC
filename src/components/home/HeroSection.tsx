@@ -29,10 +29,10 @@ export const HeroSection = () => {
 
       <div className="container-x relative z-10 pt-36 pb-6 md:pt-28 md:pb-24 lg:pt-32 lg:pb-28">
         <div className="max-w-3xl flex flex-col items-start text-left gap-7 animate-fade-up">
-          <span className="hero-kicker inline-flex items-center gap-2 glass border-gold/30 text-gold rounded-full px-4 py-1.5 text-[10px] tracking-[0.26em] uppercase">
+          {/* <span className="hero-kicker inline-flex items-center gap-2 glass border-gold/30 text-gold rounded-full px-4 py-1.5 text-[10px] tracking-[0.26em] uppercase">
             <Sparkles className="w-3.5 h-3.5" />
             Southampton · UK · Master of Ceremony
-          </span>
+          </span> */}
 
           <h1 className="hero-headline font-display">
             <span className="hero-headline__line hero-headline__line--white block">Ebubedike</span>

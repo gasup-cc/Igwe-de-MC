@@ -4,7 +4,7 @@ import { StaggerContainer, StaggerItem } from "@/components/ui/StaggerContainer"
 
 const stats = [
   { num: "100+", label: "Events Hosted" },
-  { num: "10+", label: "Years Experience" },
+  { num: "20+", label: "Years Experience" },
   { num: "UK", label: "Wide Coverage" },
   { num: "5★", label: "Client Satisfaction" },
 ];

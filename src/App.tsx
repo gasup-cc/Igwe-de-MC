@@ -6,6 +6,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { Layout } from "@/components/layout/Layout";
 import { ScrollToTop } from "@/components/ScrollToTop";
+import { IntroAnimation } from "@/components/IntroAnimation";
 import Index from "./pages/Index.tsx";
 import About from "./pages/About.tsx";
 import Events from "./pages/Events.tsx";
@@ -24,6 +25,7 @@ const legacySchedulePath = ["/book", "a", "call"].join("-");
 
 const App = () => (
   <LazyMotion features={domAnimation}>
+    <IntroAnimation />
     <QueryClientProvider client={queryClient}>
       <TooltipProvider>
         <Toaster />
