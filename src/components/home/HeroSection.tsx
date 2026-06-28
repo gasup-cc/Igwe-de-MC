@@ -45,18 +45,18 @@ export const HeroSection = () => {
 
           <div className="flex flex-col sm:flex-row gap-4 pt-2 w-full sm:w-auto">
             <Link
-              to="/booking"
+              to="/events/jokes-apart"
               className="hero-cta-button btn-shimmer inline-flex items-center justify-center gap-2 bg-gold text-void px-8 py-4 rounded-md text-xs tracking-[0.2em] uppercase font-semibold hover:bg-gold-bright transition-all shadow-[0_0_34px_rgba(212,175,55,0.26)]"
               style={{ minWidth: 190 }}
             >
-              <Calendar className="w-4 h-4" /> Book Your Event
+              <Calendar className="w-4 h-4" /> Book Jokes Apart
             </Link>
             <Link
-              to="/events/jokes-apart"
+              to="/booking"
               className="hero-cta-button inline-flex items-center justify-center gap-2 glass px-8 py-4 rounded-md text-xs tracking-[0.2em] uppercase font-light text-foreground hover:border-gold/40 transition-all"
               style={{ minWidth: 190 }}
             >
-              <Ticket className="w-4 h-4 text-gold" /> Book Jokes Apart
+              <Ticket className="w-4 h-4 text-gold" /> Book Your Event
             </Link>
           </div>
           {/* <Link

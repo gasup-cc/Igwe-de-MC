@@ -174,6 +174,12 @@ export function IntroAnimation() {
     return false;
   }, []);
 
+  useEffect(() => {
+    if (shouldSkip) {
+      window.dispatchEvent(new Event("intro-finished"));
+    }
+  }, [shouldSkip]);
+
   if (shouldSkip) return null;
 
   return <IntroContent />;
@@ -198,6 +204,7 @@ function IntroContent() {
       setTimeout(() => setExiting(true), 4600), // Act 5 – curtain rise
       setTimeout(() => {
         sessionStorage.setItem("introPlayed", "true");
+        window.dispatchEvent(new Event("intro-finished"));
         setRemoved(true);
       }, 5200),
     ];
@@ -212,6 +219,7 @@ function IntroContent() {
     setExiting(true);
     setTimeout(() => {
       sessionStorage.setItem("introPlayed", "true");
+      window.dispatchEvent(new Event("intro-finished"));
       setRemoved(true);
     }, 600);
   }, []);
